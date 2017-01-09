@@ -45,6 +45,12 @@ MVP Features
 
 * Back-end authentication with Rails
 * Front-end authentication with React
+* Users
+  * table migrations
+  * model validations and associations
+  * controller
+  * components
+  * CSS styling
 
 ### Phase 2: Notes Model, API, and components (2 days, W1D4-5)
 
@@ -56,6 +62,8 @@ the API.
   * controller
   * components
   * CSS styling
+* Note Search
+  * component functions for dynamic search
 
 ### Phase 3: Notebooks (2 days, W2D1-2)
 
@@ -66,6 +74,8 @@ the API.
   * controller
   * components
   * CSS styling
+* Notebook search
+  * component functions for dynamic search
 
 ### Phase 4: Tags (1 day, W2D3 EOD)
 
@@ -76,10 +86,12 @@ the API.
   * controller
   * components
   * CSS styling
+* Tag search
+  * component functions for dynamic search
 
 ### Phase 5: Allow Complex Styling in Notes (1 day, W2D4 EOD)
 
-**Summary:** Allow rich text editing of notes.
+**Summary:** Allow rich text editing of notes
 
 ### Phase 6: - Pagination / infinite scroll for Notes Index (1 day, W2D5 EOD)
 
