@@ -1,7 +1,7 @@
 clevernote: project proposal
 ===================
 
-[Heroku link][heroku]
+[Heroku link (TBD)][heroku]
 
 [Trello link][trello]
 
@@ -39,30 +39,51 @@ MVP Features
 
 ## Implementation Timeline
 
-### Phase 1: Backend setup and Front End User Authentication (2 days)
+### Phase 1: Backend setup and Front End User Authentication (2 days, W1D2-3)
 
-**Summary:** Functioning rails project with front-end Authentication
+**Summary:** Functioning rails project with front-end authentication
 
-### Phase 2: Notes Model, API, and components (2 days)
+* Back-end authentication with Rails
+* Front-end authentication with React
+
+### Phase 2: Notes Model, API, and components (2 days, W1D4-5)
 
 **Summary:** Notes can be created, read, edited and deleted through
 the API.
+* Notes
+  * table migration
+  * model validations and associations
+  * controller
+  * components
+  * CSS styling
 
-### Phase 3: Notebooks (2 day)
+### Phase 3: Notebooks (2 days, W2D1-2)
 
 **Summary:** Notes belong to Notebooks that can be created, read, edited and deleted through the API.
+* Notebook
+  * table migration
+  * model validations and associations
+  * controller
+  * components
+  * CSS styling
 
-### Phase 4: Tags (1 days)
+### Phase 4: Tags (1 day, W2D3 EOD)
 
 **Summary:** Notes can be tagged with multiple tags, and tags are searchable.
+* Tags
+  * table migration
+  * model validations and associations
+  * controller
+  * components
+  * CSS styling
 
-### Phase 5: Allow Complex Styling in Notes (1 days, W2 Th 6pm)
+### Phase 5: Allow Complex Styling in Notes (1 day, W2D4 EOD)
 
 **Summary:** Allow rich text editing of notes.
 
-### Phase 6: - Pagination / infinite scroll for Notes Index (1 day, W2 F 6pm)
+### Phase 6: - Pagination / infinite scroll for Notes Index (1 day, W2D5 EOD)
 
-**Summary:** Add infinite scroll to Notes Index
+**Summary:** Add infinite scroll to Notes Index, loads more notes when scrolling
 
 ### Bonus Features
 
