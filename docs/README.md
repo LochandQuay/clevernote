@@ -65,9 +65,10 @@ the API.
 **objective:** Add infinite scroll to Notes Index
 
 ### Bonus Features
- - [] Search notes by content
- - [] Code snippets
- - [] Wiki View
- - [] Set reminders on notes
- - [] Changelogs for Notes
- - [] Multiple sessions
+
+ - [ ] Search notes by content
+ - [ ] Code snippets
+ - [ ] Wiki View
+ - [ ] Set reminders on notes
+ - [ ] Changelogs for Notes
+ - [ ] Multiple sessions
