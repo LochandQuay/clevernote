@@ -1,72 +1,87 @@
 # Component Hierarchy
 
-**AuthFormContainer**
- - AuthForm
+#### AuthFormContainer
+- AuthForm
 
-**HomeContainer**
- - Home
- - Sidebar
+#### HomeContainer
+- Home
+  - HomeHeader
+    - Logo
+    - NavBar
+  - QuickAuthForm
+  - FeaturesIndex
+    - FeaturesIndexItem
 
-**NotesContainer**
- - NotesHeader
-  * NoteIndex
+#### UserHomeContainer
+- UserHome
+  - Sidebar
+    - UserInfo
 
-**NotebookContainer**
- - NotebookHeader
-  + NoteIndex
+#### NoteIndexContainer
+- NoteIndex
+  - NotesHeader
+  - NoteIndexItem
 
-**SearchResultsContainer**
- - Search
- - NoteIndex
+#### NoteEditorContainer
+  - NoteEditor
+    - NoteTools
+    - NoteInfo
+      - NoteTagsList
+        - NoteTagsListItem
+    - FormattingBar
+    - Editor
 
-**TagContainer**
- - NotebookHeader
-  + NoteIndex
+#### NotebookIndexContainer
+- NotebookIndex
+  - NotebooksHeader
+    - NewNotebookButton
+  - NotebookIndexItem
 
-**NoteIndex**
- - NoteIndexItem
-  + NoteDetail
-    + NoteTools
-    - NotebookSearch
-    - Tags
-      - Tag
-    * Note
+#### NotebookDetailContainer
+- NotebookDetail
+  - NotebookHeader
+  - NoteIndex
+    - NoteIndexItem
 
-**NewNoteContainer**
- - NewNote
-  - RTETools
-  - NewNoteButton
+#### NewNotebookFormContainer
+- NewNotebookForm
 
-**Search**
+#### TagIndexContainer
+- TagIndex
+  - TagsHeader
+    - NewTagButton
+  - TagIndexItem
 
-**NewNotebook**
- - NewNotebook
+#### TagDetailContainer
+- TagDetail
+  - TagHeader
+  - NoteIndex
+    - NoteIndexItem
 
-**NewTag**
- - NewTag
+#### NewTagFormContainer
+- NewTagForm
 
-**NotebookSearch**
- + AutoSearch
- * AutoSearchResults
-
-**TagsSearch**
- + AutoSearch
- * AutoSearchResults
+#### SearchContainer
+- Search
+  - SearchBar
+  - SearchResults
+    - SearchResultsItem
 
 # Redux Routes
 
 | Path  | Component   |
 |-------|-------------|
+| "/" | "HomeContainer" |
 | "/sign-up" | "AuthFormContainer" |
 | "/sign-in" | "AuthFormContainer" |
-| "/home" | "HomeContainer" |
-| "/home/note/:noteId" | "NotesContainer" |
-| "/home/notebook/:notebookId/note/:noteId" | "NotebookContainer" |
-| "/home/tag/:tagId/note/:notedId" | "TagContainer" |
-| "/home/search-results" | "SearchResultsContainer"
-| "/new-note" | "NewNoteContainer" |
-| "/search" | "Search" |
-| "/new-notebook" | "NewNotebook" |
-| "/new-tag" | "NewTag" |
-| "/tag-search" | "TagSearch" |
-| "/notebook-search" | "NotebookSearch" |
+| "/home" | "UserHomeContainer" |
+| "/notes" | "NotesContainer" |
+| "/notebooks" | "NotebooksContainer" |
+| "/tags" | "TagsContainer" |
+| "/home/notes/:noteId" | "NotesContainer" |
+| "/home/notebooks/:notebookId/notes/:noteId" | "NotebookDetailContainer" |
+| "/home/tags/:tagId/notes/:noteId" | "TagsContainer" |
+| "/notes/new" | "NoteDetailContainer" |
+| "/notebooks/new" | "NewNotebookFormContainer" |
+| "/tags/new" | "NewTagFormContainer" |
+| "/search" | "SearchContainer" |
