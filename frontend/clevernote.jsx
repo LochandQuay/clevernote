@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import configureStore from './store/store';
+import Root from './components/root';
+
+window.store = store;
+const store = configureStore();
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<h2>clevernote</h2>, document.getElementById('root'));
+  ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });

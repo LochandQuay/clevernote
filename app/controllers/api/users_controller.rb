@@ -10,12 +10,11 @@ class Api::UsersController < ApplicationController
       render api_user
     else
       render json: @user.errors.full_messages, status: 422
+    end
   end
 
   def show
-    if current_user
-    else
-    end
+    @user = User.find(params[:id])
   end
 
   def edit
