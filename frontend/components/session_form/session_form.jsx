@@ -10,9 +10,35 @@ class SessionForm extends React.Component {
     super(props);
 
     this.state = {username: "", password: "", name: "", email: ""};
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.displaySignUpField = this.displaySignUpField.bind(this);
   }
+
+  componentWillMount() {
+    if (this.props.demoUser) {
+      this.props.processForm(this.props.demoUser);
+    }
+  }
+
+  // handleDemoLogin() {
+  //   Object.keys(this.props.demoUser).forEach(field => {
+  //
+  //     let charString = "";
+  //     this.setState({[field]: charString},
+  //     this.props.demoUser[field].split("").forEach(char => {
+  //       charString += char;
+  //       setTimeout(() => this.setState({[field]: charString}), 10000);
+  //     });
+  //   });
+  //
+  //   this.props.processForm(this.state);
+  // }
+  //
+  // updateStateString(stringSlice, string, field) {
+  //   if (stringSlice === string) return;
+  //   this.setState({[field]: stringSlice}, )
+  // }
 
   componentDidUpdate() {
     this.redirectIfLoggedIn();
@@ -26,7 +52,6 @@ class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     this.props.processForm(this.state);
   }
 

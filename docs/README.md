@@ -5,7 +5,7 @@ clevernote: project proposal
 
 [Trello link][trello]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: http://www.clevernote-dev.herokuapp.com
 [trello]: https://trello.com/b/P9JY6DAy
 
 ## Minimum Viable Product
