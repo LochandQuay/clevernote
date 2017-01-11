@@ -1,19 +1,12 @@
 import {connect} from 'react-redux';
 import Home from './home';
 
-const homeComponent = ({session}) => {
-  if (session.currentUser) {
-    return (
-      <div></div>
-    );
-  }
-  else {
-    return (
-      <HomeContainer />
-    );
-  }
-};
+const mapStateToProps = ({session}) => ({
+  currentUser: session.currentUser,
+  errors: session.errors
+});
+
 
 export default connect(
-
+  mapStateToProps
 )(Home);

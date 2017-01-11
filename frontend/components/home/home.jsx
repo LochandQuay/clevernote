@@ -1,16 +1,24 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
+import Dashboard from './dashboard';
+import Splash from './splash';
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   render () {
-    return (
-      <div className="home-main=content">
-        <img
-          src="http://res.cloudinary.com/clevernote/image/upload/q_100/v1484173061/splash.jpg"
-          className="splash-image" />
-      </div>
-    );
+    if (this.props.currentUser) {
+      return (
+        <Dashboard />
+      );
+    }
+    else {
+      return (
+        <Splash />
+      );
+    }
   }
 }
 
