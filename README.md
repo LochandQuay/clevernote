@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+#### NB: Remember to 'npm install', 'bundle install', and 'rake db:setup' when opening on a new machine! 

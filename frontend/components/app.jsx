@@ -6,9 +6,13 @@ import GreetingContainer from './greeting/greeting_container';
 
 const App = ({ children }) => (
   <div>
-    <header>
-      <Link to="/" className="header-link">
+    <header className="main-page-header">
+      <Link to="/" className="home-link">
         <h1>clevernote</h1>
+        <img
+          className="main-page-logo"
+          src="http://res.cloudinary.com/clevernote/image/upload/v1484120473/clevernote-2_rao7v9.png"
+          alt="clevernote logo" />
       </Link>
       <GreetingContainer />
     </header>

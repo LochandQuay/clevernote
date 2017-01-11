@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: clevernote
+  api_key: '214433441932754'
+  api_secret: 5a6nvuevzBjY9avw1YFM-joCYPc
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: clevernote
+  api_key: '214433441932754'
+  api_secret: 5a6nvuevzBjY9avw1YFM-joCYPc
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: clevernote
+  api_key: '214433441932754'
+  api_secret: 5a6nvuevzBjY9avw1YFM-joCYPc
+  enhance_image_tag: true
+  static_image_support: false

@@ -1,0 +1,16 @@
+.main-page-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-link {
+  font-family: $lobster-two;
+  font-size: 40px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.main-page-logo {
+  width: auto;
+  height: 50px;
+}
