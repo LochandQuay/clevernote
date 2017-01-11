@@ -79,7 +79,7 @@ class SessionForm extends React.Component {
 
     return (
       <div className = "auth-form">
-        <h1>{sessionText}</h1>
+        <h2>{sessionText}</h2>
 
         <form onSubmit={this.handleSubmit}>
 
@@ -105,7 +105,10 @@ class SessionForm extends React.Component {
 
           <br /><br />
 
-          <input type="submit" value={sessionText} />
+          <input
+            type="submit"
+            value={sessionText}
+            className="submit-button" />
         </form>
 
         <br /><br />

@@ -1,16 +1,55 @@
 .main-page-header {
   display: flex;
   justify-content: space-between;
+  padding: 10px 0px;
+  margin: 10px 0px;
+  height: 50px;
+  border-bottom: 1px solid $bad-blood;
 }
 
 .home-link {
-  font-family: $lobster-two;
-  font-size: 40px;
   display: flex;
   flex-direction: row-reverse;
+
+  h1 {
+    padding-top: 10px;
+  }
+}
+
+.home-link:hover {
+  text-decoration: none;
 }
 
 .main-page-logo {
   width: auto;
   height: 50px;
+  padding-right: 10px;
+}
+
+.login-signup, .header-group {
+  display: inherit;
+  flex-direction: row;
+  margin: 10px 0px;
+}
+
+.button {
+  height: 20px;
+  width: 60px;
+	background-color: $fox-red;
+	color: white;
+	font-weight: bold;
+	padding: 5px 5px;
+  margin-left: 10px;
+	border-radius: 5px;
+	transition: background-color 0.3s;
+	font-family: $sans-serif;
+	text-transform: uppercase;
+	font-size: 13px;
+	text-align: center;
+}
+
+.button:hover {
+  text-decoration: none;
+	background-color: $bad-blood;
+//   border-color: $darkest-blue;
 }
