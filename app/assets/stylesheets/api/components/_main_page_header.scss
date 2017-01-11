@@ -33,6 +33,8 @@
 }
 
 .button {
+  position: relative;
+  top: 6px;
   height: 20px;
   width: 60px;
 	background-color: $fox-red;
@@ -55,7 +57,5 @@
 }
 
 .header-group .button {
-  position: relative;
-  top: 6px;
   margin-left: 20px;
 }
