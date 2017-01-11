@@ -25,12 +25,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  # 
+  #
   # def require_login
   #   render json: {base: ['invalid credentials']}, status: 401 if !current_user
   # end
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :name, :email)
   end
 end

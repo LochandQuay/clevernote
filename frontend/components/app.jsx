@@ -1,3 +1,5 @@
+// NB: should not need to edit this any further for a while, if ever
+
 import React from 'react';
 import { Link } from 'react-router';
 import GreetingContainer from './greeting/greeting_container';
