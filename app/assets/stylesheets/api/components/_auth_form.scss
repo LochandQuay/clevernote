@@ -1,14 +1,19 @@
 .auth-form {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
   color: $bad-blood;
-  margin: 30px auto;
   width: 300px;
   height: auto;
   border: 1px solid $bad-blood;
   border-radius: 5px;
-  box-shadow: 5px 5px 15px $bad-blood;
+  box-shadow: 0px 5px 20px 3px $bad-blood;
   font-family: $sans-serif;
   font-size: 15px;
   padding: 20px 30px;
+  background-color: $white-ish;
+  z-index: 3;
   // font-weight: bold;
 
   h2 {
@@ -27,7 +32,7 @@
     background-color: $fox-red;
     font-weight: bold;
     font-size: 18px;
-    color: white;
+    color: $white-ish;
     text-transform: uppercase;
     border: 1px solid $bad-blood;
     border-radius: 2px;
@@ -52,4 +57,11 @@
   //   font-weight: bold;
   // }
 
+  .toggle-form-link {
+    text-align: center;
+
+    h3, h4 {
+      margin: 0px auto;
+    }
+  }
 }

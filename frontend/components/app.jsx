@@ -3,8 +3,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 import GreetingContainer from './greeting/greeting_container';
+import HomeContainer from './home/home_container';
 
-const App = ({ children }) => (
+const App = ({ children }) => {
+  return (
   <div>
     <header className="main-page-header">
       <Link to="/" className="home-link">
@@ -16,8 +18,12 @@ const App = ({ children }) => (
       </Link>
       <GreetingContainer />
     </header>
+    <div>
+      <HomeContainer />
+    </div>
+
     {children}
   </div>
-);
+);};
 
 export default App;

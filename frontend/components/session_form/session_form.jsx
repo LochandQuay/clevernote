@@ -21,25 +21,6 @@ class SessionForm extends React.Component {
     }
   }
 
-  // handleDemoLogin() {
-  //   Object.keys(this.props.demoUser).forEach(field => {
-  //
-  //     let charString = "";
-  //     this.setState({[field]: charString},
-  //     this.props.demoUser[field].split("").forEach(char => {
-  //       charString += char;
-  //       setTimeout(() => this.setState({[field]: charString}), 10000);
-  //     });
-  //   });
-  //
-  //   this.props.processForm(this.state);
-  // }
-  //
-  // updateStateString(stringSlice, string, field) {
-  //   if (stringSlice === string) return;
-  //   this.setState({[field]: stringSlice}, )
-  // }
-
   componentDidUpdate() {
     this.redirectIfLoggedIn();
   }
@@ -96,8 +77,12 @@ class SessionForm extends React.Component {
 
     const toggleFormTypeText =
       (this.props.formType === 'login') ?
-      "Don't have an account? Sign up!" :
-      "Already have an account? Log in!";
+      (<div className="toggle-form-link">
+        <h4>Don't have an account?</h4><h3>Sign Up!</h3>
+      </div>) :
+      (<div className="toggle-form-link">
+        <h4>Already have an account?</h4><h3>Log in!</h3>
+      </div>);
 
     const toggleFormTypeLink =
       (this.props.formType === 'login') ? '/signup' : '/login';
