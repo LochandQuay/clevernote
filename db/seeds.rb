@@ -19,3 +19,9 @@ User.create!(
   email: "gatsby@caterpie.com",
   password: "password"
 )
+
+Note.create!(
+  title: "Sample Note",
+  body: "This is a sample note",
+  author_id: 1,
+)
