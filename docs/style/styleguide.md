@@ -39,6 +39,7 @@
 * cog / gear
 * download
 * edit
+* file-text / file-text-o
 * hashtag
 * home
 * paper-plane / paper-plane-o
