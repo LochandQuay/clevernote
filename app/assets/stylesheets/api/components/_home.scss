@@ -2,15 +2,18 @@
 }
 
 .splash-image {
-  width: 100%;
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
 }
 
 .splash-image-text-overlay {
   h1 {
-    font-size: 80px;
+
+    font-size: 4vw;
   }
-  position: fixed;
-  top: 250px;
+  position: absolute;
+  top: 40vh;
   z-index: 1;
   width: 100%;
   text-align: center;

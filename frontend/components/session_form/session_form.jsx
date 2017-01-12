@@ -40,6 +40,18 @@ class SessionForm extends React.Component {
     return e => this.setState({[field]: e.target.value});
   }
 
+  renderErrors() {
+		return(
+			<ul>
+				{this.props.errors.map((error, i) => (
+					<li key={`error-${i}`}>
+						{error}
+					</li>
+				))}
+			</ul>
+		);
+	}
+
   displaySignUpField() {
     if (this.props.formType === 'signup') {
       return (
@@ -100,7 +112,8 @@ class SessionForm extends React.Component {
               type="text"
               placeholder="Username"
               value={this.state.username}
-              onChange={this.update('username')} />
+              onChange={this.update('username')}
+              onClick={this.props.clearErrors} />
           </label>
 
           <br /><br />
@@ -110,7 +123,8 @@ class SessionForm extends React.Component {
               type="password"
               placeholder="Password"
               value={this.state.password}
-              onChange={this.update('password')} />
+              onChange={this.update('password')}
+              onClick={this.props.clearErrors} />
           </label>
 
           <br /><br />
@@ -121,8 +135,11 @@ class SessionForm extends React.Component {
             className="submit-button" />
         </form>
 
+        <br />
+        { this.renderErrors() }
         <br /><br />
-        <Link to={toggleFormTypeLink}>{toggleFormTypeText}</Link>
+        <Link to={toggleFormTypeLink}
+          onClick={this.props.clearErrors}>{toggleFormTypeText}</Link>
       </div>
     );
   }

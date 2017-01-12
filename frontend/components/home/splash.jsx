@@ -1,5 +1,4 @@
 import React from 'react';
-// import QuickAuthContainer from './quick_auth_container';
 
 const Splash = () => (
   <div className="home-main=content">
@@ -14,5 +13,3 @@ const Splash = () => (
 );
 
 export default Splash;
-
-// <QuickAuthContainer />
