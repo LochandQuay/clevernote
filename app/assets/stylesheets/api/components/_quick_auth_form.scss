@@ -1,0 +1,108 @@
+.quick-auth-form {
+  position: fixed;
+  top: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $bad-blood;
+  width: 300px;
+  height: auto;
+  // border: 1px solid $bad-blood;
+  // border-radius: 5px;
+  // box-shadow: 0px 5px 20px 3px $bad-blood;
+  font-family: $sans-serif;
+  font-size: 15px;
+  padding: 20px 30px;
+  // background-color: $white-ish;
+  z-index: 3;
+  // font-weight: bold;
+
+  h2 {
+    padding-bottom: 30px;
+  }
+
+  input {
+    border: 1px solid $gray;
+    border-radius: 2px;
+    width: 286px;
+    padding: 2px 2px 2px 10px;
+  }
+
+  .submit-button {
+    box-sizing: border-box;
+    background-color: $fox-red;
+    font-weight: bold;
+    font-size: 18px;
+    color: $white-ish;
+    text-transform: uppercase;
+    border: 1px solid $bad-blood;
+    border-radius: 2px;
+    width: 300px;
+    height: auto;
+    padding: 5px;
+    transition: background-color 0.3s;
+    text-align: center;
+  }
+
+  .submit-button:hover {
+    text-decoration: none;
+    background-color: $bad-blood;
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+  }
+
+  // a:hover {
+  //   font-weight: bold;
+  // }
+
+  .toggle-form-link {
+    text-align: center;
+
+    h3, h4 {
+      margin: 0px auto;
+    }
+  }
+}
+
+hr.or-line {
+  width: 300px;
+  border-top: 2px solid $bad-blood;
+  text-align: center;
+}
+
+hr.or-line:after {
+	content: 'or';
+	display: inline-block;
+	position: relative;
+	top: -15px;
+	padding: 0 10px;
+	color: $bad-blood;
+	font-size: 18px;
+}
+
+hr.faded {
+  clear: both;
+  float: none;
+  height: 1px;
+  margin: 1.4em 0;
+  border: none;
+  background: #ddd;
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      right bottom,
+      color-stop(0, rgb(255,255,255)),
+      color-stop(0.1, rgb(221,221,221)),
+      color-stop(0.9, rgb(221,221,221)),
+      color-stop(1, rgb(255,255,255))
+  );
+  background-image: -moz-linear-gradient(
+      left center,
+      rgb(255,255,255) 0%,
+      rgb(221,221,221) 10%,
+      rgb(221,221,221) 90%,
+      rgb(255,255,255) 100%
+  );
+}

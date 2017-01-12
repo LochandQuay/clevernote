@@ -4,3 +4,14 @@
 .splash-image {
   width: 100%;
 }
+
+.splash-image-text-overlay {
+  h1 {
+    font-size: 80px;
+  }
+  position: fixed;
+  top: 250px;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+}
