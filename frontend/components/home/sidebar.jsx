@@ -1,7 +1,25 @@
 import React from 'react';
 
 class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { image_url: null };
+    // this.props.currentUser;
+  }
+
+  componentWillMount() {
+    // FETCH CURRENT USER, SET STATE
+  }
+
   render () {
+    const userImageSetting = this.state.image_url ?
+    "user-image" : "default-user-icon";
+
+    const userImageContent = this.state.image_url ?
+      (<img src={this.state.image_url} />) :
+      (<i className="fa fa-user-o"></i>);
+
     return (
       <div><h2>Logo</h2>
         <ul className="sidebar-nav">
@@ -25,9 +43,11 @@ class Sidebar extends React.Component {
           </li>
         </ul>
 
-        <div className="user-image">
-          <i className="fa fa-user-circle"></i>
-        </div>
+        <ul className="sidebar-nav">
+          <li className={`user-icon ${userImageSetting}`}>
+            {userImageContent}
+          </li>
+        </ul>
       </div>
     );
   }

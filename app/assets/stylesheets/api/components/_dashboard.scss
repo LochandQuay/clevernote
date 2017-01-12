@@ -21,7 +21,7 @@ $note-editor-width: calc(100vw - 370px);
   box-sizing: border-box;
   border: 1px solid black;
   width: $sidebar-width;
-  // height: 100%;
+  height: 100vh;
   display: flex;
 
   justify-content: space-between;
@@ -60,6 +60,45 @@ $note-editor-width: calc(100vw - 370px);
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .user-icon {
+    box-sizing: border-box;
+    margin: 10px auto;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    padding: 1.2rem;
+    border: 1px solid $bad-blood;
+    background-color: white;
+    width: 50px;
+    height: 50px;
+  }
+
+  .default-user-icon {
+    position: fixed;
+    bottom: 0px;
+    left: 10px;
+
+    i {
+      text-align: center;
+      font-size: 40px;
+      color: $fox-red;
+      background-color: white;
+    }
+  }
+
+  .default-user-icon:hover {
+    background-color: $fox-red;
+    
+    i {
+      color: white;
+      background-color: $fox-red;
+    }
+  }
+
+  .user-image {
+    // #TODO:
   }
 }
 
