@@ -3,32 +3,39 @@ class Api::NotesController < ApplicationController
   end
 
   def create
-    @note = Note.create!(note_params)
+    user = User.find(params[:user_id])
+    @note = Note.new(note_params)
+    # @note = user.notes.create(params[:note])
     render :show
   end
 
   def edit
-    @note = Note.find(params[:id])
+    user = User.find(params[:user_id])
+    @note = user.notes.find(params[:id])
   end
 
   def update
-    @note = Note.find(params[:id])
+    user = User.find(params[:user_id])
+    @note = user.notes.find(params[:id])
     @note.update_attributes(note_params)
     render :show
   end
 
   def destroy
-    @note = Note.find(params[:id])
+    user = User.find(params[:user_id])
+    @note = user.notes.find(params[:id])
     @note.destroy
     render :index
   end
 
   def show
-    @note = Note.find(params[:id])
+    user = User.find(params[:user_id])
+    @note = user.notes.find(params[:id])
   end
 
   def index
-    @notes = Note.all_notes_by_author(params[:])
+    user = User.find(params[:user_id])
+    @notes = user.notes
     render :index
   end
 
@@ -36,6 +43,6 @@ class Api::NotesController < ApplicationController
 
   def note_params
     params.require(:note).permit(
-      :title, :body, :author_id, :notebook_id, :archived
-      )
+      :title, :body, :author_id, :notebook_id, :archived)
+  end
 end

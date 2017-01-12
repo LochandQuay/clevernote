@@ -23,5 +23,5 @@ User.create!(
 Note.create!(
   title: "Sample Note",
   body: "This is a sample note",
-  author_id: 1,
+  author_id: 1
 )

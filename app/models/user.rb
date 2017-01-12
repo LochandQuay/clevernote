@@ -21,6 +21,10 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  has_many :notes,
+    primary_key: :id,
+    foreign_key: :author_id
+
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
     return nil unless user && user.is_password?(password)
