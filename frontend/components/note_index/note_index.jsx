@@ -8,8 +8,8 @@ class NoteIndex extends React.Component {
   }
 
   componentWillMount() {
-    // this.props.fetchNotes(this.props.user.id)
-      // .then(userNotes => this.setState({ notes: userNotes }));
+    this.props.fetchNotes(this.props.user.id)
+      .then(userNotes => this.setState({ notes: userNotes }));
   }
 
   render() {
@@ -17,12 +17,12 @@ class NoteIndex extends React.Component {
       <div className="note-index">
         <div className="notes-header">
           <h2>Notes</h2>
-          <h4>{this.props.notes.length} notes</h4>
+          <h4>{this.state.notes.length} notes</h4>
         </div>
 
         <div className="note-index-items">
           <ul>
-            { this.props.notes.map(note => (
+            { this.state.notes.map(note => (
               <NoteIndexItem note={note} key={note.id}/>
             )) }
           </ul>
