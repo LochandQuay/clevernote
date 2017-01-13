@@ -13,7 +13,7 @@ const App = ({ children }) => {
         <h1>clevernote</h1>
         <img
           className="main-page-logo"
-          src="https://res.cloudinary.com/clevernote/image/upload/q_auto:good/v1484173061/splash.jpg"
+          src="https://res.cloudinary.com/clevernote/image/upload/v1484120473/clevernote-2_rao7v9.png"
           alt="clevernote logo" />
       </Link>
       <GreetingContainer />
