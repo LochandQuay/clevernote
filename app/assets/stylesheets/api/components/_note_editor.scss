@@ -1,0 +1,30 @@
+.note-editor {
+
+}
+
+.text-editor-title-input {
+  border-bottom: 1px solid $bad-blood;
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 30px;
+  color: $bad-blood;
+}
+
+.text-editor-title-input::-webkit-input-placeholder {
+  color: $gray;
+  vertical-align: middle;
+}
+
+.text-editor-input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  resize: none;
+  overflow: auto;
+}
+
+.save-note-button {
+  @extend .button;
+  width: 100px;
+}
