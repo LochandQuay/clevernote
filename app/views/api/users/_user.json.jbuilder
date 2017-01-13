@@ -1,2 +1,1 @@
-json.extract! user, :id, :username, :name
-# add :users
+json.extract! user, :id, :username, :name, :notes
