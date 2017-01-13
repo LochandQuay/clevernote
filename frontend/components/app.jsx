@@ -18,9 +18,7 @@ const App = ({ children }) => {
       </Link>
       <GreetingContainer />
     </header>
-    <div>
-      <HomeContainer />
-    </div>
+    <HomeContainer />
 
     {children}
   </div>

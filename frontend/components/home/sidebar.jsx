@@ -21,7 +21,8 @@ class Sidebar extends React.Component {
       (<i className="fa fa-user-o"></i>);
 
     return (
-      <div><h2>Logo</h2>
+      <div className="sidebar">
+        <h2>Logo</h2>
         <ul className="sidebar-nav">
           <li className="icon-circle">
             <i className="fa fa-plus"></i>

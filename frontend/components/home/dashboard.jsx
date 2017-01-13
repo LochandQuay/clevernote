@@ -8,15 +8,9 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div className="dashboard">
-        <div className="sidebar">
-          <Sidebar />
-        </div>
-        <div className="note-index">
-          <NoteIndexContainer />
-        </div>
-        <div className="note-editor">
-          <NoteEditor />
-        </div>
+        <Sidebar />
+        <NoteIndexContainer />
+        <NoteEditor />
       </div>
     );
   }

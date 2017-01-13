@@ -5,8 +5,6 @@ import NoteIndexItem from './note_index_item';
 class NoteIndex extends React.Component {
   constructor(props) {
     super(props);
-
-    // this.state = { notes: this.props.user.notes };
   }
 
   componentWillMount() {
@@ -16,17 +14,20 @@ class NoteIndex extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="notes-header"><h2>Notes</h2>
-        <h4>{this.props.notes.length} notes</h4>
+      <div className="note-index">
+        <div className="notes-header">
+          <h2>Notes</h2>
+          <h4>{this.props.notes.length} notes</h4>
+        </div>
 
-        <ul>
-          { this.props.notes.map(note => (
-            <NoteIndexItem note={note} key={note.id}/>
-          )) }
-        </ul>
+        <div className="note-index-items">
+          <ul>
+            { this.props.notes.map(note => (
+              <NoteIndexItem note={note} key={note.id}/>
+            )) }
+          </ul>
+        </div>
       </div>
-    </div>
     );
   }
 }

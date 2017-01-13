@@ -44,7 +44,7 @@ const NoteIndexItem = ({note}) => {
   return (
   <div className="note-index-item">
     <h3>{note.title}</h3>
-    <h6>{getTimeStamp(note.updated_at)}</h6>
+    <h5>{getTimeStamp(note.updated_at)}</h5>
     <p>{note.body}</p>
   </div>
 );};
