@@ -12,7 +12,7 @@
 #
 
 class Note < ApplicationRecord
-  validates :title, :author_id, presence: true
+  validates :title, :author, presence: true
   validates :archived, inclusion: [true, false]
   validates :title, length: { maximum: 140 }
 
