@@ -6,6 +6,7 @@ import Root from './components/root';
 // testing only
 import * as SessionApiUtil from './util/session_api_util';
 import * as NoteApiUtil from './util/note_api_util';
+import { fetchNotes, fetchNote } from './actions/note_actions';
 
 window.login = SessionApiUtil.login;
 window.logout = SessionApiUtil.logout;

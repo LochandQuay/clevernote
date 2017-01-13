@@ -1,4 +1,4 @@
-import { receiveCurrentUser, receiveErrors } from '../actions/session_actions';
+import { receiveNotes, receiveNote } from '../actions/note_actions';
 
 export const fetchNotes = userId => (
   $.ajax({
