@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from './sidebar';
-import NoteIndex from './note_index';
-import NoteEditor from './note_editor';
+import NoteIndexContainer from '../note_index/note_index_container';
+import NoteEditor from '../note_editor/note_editor';
 
 class Dashboard extends React.Component {
 
@@ -12,7 +12,7 @@ class Dashboard extends React.Component {
           <Sidebar />
         </div>
         <div className="note-index">
-          <NoteIndex />
+          <NoteIndexContainer />
         </div>
         <div className="note-editor">
           <NoteEditor />
