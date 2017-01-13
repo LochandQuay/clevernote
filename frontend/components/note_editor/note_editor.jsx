@@ -6,6 +6,8 @@ class NoteEditor extends React.Component {
     return (
       <div className="note-editor">
         <h2>Note Editor</h2>
+
+        <br />
       </div>
     );
   }
