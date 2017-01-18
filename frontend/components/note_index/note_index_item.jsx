@@ -1,12 +1,14 @@
 import React from 'react';
 // import { Link } from 'react-router';
-// import Modal from 'react-modal';
+import Modal from 'react-modal';
+import DeleteNoteModal from './delete_note_modal';
+import DeleteNoteModalStyle from '../modal_styles/delete_note_modal_style';
 
 const getTimeStamp = (lastUpdatedTime) => {
   if (lastUpdatedTime === null) {
     return "Moments ago";
   }
-  
+
   const currentTime = new Date();
   const updated = new Date(lastUpdatedTime);
 
@@ -49,7 +51,18 @@ class NoteIndexItem extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = { deleteModalOpen: false };
+
     this.selectNote = this.selectNote.bind(this);
+    this.openDeleteModal = this.openDeleteModal.bind(this);
+  }
+
+  openDeleteModal() {
+    this.setState({ deleteModalOpen: true });
+  }
+
+  closeDeleteModal() {
+    this.setState({ deleteModalOpen: false });
   }
 
   selectNote() {
@@ -62,13 +75,38 @@ class NoteIndexItem extends React.Component {
     }
   }
 
+  deleteHandler(e){
+    this.props.deleteNote(this.props.note.id)
+      .then(() => this.props.fetchNotes());
+    this.closeDeleteModal();
+  }
+
   render() {
 
     return (
       <div className="note-index-item" onClick={this.selectNote}>
         <h3>{this.props.note.title}</h3>
+        <div
+          className="delete-note-button"
+          onClick={this.openDeleteModal}>
+          <i className="fa fa-trash"></i>
+        </div>
         <h5>{getTimeStamp(this.props.note.updated_at)}</h5>
         <p>{this.props.note.body}</p>
+
+        <Modal
+          isOpen={this.state.deleteModalOpen}
+          onRequestClose={this.closeDeleteModal}
+          className="delete-note-modal"
+          shouldCloseOnOverlayClick={false}
+          style={ DeleteNoteModalStyle }
+          contentLabel="Delete Note Modal">
+
+          <DeleteNoteModal
+            deleteNote={this.deleteHandler}
+            closeModal={this.closeDeleteModal}
+            noteTitle={this.props.note.title} />
+        </Modal>
       </div>
     );
   }
