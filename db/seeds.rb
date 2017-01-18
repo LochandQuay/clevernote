@@ -20,8 +20,15 @@ User.create!(
   password: "password"
 )
 
+Notebook.create!(
+  title: "Sample Notebook",
+  description: "First Notebook",
+  author_id: 1
+)
+
 Note.create!(
   title: "Sample Note",
   body: "This is a sample note",
-  author_id: 1
+  author_id: 1,
+  notebook_id: 1
 )
