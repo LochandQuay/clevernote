@@ -1,13 +1,16 @@
 import React from 'react';
-import ReactTransitionGroup from 'react-addons-transition-group';
 import Modal from 'react-modal';
+import NotebookIndexContainer from '../notebooks/notebook_index_container';
+
 import { UserSettingsModalStyle }
   from '../modal_styles/user_settings_modal_style';
+
 import { NotebookIndexModalStyle }
   from '../modal_styles/notebook_index_modal_style';
-import Drawer from 'react-motion-drawer';
-import NotebookIndexContainer from '../notebooks/notebook_index_container';
-import {TweenMax, Power2, TimelineLite} from 'gsap';
+
+// import ReactTransitionGroup from 'react-addons-transition-group';
+// import Drawer from 'react-motion-drawer';
+// import {TweenMax, Power2, TimelineLite} from 'gsap';
 
 class Sidebar extends React.Component {
   constructor(props) {
