@@ -30,6 +30,14 @@ class NoteEditor extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    if (newProps.note === null) {
+      this.setState({
+        note: newProps.note,
+        title: null,
+        body: null
+      });
+      return;
+    }
     if ((!this.props.note) || (this.props.note.id !== newProps.note.id)) {
       this.setState({
         note: newProps.note,
@@ -122,7 +130,7 @@ class NoteEditor extends React.Component {
       );
     }
     else {
-      return (<div></div>);
+      return (<div className="note-editor"></div>);
     }
   }
 }

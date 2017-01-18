@@ -22,7 +22,7 @@ class Api::NotesController < ApplicationController
   def destroy
     @note = Note.find(params[:id])
     @note.destroy
-    render :index
+    render :show
   end
 
   def show
