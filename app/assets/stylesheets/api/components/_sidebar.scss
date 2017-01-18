@@ -2,13 +2,13 @@
 
 .sidebar {
   box-sizing: border-box;
-  border: 1px solid black;
+  border-right: 1px solid black;
+  height: 100%;
   width: $sidebar-width;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   align-content: center;
-
   background-color: $light-gray;
 
   .sidebar-logo {

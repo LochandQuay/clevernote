@@ -1,7 +1,8 @@
 .note-index {
   box-sizing: border-box;
-  border: 1px solid $darkest-gray;
+  border-right: 1px solid $darkest-gray;
   width: $note-index-width;
+  height: 100%;
 }
 
 .notes-header {
