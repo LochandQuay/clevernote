@@ -28,6 +28,7 @@ const NoteReducer = (state = _defaultState, action) => {
 
     case RECEIVE_NOTE:
       nextState.currentNote = action.note;
+      nextState[action.note.id] = action.note;
       return nextState;
 
     case REMOVE_NOTE:

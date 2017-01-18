@@ -47,12 +47,6 @@ class NoteEditor extends React.Component {
     }
   }
 
-  componentWillMount() {
-    // this.setState(
-      // { note: this.props.fetchNote(this.props.userId, this.props.noteId) }
-    // );
-  }
-
   // handleKeyCommand(command) {
   //   const newState =
   //     RichUtils.handleKeyCommand(this.state.editorState, command);
@@ -69,6 +63,7 @@ class NoteEditor extends React.Component {
 
   saveNote(e) {
     e.preventDefault();
+    // debugger;
     if (this.state.note.id) {
       this.props.updateNote({
         title: this.state.title,
