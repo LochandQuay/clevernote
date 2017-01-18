@@ -2,8 +2,11 @@
 
 import React from 'react';
 import { Link } from 'react-router';
-import GreetingContainer from './greeting/greeting_container';
+import HeaderContainer from './greeting/greeting_container';
+import SessionFormContainer from './session_form/session_form_container';
 import HomeContainer from './home/home_container';
+import SplashContainer from './splash/splash_container';
+// import SessionModalContainer from './header/session_modal_container';
 
 const App = ({ children }) => {
   return (
@@ -16,12 +19,19 @@ const App = ({ children }) => {
           src="https://res.cloudinary.com/clevernote/image/upload/v1484120473/clevernote-2_rao7v9.png"
           alt="clevernote logo" />
       </Link>
-      <GreetingContainer />
+      <HeaderContainer />
     </header>
-    <HomeContainer />
-
+    <section className="main-content">
+      <SplashContainer />
+    </section>
+    <footer className="footer">
+      <p>
+        clevernote
+      </p>
+    </footer>
     {children}
   </div>
 );};
 
 export default App;
+// <HomeContainer />

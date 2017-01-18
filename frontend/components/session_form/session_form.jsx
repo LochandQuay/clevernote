@@ -9,9 +9,12 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {username: "", password: "", name: "", email: ""};
+    this.state = {
+      formType: this.props.formType,
+      username: "", password: "", name: "", email: ""};
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleFormType = this.toggleFormType.bind(this);
     this.displaySignUpField = this.displaySignUpField.bind(this);
   }
 
@@ -27,13 +30,18 @@ class SessionForm extends React.Component {
 
   redirectIfLoggedIn() {
     if (this.props.loggedIn) {
-      this.props.router.push('/');
+      this.props.router.push('/home');
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.processForm(this.state);
+    if (this.state.formType === 'signup') {
+      this.props.signup(this.state);
+    }
+    else {
+      this.props.login(this.state);
+    }
   }
 
   update(field) {
@@ -52,8 +60,18 @@ class SessionForm extends React.Component {
 		);
 	}
 
+  toggleFormType() {
+    this.props.clearErrors();
+    if (this.state.formType === 'signup') {
+      this.setState({formType: 'login'});
+    }
+    else {
+      this.setState({formType: 'signup'});
+    }
+  }
+
   displaySignUpField() {
-    if (this.props.formType === 'signup') {
+    if (this.state.formType === 'signup') {
       return (
         <div>
           <label>
@@ -85,19 +103,16 @@ class SessionForm extends React.Component {
 
   render() {
     const sessionText =
-      (this.props.formType === 'login') ? "Log In" : "Sign Up";
+      (this.state.formType === 'login') ? "Log In" : "Sign Up";
 
     const toggleFormTypeText =
-      (this.props.formType === 'login') ?
-      (<div className="toggle-form-link">
+      (this.state.formType === 'login') ?
+      (<div className="toggle-form-link" onClick={this.toggleFormType}>
         <h4>Don't have an account?</h4><h3>Sign Up!</h3>
       </div>) :
-      (<div className="toggle-form-link">
+      (<div className="toggle-form-link" onClick={this.toggleFormType}>
         <h4>Already have an account?</h4><h3>Log in!</h3>
       </div>);
-
-    const toggleFormTypeLink =
-      (this.props.formType === 'login') ? '/signup' : '/login';
 
     return (
       <div className = "auth-form">
@@ -138,8 +153,7 @@ class SessionForm extends React.Component {
         <br />
         { this.renderErrors() }
         <br /><br />
-        <Link to={toggleFormTypeLink}
-          onClick={this.props.clearErrors}>{toggleFormTypeText}</Link>
+          {toggleFormTypeText}
       </div>
     );
   }

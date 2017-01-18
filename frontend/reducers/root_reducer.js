@@ -1,11 +1,21 @@
 import { combineReducers } from 'redux';
 
+import { LOGOUT } from '../actions/session_actions';
+
 import SessionReducer from './session_reducer';
 import NoteReducer from './note_reducer';
 
-const RootReducer = combineReducers ({
+const AppReducer = combineReducers ({
   session: SessionReducer,
-  note: NoteReducer
+  notes: NoteReducer
 });
+
+const RootReducer = (state, action) => {
+  if (action.type === "LOGOUT") {
+    state = undefined;
+  }
+
+  return AppReducer(state, action);
+};
 
 export default RootReducer;

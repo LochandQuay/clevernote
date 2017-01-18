@@ -23,8 +23,9 @@ class Note < ApplicationRecord
     class_name: "User"
 
 
-  def self.find_notes_by_author(id)
-    Note.all.where("author_id = ?", id)
+  def self.find_notes_by_author(user)
+    return [] unless user
+    Note.all.where("author_id = ?", user.id)
   end
 
 end

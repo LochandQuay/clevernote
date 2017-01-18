@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
+import Splash from './splash';
 import { login, logout, clearErrors } from '../../actions/session_actions';
-import Header from './greeting';
 
 const mapStateToProps = ({ session }) => ({
-  currentUser: session.currentUser
+  currentUser: session.currentUser,
+  loggedIn: Boolean(session.currentUser)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,4 +16,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header);
+)(Splash);

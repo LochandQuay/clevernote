@@ -1,24 +1,21 @@
 import {connect} from 'react-redux';
-import { login, logout, signup, clearErrors } from '../../actions/session_actions';
+import { login, logout, signup, clearErrors }
+  from '../../actions/session_actions';
 import SessionForm from './session_form';
 
 // map boolean value for currentUser to loggedIn prop
 // pass errors array
 // #TODO: set up errors array for store
-const mapStateToProps = ({session}) => ({
+const mapStateToProps = ({session}, ownProps) => ({
   loggedIn: Boolean(session.currentUser),
   errors: session.errors
 });
 
-// get formType from router location, slicing off '/'
-// get processForm action from formType
-const mapDispatchToProps = (dispatch, {location}) => {
-  const formType = location.pathname.slice(1);
-  const processForm = (formType === 'login') ? login : signup;
-
+const mapDispatchToProps = (dispatch, {formType}) => {
   return {
+    signup: user => dispatch(signup(user)),
+    login: user => dispatch(login(user)),
     clearErrors: () => dispatch(clearErrors()),
-    processForm: user => dispatch(processForm(user)),
     formType
   };
 };

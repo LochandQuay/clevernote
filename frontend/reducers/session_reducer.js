@@ -26,8 +26,6 @@ const SessionReducer = (state = _nullUser, action) => {
         errors
       });
     case CLEAR_ERRORS:
-      console.log("It's trying");
-      console.log(merge({}, state, { errors: []}));
       return merge({}, _nullUser);
     default:
       return state;

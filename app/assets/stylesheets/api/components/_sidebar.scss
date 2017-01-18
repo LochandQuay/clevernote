@@ -1,0 +1,103 @@
+// SIDEBAR
+
+.sidebar {
+  box-sizing: border-box;
+  border: 1px solid black;
+  width: $sidebar-width;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-content: center;
+
+  background-color: $light-gray;
+
+  .note-action-buttons, .index-buttons, .user-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .icon-circle {
+    margin: 10px auto;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    padding: 1.2rem;
+    border: 1px solid $bad-blood;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 20px;
+    transition: background-color 0.3s;
+    background-color: $white-ish;
+  }
+
+  .icon-circle:hover {
+    background-color: $mint;
+  }
+
+  i {
+    color: $bad-blood;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .user-icon {
+    box-sizing: border-box;
+    margin: 10px auto;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    padding: 1.2rem;
+    border: 1px solid $bad-blood;
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+  }
+
+  .default-user-icon {
+    font-size: 40px;
+
+    i {
+      text-align: center;
+      font-size: 40px;
+      color: $fox-red;
+      background-color: white;
+    }
+  }
+
+  .user-icon:hover {
+    background-color: $fox-red;
+
+    i {
+      color: white;
+      background-color: $fox-red;
+    }
+  }
+
+  .user-image {
+    // #TODO:
+  }
+
+}
+
+.user-settings-modal {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  h1 {
+    border-bottom: 1px solid $darkest-gray;
+    margin-bottom: 30px;
+  }
+
+  .user-settings-logout-button {
+    width: 100px;
+    font-size: 20px;
+  }
+
+}

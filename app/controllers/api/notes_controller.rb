@@ -1,41 +1,36 @@
 class Api::NotesController < ApplicationController
   def new
+    @note = Note.new
   end
 
   def create
-    user = User.find(params[:user_id])
     @note = Note.new(note_params)
-    # @note = user.notes.create(params[:note])
+    @note.save
     render :show
   end
 
   def edit
-    user = User.find(params[:user_id])
-    @note = user.notes.find(params[:id])
+    @note = Note.find(params[:id])
   end
 
   def update
-    user = User.find(params[:user_id])
-    @note = user.notes.find(params[:id])
+    @note = Note.find(params[:id])
     @note.update_attributes(note_params)
     render :show
   end
 
   def destroy
-    user = User.find(params[:user_id])
-    @note = user.notes.find(params[:id])
+    @note = Note.find(params[:id])
     @note.destroy
     render :index
   end
 
   def show
-    user = User.find(params[:user_id])
-    @note = user.notes.find(params[:id])
+    @note = Note.find(params[:id])
   end
 
   def index
-    user = User.find(params[:user_id])
-    @notes = user.notes
+    @notes = Note.find_notes_by_author(current_user)
     render :index
   end
 
