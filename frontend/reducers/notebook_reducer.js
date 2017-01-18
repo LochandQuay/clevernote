@@ -6,8 +6,6 @@ import {
 } from '../actions/notebook_actions';
 import merge from 'lodash/merge';
 
-import { sortedNotes } from './selectors';
-
 const _defaultState = {
   currentNotebook: null
 };

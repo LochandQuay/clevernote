@@ -26,7 +26,7 @@ const App = ({ children }) => {
     </section>
     <footer className="footer">
       <p>
-        clevernote
+        clevernote: organize your life.
       </p>
     </footer>
     {children}
