@@ -1,4 +1,4 @@
-json.partial! '/api/notebooks/notebook', notebook: @notebook
+json.partial! '/api/notebooks/notebook_with_notes', notebook: @notebook
 #
 # json.set! @notebook.id do
 #   json.partial! 'notebook', notebook: @notebook
