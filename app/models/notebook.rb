@@ -22,8 +22,8 @@ class Notebook < ApplicationRecord
   has_many :notes,
     dependent: :destroy
 
-  def self.find_notebooks_by_author(user)
+  def self.find_current_user_notebooks(user)
     return [] unless user
-    Notebook.all.where("author_id = ?", user.id)
+    Notebook.where("author_id = ?", user.id)
   end
 end

@@ -8,7 +8,7 @@ import {
 } from '../actions/note_actions';
 import merge from 'lodash/merge';
 
-import { sortedNotes } from './selectors';
+import { sorted } from './selectors';
 
 const _defaultState = {
   currentNote: null,
@@ -23,7 +23,7 @@ const NoteReducer = (state = _defaultState, action) => {
 
     case RECEIVE_NOTES:
       nextState = merge({}, state, action.notes);
-      nextState.notes = sortedNotes(action.notes);
+      nextState.notes = sorted(action.notes);
       return nextState;
 
     case RECEIVE_NOTE:
@@ -31,8 +31,11 @@ const NoteReducer = (state = _defaultState, action) => {
       nextState[action.note.id] = action.note;
       return nextState;
 
+
+    // #NB: was >> delete nextState.notes[action.note.id];
+
     case REMOVE_NOTE:
-      delete nextState.notes[action.note.id];
+      delete nextState[action.note.id];
       if (nextState.currentNote.id === action.note.id) {
         nextState.currentNote = null;
       }

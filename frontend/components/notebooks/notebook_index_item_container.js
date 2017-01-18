@@ -1,0 +1,21 @@
+import { connect } from 'react-redux';
+import NotebookIndexItem from './notebook_index_item';
+import { setCurrentNotebook, fetchNotebooks, deleteNotebook, createNotebook}
+  from '../../actions/notebook_actions';
+
+const mapStateToProps = (state) => ({
+  currentNotebook: state.notebooks.currentNotebook,
+  notebooks: state.notebooks.sortedNotebooks
+});
+
+const mapDispatchToProps = dispatch => ({
+  setCurrentNotebook: (notebook) => dispatch(setCurrentNotebook(notebook)),
+  fetchNotebooks: () => dispatch(fetchNotebooks()),
+  deleteNotebook: (notebookId) => dispatch(deleteNotebook(notebookId)),
+  createNotebook: (notebook) => dispatch(createNotebook(notebook))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NotebookIndexItem);

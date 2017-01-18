@@ -6,8 +6,11 @@ import {
 } from '../actions/notebook_actions';
 import merge from 'lodash/merge';
 
+import { alphaSort } from './selectors';
+
 const _defaultState = {
-  currentNotebook: null
+  currentNotebook: null,
+  sortedNotebooks: []
 };
 
 const NotebookReducer = (state = _defaultState, action) => {
@@ -18,6 +21,7 @@ const NotebookReducer = (state = _defaultState, action) => {
 
     case RECEIVE_NOTEBOOKS:
       nextState = merge({}, state, action.notebooks);
+      nextState.sortedNotebooks = alphaSort(action.notebooks);
       return nextState;
 
     case RECEIVE_NOTEBOOK:
@@ -25,8 +29,10 @@ const NotebookReducer = (state = _defaultState, action) => {
       nextState[action.notebook.id] = action.notebook;
       return nextState;
 
+      // #NB: was >> delete nextState.notebooks[action.notebook.id];
+
     case REMOVE_NOTEBOOK:
-      delete nextState.notebooks[action.notebook.id];
+      delete nextState[action.notebook.id];
       if (nextState.currentNotebook.id === action.notebook.id) {
         nextState.currentNotebook = null;
       }

@@ -30,7 +30,7 @@ class Api::NotebooksController < ApplicationController
   end
 
   def index
-    @notebooks = Notebook.find_notebooks_by_author(current_user)
+    @notebooks = Notebook.find_current_user_notebooks(current_user)
     render :index
   end
 
