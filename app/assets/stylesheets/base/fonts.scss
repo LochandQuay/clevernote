@@ -1,5 +1,32 @@
 // 'https://fonts.googleapis.com/css?family=Amaranth|Cabin|Lobster|Lobster+Two|Titillium+Web'
 
+@font-face {
+  font-family: 'Cabin';
+  src: url('Cabin-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Amaranth';
+  src: url('Amaranth-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lobster';
+  src: url('Lobster-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TitilliumWeb';
+  src: url('TitilliumWeb-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 
 $serif: serif;

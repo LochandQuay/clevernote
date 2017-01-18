@@ -2,6 +2,10 @@
   box-sizing: border-box;
   width: $note-editor-width;
   height: 100%;
+
+  h2 {
+    margin-bottom: 10px;
+  }
 }
 
 .formatting-bar {
@@ -18,7 +22,7 @@
   height: 40px;
   padding: 10px;
   font-size: 30px;
-  color: $bad-blood;
+  color: $fox-red;
   vertical-align: middle;
 }
 
@@ -35,7 +39,7 @@
   padding: 15px 20px;
   box-sizing: border-box;
   background-color: $white-ish;
-  // text-align: left;
+  wrap: hard;
 }
 
 .save-note-button {
