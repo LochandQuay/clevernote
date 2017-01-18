@@ -54,7 +54,9 @@ class NoteIndexItem extends React.Component {
     this.state = { deleteModalOpen: false };
 
     this.selectNote = this.selectNote.bind(this);
+    this.deleteHandler = this.deleteHandler.bind(this);
     this.openDeleteModal = this.openDeleteModal.bind(this);
+    this.closeDeleteModal = this.closeDeleteModal.bind(this);
   }
 
   openDeleteModal() {
@@ -66,8 +68,6 @@ class NoteIndexItem extends React.Component {
   }
 
   selectNote() {
-    console.log("Current Note: ", this.props.currentNote);
-    console.log("Selected Note: ", this.props.note);
     if ((this.props.currentNote &&
       this.props.note.id !== this.props.currentNote.id) ||
       (!this.props.currrentNote)) {
@@ -85,12 +85,12 @@ class NoteIndexItem extends React.Component {
 
     return (
       <div className="note-index-item" onClick={this.selectNote}>
-        <h3>{this.props.note.title}</h3>
         <div
           className="delete-note-button"
           onClick={this.openDeleteModal}>
           <i className="fa fa-trash"></i>
         </div>
+        <h3>{this.props.note.title}</h3>
         <h5>{getTimeStamp(this.props.note.updated_at)}</h5>
         <p>{this.props.note.body}</p>
 

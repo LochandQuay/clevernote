@@ -52,7 +52,9 @@ class Sidebar extends React.Component {
     return (
       <div className="sidebar">
         <div className="sidebar-logo">
-          <h2>Logo</h2>
+          <img className="sidebar-logo-image"
+            src="https://res.cloudinary.com/clevernote/image/upload/v1484120473/clevernote-2_rao7v9.png"
+            alt="clevernote logo" />
         </div>
 
         <div className="note-action-buttons">

@@ -11,6 +11,11 @@
 
   background-color: $light-gray;
 
+  .sidebar-logo {
+    width: calc($sidebar-width - 10px);
+    height: auto;
+  }
+
   .note-action-buttons, .index-buttons, .user-button {
     display: flex;
     flex-direction: column;
