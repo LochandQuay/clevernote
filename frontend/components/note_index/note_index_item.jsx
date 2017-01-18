@@ -43,8 +43,27 @@ const getTimeStamp = (lastUpdatedTime) => {
   }
 };
 
-const getBodyPreview = (body) => {
+const getTitlePreview = (title) => {
+  let preview;
+  if (title.length > 25) {
+    preview = title.slice(0, 25) + "...";
+  }
+  else {
+    preview = title;
+  }
 
+  return preview;
+};
+
+const getBodyPreview = (body) => {
+  let preview;
+  if (body.length > 75) {
+    preview = body.slice(0, 75) + "...";
+  }
+  else {
+    preview = body;
+  }
+  return preview;
 };
 
 class NoteIndexItem extends React.Component {
@@ -90,9 +109,9 @@ class NoteIndexItem extends React.Component {
           onClick={this.openDeleteModal}>
           <i className="fa fa-trash"></i>
         </div>
-        <h3>{this.props.note.title}</h3>
+        <h3>{getTitlePreview(this.props.note.title)}</h3>
         <h5>{getTimeStamp(this.props.note.updated_at)}</h5>
-        <p>{this.props.note.body}</p>
+        <p>{getBodyPreview(this.props.note.body)}</p>
 
         <Modal
           isOpen={this.state.deleteModalOpen}

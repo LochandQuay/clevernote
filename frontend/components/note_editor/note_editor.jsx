@@ -1,7 +1,49 @@
 import React from 'react';
-import {Editor, EditorState, RichUtils} from 'draft-js';
-import RichEditorExample from './rich_text_editor';
-import merge from 'lodash/merge';
+
+import {ReactQuill, Quill} from 'quill';
+
+// import {Editor, EditorState, RichUtils} from 'draft-js';
+
+
+// import RichEditorExample from './rich_text_editor';
+// import merge from 'lodash/merge';
+
+const toolbarOptions = [
+  // toggled buttons
+  ['bold', 'italic', 'underline', 'strike'],
+  ['blockquote', 'code-block'],
+
+  // custom button values
+  [{ 'header': 1 }, { 'header': 2 }],
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+
+  // superscript/subscript
+  [{ 'script': 'sub'}, { 'script': 'super' }],
+
+  // outdent/indent
+  [{ 'indent': '-1'}, { 'indent': '+1' }],
+
+  // text direction
+  [{ 'direction': 'rtl' }],
+
+  // custom dropdown
+  [{ 'size': ['small', false, 'large', 'huge'] }],
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+  // dropdown with defaults from theme
+  [{ 'color': [] }, { 'background': [] }],
+  [{ 'font': [] }],
+  [{ 'align': [] }],
+
+  ['clean']                                         // remove formatting button
+];
+
+// const quill = new ReactQuill('#editor', {
+//   modules: {
+//     toolbar: toolbarOptions
+//   },
+//   theme: 'snow'
+// });
 
 
 class NoteEditor extends React.Component {
@@ -19,9 +61,7 @@ class NoteEditor extends React.Component {
       title: title,
       body: body,
       author_id: this.props.user.id
-      // editorState: EditorState.createEmpty()
     };
-    // this.onChange = (editorState) => this.setState({editorState});
     // this.handleKeyCommand = this.handleKeyCommand.bind(this);
 
     this.saveNote = this.saveNote.bind(this);
@@ -113,12 +153,13 @@ class NoteEditor extends React.Component {
               onChange={this.update('title')}
               value={this.state.title} />
             <br />
-            <input
-              type="textarea"
+
+            <textarea
               className="text-editor-input"
               placeholder="Begin your note"
               onChange={this.update('body')}
-              value={this.state.body} />
+              value={this.state.body}>
+            </textarea>
             <br />
             <br />
         </div>
@@ -131,6 +172,20 @@ class NoteEditor extends React.Component {
 }
 
 export default NoteEditor;
+
+// <ReactQuill
+//   placeholder="Write your note..."
+//   onChange={this.update('body')}
+//   value={this.state.body}
+//   ref='editor'
+//   key='editor'
+//   theme='snow' >
+//   <ReactQuill.Toolbar
+//     key="toolbar"
+//     ref="toolbar"
+//     items={ReactQuill.Toolbar.defaultItems} />
+//
+// </ReactQuill>
 
 
 // <Editor

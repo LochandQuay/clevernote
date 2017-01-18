@@ -4,6 +4,8 @@ import SidebarContainer from '../sidebar/sidebar_container';
 import NoteIndexContainer from '../note_index/note_index_container';
 import NoteEditorContainer from '../note_editor/note_editor_container';
 
+// import RichTextEditorContainer from '../note_editor/rich_text_editor_container';
+
 import SplashContainer from '../splash/splash_container';
 
 
