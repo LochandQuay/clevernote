@@ -4,10 +4,12 @@ import { LOGOUT } from '../actions/session_actions';
 
 import SessionReducer from './session_reducer';
 import NoteReducer from './note_reducer';
+import NotebookReducer from './notebook_reducer';
 
 const AppReducer = combineReducers ({
   session: SessionReducer,
-  notes: NoteReducer
+  notes: NoteReducer,
+  notebooks: NotebookReducer
 });
 
 const RootReducer = (state, action) => {
