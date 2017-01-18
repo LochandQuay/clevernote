@@ -18,8 +18,7 @@ export const NotebookIndexModalStyle = {
     overflow                   : 'auto',
     WebkitOverflowScrolling    : 'touch',
     borderRadius               : '4px',
-    outline                    : 'none',
-    padding                    : '20px',
+    outline                    : 'none'
 
   }
 };

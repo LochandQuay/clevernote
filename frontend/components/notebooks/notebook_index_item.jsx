@@ -48,7 +48,6 @@ class NotebookIndexItem extends React.Component {
           onClick={this.openDeleteModal}>
           <i className="fa fa-trash"></i>
         </div>
-
       <h3>{this.props.notebook.title}</h3>
 
         <Modal
