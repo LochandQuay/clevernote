@@ -21,3 +21,5 @@ const RootReducer = (state, action) => {
 };
 
 export default RootReducer;
+
+// #TODO: On logout, clear store (including notes, notebooks, tags)
