@@ -15,7 +15,7 @@ const Root = ({ store }) => {
   const _ensureLoggedIn = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
     if (!currentUser) {
-      replace('/login');
+      replace('/');
     }
   };
 
@@ -29,13 +29,12 @@ const Root = ({ store }) => {
   const _ensureCurrentUser = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
     if (!currentUser) {
-      replace('/login');
+      replace('/');
     }
     else if (currentUser.id !== parseInt(nextState.params.userId)) {
       replace('/');
     }
   };
-
 
   return (
     <Provider store={store}>

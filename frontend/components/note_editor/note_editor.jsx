@@ -132,9 +132,16 @@ class NoteEditor extends React.Component {
     if (this.props.note) {
       return (
         <div className="note-editor">
+          <div className="note-info">
+            <ul className="note-info-items">
+              <li className="note-notebook-label">
+                Notebook: {this.props.note.notebook.title}
+              </li>
+            </ul>
+          </div>
+
           <div className="formatting-bar">
-            <h2>Note Editor</h2>
-            <ul>
+            <ul className="formatting-bar-buttons">
               <li>
                 <input
                   type="submit"

@@ -3,9 +3,16 @@
   width: $note-editor-width;
   height: 100%;
 
-  h2 {
-    margin-bottom: 10px;
-  }
+}
+
+.note-info {
+
+}
+
+.note-info-items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .formatting-bar {
@@ -13,15 +20,22 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   border-bottom: 1px solid $gray;
+}
+
+.formatting-bar-items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .text-editor-title-input {
   border-bottom: 1px solid $bad-blood;
   width: 100%;
   height: 40px;
-  padding: 10px;
-  font-size: 30px;
+  padding: 10px 15px;
+  font-size: 36px;
   color: $fox-red;
   vertical-align: middle;
 }

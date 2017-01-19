@@ -2,6 +2,7 @@ import React from 'react';
 import Sidebar from './sidebar';
 import NoteIndexContainer from '../note_index/note_index_container';
 import NoteEditorContainer from '../note_editor/note_editor_container';
+import { hashHistory } from 'react-router';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -17,6 +18,18 @@ class Dashboard extends React.Component {
     }
     else {
       return false;
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!newProps.currentUser) {
+      this.redirectIfLoggedOut(newProps.currentUser);
+    }
+  }
+
+  redirectIfLoggedOut(user) {
+    if (!user) {
+      hashHistory.replace("/");
     }
   }
 
