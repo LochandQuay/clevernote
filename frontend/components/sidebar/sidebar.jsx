@@ -33,6 +33,8 @@ class Sidebar extends React.Component {
 
     this.openNotebooksModal = this.openNotebooksModal.bind(this);
     this.closeNotebooksModal = this.closeNotebooksModal.bind(this);
+
+    this.resetToNotesIndex = this.resetToNotesIndex.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +46,15 @@ class Sidebar extends React.Component {
     if(props.notes.length > this.props.notes.length) {
       this.props.setCurrentNote(props.notes[0]);
     }
+    if(!this.props.currentNotebook && props.currentNotebook) {
+      this.closeNotebooksModal();
+    }
+  }
+
+  resetToNotesIndex() {
+    this.setState({
+      userSettingsModalOpen: false,
+      notebooksModalOpen: false}, () => this.props.setCurrentNotebook(null));
   }
 
 
@@ -121,7 +132,8 @@ class Sidebar extends React.Component {
 
         <div className="index-buttons">
           <div
-            className="notes-button icon-circle sidebar-icon" >
+            className="notes-button icon-circle sidebar-icon"
+            onClick={this.resetToNotesIndex} >
             <i className="fa fa-file-text"></i>
           </div>
 

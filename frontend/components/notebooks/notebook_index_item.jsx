@@ -18,6 +18,12 @@ class NotebookIndexItem extends React.Component {
     this.closeDeleteModal = this.closeDeleteModal.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (!this.props.currentNotebook && newProps.currentNotebook) {
+      this.props.fetchNotebook(newProps.currentNotebook.id);
+    }
+  }
+
   openDeleteModal() {
     this.setState({ deleteModalOpen: true });
   }

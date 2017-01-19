@@ -52,7 +52,8 @@ class NoteEditor extends React.Component {
     super(props);
 
     this.state = {
-      note: this.props.note
+      note: this.props.note,
+      showDropdown: false
       // title: this.props.note.title,
       // body: this.props.note.body,
       // author_id: this.props.note.author_id,
@@ -62,13 +63,22 @@ class NoteEditor extends React.Component {
 
     this.saveNote = this.saveNote.bind(this);
     this.update = this.update.bind(this);
+    this.selectNotebook = this.selectNotebook.bind(this);
+    this.showDropdown = this.showDropdown.bind(this);
+    this.closeDropdown = this.closeDropdown.bind(this);
+    // this.renderNotebookSelectorDropdown = this.renderNotebookSelectorDropdown.bind(this);
+
   }
 
   componentWillMount() {
-    if (this.props.note) {
-      this.props.fetchNote(this.props.note.id);
-    }
+    // if (this.props.note) {
+    //   this.props.fetchNote(this.props.note.id);
+    // }
     this.props.fetchNotebooks();
+  }
+
+  componentDidMount() {
+    // this.props.fetchNotebooks();
   }
 
   componentWillReceiveProps(newProps) {
@@ -107,6 +117,13 @@ class NoteEditor extends React.Component {
     return e => this.setState({[field]: e.target.value});
   }
 
+  selectNotebook(notebook) {
+    this.setState({
+      notebook: notebook,
+      notebook_id: notebook.id});
+    this.closeDropdown();
+  }
+
   // #TODO: Remove default notebook
   saveNote(e) {
     e.preventDefault();
@@ -129,9 +146,52 @@ class NoteEditor extends React.Component {
     }
   }
 
+  showDropdown() {
+    this.setState({showDropdown: true});
+  }
+
+  closeDropdown() {
+    this.setState({showDropdown: false});
+  }
+
+
+  renderListItems() {
+    this.props.notebooks.map(notebook => (
+      <div key={`notebook-selector-dropdown-${notebook.id}`}
+        onClick={this.selectNotebook(notebook)}>
+        { notebook.title }
+      </div>
+    ));
+  }
+
+  renderNotebookSelectorDropdown() {
+    const selectedNotebook = (this.state.note) ?
+      this.state.note.notebook : this.props.notebooks[0];
+    return (
+      <div
+        className={
+          "notebook-selector-dropdown-container" +
+          (this.state.showDropdown ? "show" : "")}>
+        <div
+          className={
+            "notebook-selector-dropdown-display" +
+            (this.state.showDropdown ? "clicked" : "")}
+          onClick={this.showDropdown}>
+          <span>
+            { selectedNotebook.title }
+          </span>
+          <i className="fa fa-angle-down"></i>
+        </div>
+        <div className="notebook-selector-dropdown-list">
+          {this.renderListItems()}
+        </div>
+      </div>
+    );
+  }
+
   render() {
-    const notebookInfoContent = this.state.notebook ?
-      this.state.notebook.notebook_title : ("SELECT NOTEBOOK");
+    // const selectedNotebook = (this.state.note.notebook) ?
+      // this.state.note.notebook : this.props.notebooks[0];
 
     if (this.props.note) {
       return (
@@ -141,7 +201,10 @@ class NoteEditor extends React.Component {
               <li className="note-notebook-label">
                 <h3>
                   Notebook:
-                  <span>{notebookInfoContent}</span>
+                  <span
+                    className="notebook-selector">
+                    { this.props.notebooks[0].title }
+                  </span>
                 </h3>
               </li>
             </ul>
@@ -160,22 +223,22 @@ class NoteEditor extends React.Component {
             <br />
           </div>
           <br />
-            <input
-              type="text"
-              className="text-editor-title-input"
-              placeholder="Title your note"
-              onChange={this.update('title')}
-              value={this.state.title} />
-            <br />
+          <input
+            type="text"
+            className="text-editor-title-input"
+            placeholder="Title your note"
+            onChange={this.update('title')}
+            value={this.state.title} />
+          <br />
 
-            <textarea
-              className="text-editor-input"
-              placeholder="Begin your note"
-              onChange={this.update('body')}
-              value={this.state.body}>
-            </textarea>
-            <br />
-            <br />
+          <textarea
+            className="text-editor-input"
+            placeholder="Begin your note"
+            onChange={this.update('body')}
+            value={this.state.body}>
+          </textarea>
+          <br /><br />
+
         </div>
       );
     }

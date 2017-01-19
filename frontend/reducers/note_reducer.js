@@ -6,6 +6,7 @@ import {
   EDIT_NOTE,
   SET_CURRENT_NOTE
 } from '../actions/note_actions';
+
 import merge from 'lodash/merge';
 
 import { sorted } from './selectors';

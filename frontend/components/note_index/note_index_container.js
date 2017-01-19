@@ -4,7 +4,8 @@ import { fetchNotes, setCurrentNote } from '../../actions/note_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   currentNote: state.notes.currentNote,
-  notes: state.notes.notes
+  notes: state.notes.notes,
+  currentNotebook: state.notebooks.currentNotebook
 });
 
 const mapDispatchToProps = dispatch => ({
