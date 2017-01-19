@@ -94,7 +94,7 @@ class Sidebar extends React.Component {
   }
 
   openNotebooksModal() {
-    this.setState({ notebooksModalOpen: true });
+    this.setState({ notebooksModalOpen: true }, () => this.props.setCurrentNotebook(null));
   }
 
   closeNotebooksModal() {

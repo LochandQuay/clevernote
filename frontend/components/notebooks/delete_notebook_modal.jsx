@@ -1,8 +1,11 @@
 import Modal from 'react-modal';
 import React from 'react';
 
-const DeleteNotebookModal = ({ deleteNotebook, closeModal, notebookTitle }) => {
-  const title = (notebookTitle === "") ? "Untitled" : notebookTitle;
+const DeleteNotebookModal = ({ deleteNotebook, closeModal, notebook }) => {
+  if (!notebook) {
+    return (<div></div>);
+  }
+  const title = (notebook.title === null) ? "Untitled" : notebook.title;
   return (
     <div className="delete-modal">
       <div className="delete-modal-message">

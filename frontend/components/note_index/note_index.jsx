@@ -1,11 +1,24 @@
 import React from 'react';
 import NoteIndexItemContainer from './note_index_item_container';
 
+import Modal from 'react-modal';
+import DeleteNotebookModal from '../notebooks/delete_notebook_modal';
+// CreateNotebookModal
+import DeleteNotebookModalStyle
+  from '../modal_styles/delete_notebook_modal_style';
+
 class NoteIndex extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {notes: this.props.notes};
+    this.state = {
+      notes: this.props.notes,
+      deleteModalOpen: false
+    };
+
+    this.deleteHandler = this.deleteHandler.bind(this);
+    this.openDeleteModal = this.openDeleteModal.bind(this);
+    this.closeDeleteModal = this.closeDeleteModal.bind(this);
   }
 
   // componentWillMount() {
@@ -32,16 +45,37 @@ class NoteIndex extends React.Component {
     }
   }
 
-  render() {
-    // const noteListItems = Object.keys(this.props.notes).map(id => (
-    //   <li key={id}>
-    //     <NoteIndexItemContainer key={id} note={this.props.notes[id]} />
-    //   </li>
-    // ));
-    // debugger;
+  openDeleteModal() {
+    this.setState({ deleteModalOpen: true });
+  }
 
+  closeDeleteModal() {
+    this.setState({ deleteModalOpen: false });
+  }
+
+  deleteHandler(e) {
+    this.props.deleteNotebook(this.props.currentNotebook.id)
+      .then(() => this.props.fetchNotes());
+    this.closeDeleteModal();
+    // .then(() => this.props.fetchNotebooks())
+  }
+
+  renderNotebookNoteIndexHeader() {
+    return (
+      <div className="notebook-notes-header">
+        <div
+          className="delete-notebook-button"
+          onClick={this.openDeleteModal}>
+          <i className="fa fa-trash"></i>
+        </div>
+        <h2>{this.props.currentNotebook.title}</h2>
+      </div>
+    );
+  }
+
+  render() {
     const notesHeader = (this.props.currentNotebook) ?
-      this.props.currentNotebook.title : "Notes";
+      (this.renderNotebookNoteIndexHeader()) : (<h2>Notes</h2>);
 
     const noteListItems = this.state.notes.map((note, idx) => (
       <li key={`note-list-item-${idx}`}>
@@ -52,7 +86,7 @@ class NoteIndex extends React.Component {
     return (
       <div className="note-index">
         <div className="notes-header">
-          <h2>{notesHeader}</h2>
+          {notesHeader}
           <h4>{this.state.notes.length} notes</h4>
         </div>
 
@@ -61,6 +95,20 @@ class NoteIndex extends React.Component {
             { noteListItems }
           </ul>
         </div>
+
+        <Modal
+          isOpen={this.state.deleteModalOpen}
+          onRequestClose={this.closeDeleteModal}
+          className="delete-notebook-modal"
+          shouldCloseOnOverlayClick={false}
+          style={ DeleteNotebookModalStyle }
+          contentLabel="Delete Notebook Modal">
+
+          <DeleteNotebookModal
+            deleteNotebook={this.deleteHandler}
+            closeModal={this.closeDeleteModal}
+            notebook={this.props.currentNotebook} />
+        </Modal>
       </div>
     );
   }
