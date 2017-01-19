@@ -81,9 +81,9 @@ class Home extends React.Component {
     if (this.props.loggedIn) {
       return (
         <div className="dashboard">
-          <SidebarContainer addNote={this.addNote}/>
-          <NoteIndexContainer />
-          <NoteEditorContainer note={this.state.currentNote}/>
+          <SidebarContainer addNote={this.addNote} />
+          <NoteIndexContainer addNote={this.addNote} />
+          <NoteEditorContainer note={this.state.currentNote} />
         </div>
       );
     }

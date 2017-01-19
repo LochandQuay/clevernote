@@ -68,6 +68,11 @@ class NoteIndex extends React.Component {
           onClick={this.openDeleteModal}>
           <i className="fa fa-trash"></i>
         </div>
+        <div
+          className="add-notebook-note-button"
+          onClick={this.props.addNote}>
+          <i className="fa fa-plus-circle"></i>
+        </div>
         <h2>{this.props.currentNotebook.title}</h2>
       </div>
     );

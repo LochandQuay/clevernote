@@ -133,3 +133,35 @@
     width: 100px;
   }
 }
+
+// NEW NOTEBOOKNOTE BUTTON
+.add-notebook-note-button {
+  float: right;
+  font-size: 25px;
+  color: $fox-red;
+  vertical-align: text-top;
+  transition: font-size 0.1s;
+}
+
+/* Flashing Hover */
+.add-notebook-note-button:hover i {
+	opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
+}
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
