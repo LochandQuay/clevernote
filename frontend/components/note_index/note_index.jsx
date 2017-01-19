@@ -84,7 +84,9 @@ class NoteIndex extends React.Component {
 
     const noteListItems = this.state.notes.map((note, idx) => (
       <li key={`note-list-item-${idx}`}>
-        <NoteIndexItemContainer note={note} />
+        <NoteIndexItemContainer
+          note={note}
+          currentNotebook={this.props.currentNotebook} />
       </li>
     ));
 
