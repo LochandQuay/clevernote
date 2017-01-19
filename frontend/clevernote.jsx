@@ -8,6 +8,7 @@ import Modal from 'react-modal';
 import * as SessionApiUtil from './util/session_api_util';
 import * as NoteApiUtil from './util/note_api_util';
 import * as NotebookApiUtil from './util/notebook_api_util';
+import * as TagApiUtil from './util/tag_api_util';
 import { fetchNotes, fetchNote } from './actions/note_actions';
 import { fetchNotebooks, fetchNotebook } from './actions/notebook_actions';
 
@@ -29,6 +30,13 @@ window.fetchNotebook = NotebookApiUtil.fetchNotebook;
 window.createNotebook = NotebookApiUtil.createNotebook;
 window.updateNotebook = NotebookApiUtil.updateNotebook;
 window.deleteNotebook = NotebookApiUtil.deleteNotebook;
+
+// TAG UTIL ACTIONS
+window.fetchTags = TagApiUtil.fetchTags;
+window.fetchTag = TagApiUtil.fetchTag;
+window.fetchNoteTags = TagApiUtil.fetchNoteTags;
+window.createTag = TagApiUtil.createTag;
+window.deleteTag = TagApiUtil.deleteTag;
 
 
 
