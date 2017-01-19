@@ -23,7 +23,7 @@ class Api::TagsController < ApplicationController
   end
 
   def index
-    // get all tags by user
+    # get all tags by user
     @tags = []
     notes = current_user.notes.includes(:tags)
     notes.each do |note|
@@ -40,17 +40,17 @@ class Api::TagsController < ApplicationController
     notes = current_user.notes.includes(:taggings)
     if @tag
       notes.each do |note|
-        @tagged_notes << note if note.taggings.any? { |tagging| tagging.tag_id == @tag.id}
+        @tagged_notes << note if note.taggings.any? { |tagging| tagging.tag_id == @tag.id }
       end
 
       render json: @tagged_notes
     else
-      render json: @tag.errors.full_messages, status :422
+      render json: @tag.errors.full_messages, status: 422
     end
   end
 
 #  #TODO: Confirm whether this is the best way of going about this
-  def destroy_tagging
+  def destroyTagging
     @tag = Tag.find(params[:id])
     @tagging = @tag.taggings.select { |tagging| tagging.note_id == tag_params[:note_id].to_i }.first
     if @tagging

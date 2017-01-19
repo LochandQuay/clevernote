@@ -34,6 +34,16 @@ class Api::NotesController < ApplicationController
     render :index
   end
 
+  def tags
+    @note = Note.find(params[:id])
+    @tags = @note.tags
+    if @tags
+      render json: @tags
+    else
+      render json: @note.errors.full_messages, status: 422
+    end
+  end
+
   private
 
   def note_params
