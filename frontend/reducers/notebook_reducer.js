@@ -6,7 +6,7 @@ import {
 } from '../actions/notebook_actions';
 import merge from 'lodash/merge';
 
-import { alphaSort } from './selectors';
+import { alphaSort, sorted } from './selectors';
 
 const _defaultState = {
   currentNotebook: null,
@@ -25,8 +25,12 @@ const NotebookReducer = (state = _defaultState, action) => {
       return nextState;
 
     case RECEIVE_NOTEBOOK:
-      nextState.currentNotebook = action.notebook;
-      nextState[action.notebook.id] = action.notebook;
+      let notebook = action.notebook;
+      if (notebook.notes) {
+        notebook.notes = sorted(notebook.notes);
+      }
+      nextState.currentNotebook = notebook;
+      nextState[action.notebook.id] = notebook;
       return nextState;
 
       // #NB: was >> delete nextState.notebooks[action.notebook.id];
@@ -40,7 +44,15 @@ const NotebookReducer = (state = _defaultState, action) => {
 
     // NEW ACTION TYPES (potentially unnecessary):
     case SET_CURRENT_NOTEBOOK:
-      return merge({}, state, {currentNotebook: action.notebook});
+      let setNotebook = action.notebook;
+      if (action.notebook === null) {
+        return merge({}, state, {currentNotebook: action.notebook});
+      }
+
+      if (setNotebook.notes) {
+        setNotebook.notes = sorted(setNotebook.notes);
+      }
+      return merge({}, state, {currentNotebook: setNotebook});
 
     default:
       return state;

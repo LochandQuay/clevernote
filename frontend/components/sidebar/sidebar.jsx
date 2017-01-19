@@ -47,7 +47,8 @@ class Sidebar extends React.Component {
       this.props.setCurrentNote(props.notes[0]);
     }
     if(!this.props.currentNotebook && props.currentNotebook) {
-      this.closeNotebooksModal();
+      this.props.fetchNotebook(props.currentNotebook.id)
+        .then(() => this.closeNotebooksModal());
     }
   }
 
@@ -56,8 +57,6 @@ class Sidebar extends React.Component {
       userSettingsModalOpen: false,
       notebooksModalOpen: false}, () => this.props.setCurrentNotebook(null));
   }
-
-
 
   // openNotebooksDrawer() {
   //   this.setState({ notebooksDrawerOpen: true });

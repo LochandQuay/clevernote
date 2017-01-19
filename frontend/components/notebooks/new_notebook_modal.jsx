@@ -44,10 +44,12 @@ class NewNotebookModal extends React.Component {
           value={this.state.description} />
 
         <button
+          className="cancel-new-notebook-button"
           onClick={ this.props.closeModal }>
           Cancel
         </button>
         <button
+          className="create-new-notebook-button"
           onClick={ this.createNotebookHandler }>
           Create Notebook
         </button>

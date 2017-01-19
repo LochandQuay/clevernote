@@ -9,6 +9,8 @@ import {
 }
   from '../../actions/notebook_actions';
 
+import { fetchNotes } from '../../actions/note_actions';
+
 const mapStateToProps = (state) => ({
   currentNotebook: state.notebooks.currentNotebook,
   notebooks: state.notebooks.sortedNotebooks
@@ -19,7 +21,8 @@ const mapDispatchToProps = dispatch => ({
   fetchNotebooks: () => dispatch(fetchNotebooks()),
   fetchNotebook: (id) => dispatch(fetchNotebook(id)),
   deleteNotebook: (notebookId) => dispatch(deleteNotebook(notebookId)),
-  createNotebook: (notebook) => dispatch(createNotebook(notebook))
+  createNotebook: (notebook) => dispatch(createNotebook(notebook)),
+  fetchNotes: () => dispatch(fetchNotes())
 });
 
 export default connect(

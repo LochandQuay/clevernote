@@ -99,8 +99,18 @@ class NoteIndexItem extends React.Component {
   }
 
   deleteHandler(e){
-    this.props.deleteNote(this.props.note.id)
+    e.preventDefault();
+
+    if (this.props.currentNotebook) {
+      this.props.deleteNote(this.props.note.id)
+      .then(() => this.props.fetchNotes())
+      .then(() => this.props.fetchNotebook(this.props.currentNotebook.id));
+    }
+    else {
+      this.props.deleteNote(this.props.note.id)
       .then(() => this.props.fetchNotes());
+    }
+    
     this.closeDeleteModal();
   }
 

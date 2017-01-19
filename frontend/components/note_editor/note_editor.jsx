@@ -66,6 +66,8 @@ class NoteEditor extends React.Component {
     this.selectNotebook = this.selectNotebook.bind(this);
     this.showDropdown = this.showDropdown.bind(this);
     this.closeDropdown = this.closeDropdown.bind(this);
+    this.saveNewNote = this.saveNewNote.bind(this);
+    this.saveExistingNote = this.saveExistingNote.bind(this);
     // this.renderNotebookSelectorDropdown = this.renderNotebookSelectorDropdown.bind(this);
 
   }
@@ -127,22 +129,43 @@ class NoteEditor extends React.Component {
   // #TODO: Remove default notebook
   saveNote(e) {
     e.preventDefault();
+    let note = {
+      title: this.state.title,
+      body: this.state.body,
+      author_id: this.state.author_id
+    };
 
     if (this.state.note.id) {
-      this.props.updateNote({
-        title: this.state.title,
-        body: this.state.body,
-        author_id: this.state.author_id,
-        id: this.state.note.id
-      }).then(() => this.props.fetchNotes());
+      note["id"] = this.state.note.id;
+      this.saveExistingNote(note);
     }
     else {
-      this.props.createNote({
-        title: this.state.title,
-        body: this.state.body,
-        author_id: this.state.author_id,
-        notebook_id: this.state.notebook_id
-      }).then(() => this.props.fetchNotes());
+      note["notebook_id"] = this.state.note.notebook_id;
+      this.saveNewNote(note);
+    }
+  }
+
+  saveExistingNote(note) {
+    if (this.props.currentNotebook) {
+      this.props.updateNote(note)
+      .then(() => this.props.fetchNotes())
+      .then(() => this.props.fetchNotebook(this.props.currentNotebook.id));
+    }
+    else {
+      this.props.updateNote(note)
+      .then(() => this.props.fetchNotes());
+    }
+  }
+
+  saveNewNote(note) {
+    if (this.props.currentNotebook) {
+      this.props.createNote(note)
+      .then(() => this.props.fetchNotes())
+      .then(() => this.props.fetchNotebook(this.props.currentNotebook.id));
+    }
+    else {
+      this.props.createNote(note)
+      .then(() => this.props.fetchNotes());
     }
   }
 

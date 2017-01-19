@@ -42,7 +42,8 @@ class NotebookIndexItem extends React.Component {
 
   deleteHandler(e) {
     this.props.deleteNotebook(this.props.notebook.id)
-      .then(() => this.props.fetchNotebooks());
+      .then(() => this.props.fetchNotebooks())
+      .then(() => this.props.fetchNotes());
     this.closeDeleteModal();
   }
 
