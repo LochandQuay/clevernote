@@ -23,7 +23,7 @@ class Sidebar extends React.Component {
       tagsDrawerOpen: false
     };
 
-    this.addNote = this.addNote.bind(this);
+    // this.addNote = this.addNote.bind(this);
     // this.openNotebooksDrawer = this.openNotebooksDrawer.bind(this);
     // this.toggleNotebooksDrawer = this.toggleNotebooksDrawer.bind(this);
 
@@ -35,6 +35,10 @@ class Sidebar extends React.Component {
     this.closeNotebooksModal = this.closeNotebooksModal.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchNotebooks();
+  }
+
   // #TODO: revisit--probably better way to do this
   componentWillReceiveProps(props) {
     if(props.notes.length > this.props.notes.length) {
@@ -42,17 +46,7 @@ class Sidebar extends React.Component {
     }
   }
 
-  // #TODO: Remove when default notebook created
-  addNote() {
-    const blankNote =
-    {
-      title: "",
-      body: "",
-      author_id: this.props.currentUser.id,
-      notebook_id: 1
-    };
-    this.props.createNote(blankNote);
-  }
+
 
   // openNotebooksDrawer() {
   //   this.setState({ notebooksDrawerOpen: true });
@@ -115,7 +109,7 @@ class Sidebar extends React.Component {
         <div className="note-action-buttons">
           <div
             className="add-note icon-circle sidebar-icon"
-            onClick={this.addNote} >
+            onClick={this.props.addNote} >
             <i className="fa fa-plus"></i>
           </div>
 

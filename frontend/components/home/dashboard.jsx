@@ -12,7 +12,6 @@ class Dashboard extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextProps, nextState);
     if (nextState.selectedNote) {
       return true;
     }

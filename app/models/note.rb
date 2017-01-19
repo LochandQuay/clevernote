@@ -17,13 +17,14 @@ class Note < ApplicationRecord
   validates :archived, inclusion: [true, false]
   validates :title, length: { maximum: 140 }
 
-
   belongs_to :author,
     foreign_key: :author_id,
     primary_key: :id,
     class_name: "User"
 
   belongs_to :notebook
+
+
 
 
   def self.find_notes_by_author(user)

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import {ReactQuill, Quill} from 'quill';
 
@@ -49,24 +50,25 @@ const toolbarOptions = [
 class NoteEditor extends React.Component {
   constructor(props) {
     super(props);
-    let title;
-    let body;
-    if (this.props.note) {
-      title = this.props.note.title;
-      body = this.props.note.body;
-    }
 
     this.state = {
-      note: this.props.note,
-      title: title,
-      body: body,
-      author_id: this.props.user.id
+      note: this.props.note
+      // title: this.props.note.title,
+      // body: this.props.note.body,
+      // author_id: this.props.note.author_id,
+      // notebook_id: this.props.note.notebook_id
     };
     // this.handleKeyCommand = this.handleKeyCommand.bind(this);
 
     this.saveNote = this.saveNote.bind(this);
     this.update = this.update.bind(this);
-    // FORMATTING BINDS
+  }
+
+  componentWillMount() {
+    if (this.props.note) {
+      this.props.fetchNote(this.props.note.id);
+    }
+    this.props.fetchNotebooks();
   }
 
   componentWillReceiveProps(newProps) {
@@ -74,7 +76,9 @@ class NoteEditor extends React.Component {
       this.setState({
         note: newProps.note,
         title: null,
-        body: null
+        body: null,
+        author_id: null,
+        notebook_id: null
       });
       return;
     }
@@ -82,7 +86,9 @@ class NoteEditor extends React.Component {
       this.setState({
         note: newProps.note,
         title: newProps.note.title,
-        body: newProps.note.body
+        body: newProps.note.body,
+        author_id: newProps.note.author_id,
+        notebook_id: newProps.note.notebook_id
       });
     }
   }
@@ -101,9 +107,10 @@ class NoteEditor extends React.Component {
     return e => this.setState({[field]: e.target.value});
   }
 
+  // #TODO: Remove default notebook
   saveNote(e) {
     e.preventDefault();
-    // debugger;
+
     if (this.state.note.id) {
       this.props.updateNote({
         title: this.state.title,
@@ -116,26 +123,26 @@ class NoteEditor extends React.Component {
       this.props.createNote({
         title: this.state.title,
         body: this.state.body,
-        author_id: this.state.author_id
+        author_id: this.state.author_id,
+        notebook_id: this.state.notebook_id
       }).then(() => this.props.fetchNotes());
     }
   }
 
-  // FORMATTING FUNCTIONS
-  // _onBoldClick() {
-  //   this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
-  // }
-
-
   render() {
-    // debugger;
+    const notebookInfoContent = this.state.notebook ?
+      this.state.notebook.notebook_title : ("SELECT NOTEBOOK");
+
     if (this.props.note) {
       return (
         <div className="note-editor">
           <div className="note-info">
             <ul className="note-info-items">
               <li className="note-notebook-label">
-                Notebook: {this.props.note.notebook.title}
+                <h3>
+                  Notebook:
+                  <span>{notebookInfoContent}</span>
+                </h3>
               </li>
             </ul>
           </div>

@@ -18,6 +18,7 @@ class NoteIndex extends React.Component {
 
   // #TODO
   componentWillReceiveProps(props) {
+    // debugger;
     this.setState({ notes: props.notes });
   }
 

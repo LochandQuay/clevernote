@@ -14,10 +14,17 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      currentNote: this.props.currentNote,
+      currentNotebook: this.props.currentNotebook
+    };
+
+    this.addNote = this.addNote.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchNotes();
+    this.props.fetchNotebooks();
   }
 
   // componentWillUpdate() {
@@ -26,8 +33,24 @@ class Home extends React.Component {
   // }
 
   componentWillReceiveProps(newProps) {
-    // this.props.fetchNotes();
     this.redirectIfLoggedOut(newProps);
+
+    if (!newProps.currentNote) {
+      this.setState( { currentNote: null });
+    }
+    else if (!this.state.currentNote ||
+      newProps.currentNote.id !== this.state.currentNote.id) {
+      this.setState( { currentNote: newProps.currentNote });
+    }
+
+    if (!newProps.currentNotebook) {
+      this.setState( { currentNotebook: null });
+    }
+    else if (!this.state.currentNotebook ||
+      newProps.currentNotebook.id !== this.state.currentNotebook.id) {
+      this.setState( { currentNotebook: newProps.currentNotebook });
+    }
+
   }
 
   redirectIfLoggedOut(props) {
@@ -36,13 +59,31 @@ class Home extends React.Component {
     }
   }
 
+  // #TODO: Remove when default notebook created
+  addNote() {
+    const notebookId = this.state.currentNotebook ?
+      this.state.currentNotebook.id : this.props.notebooks[0].id;
+
+    const blankNote =
+    {
+      title: "",
+      body: "",
+      author_id: this.props.currentUser.id,
+      notebook_id: notebookId
+    };
+    // this.props.setCurrentNote(blankNote);
+    this.setState({ currentNote: blankNote });
+
+    // this.props.createNote(blankNote).then(() => this.props.fetchNotes());
+  }
+
   render () {
     if (this.props.loggedIn) {
       return (
         <div className="dashboard">
-          <SidebarContainer />
-          <NoteIndexContainer notes={this.props.notes} />
-          <NoteEditorContainer />
+          <SidebarContainer addNote={this.addNote}/>
+          <NoteIndexContainer />
+          <NoteEditorContainer note={this.state.currentNote}/>
         </div>
       );
     }

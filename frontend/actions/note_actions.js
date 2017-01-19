@@ -19,12 +19,12 @@ export const fetchNote = id => dispatch => (
 
 export const createNote = note => dispatch => (
   NoteApiUtil.createNote(note)
-    .then(newNote => dispatch(receiveNote(newNote)))
+    .then(newNote => dispatch(addNote(newNote)))
 );
 
 export const updateNote = note => dispatch => (
   NoteApiUtil.updateNote(note)
-    .then(updated => dispatch(editNote(updated)))
+    .then(updated => dispatch(receiveNote(updated)))
 );
 
 export const deleteNote = id => dispatch => (

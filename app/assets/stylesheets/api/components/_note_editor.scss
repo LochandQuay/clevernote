@@ -6,7 +6,8 @@
 }
 
 .note-info {
-
+  padding: 0px 15px;
+  height: 50px;
 }
 
 .note-info-items {
@@ -15,8 +16,19 @@
   align-items: flex-start;
 }
 
+.note-notebook-label {
+  h3 {
+    font-weight: normal;
+
+    span {
+      padding-left: 3px;
+      font-weight: bold;
+    }
+  }
+}
+
 .formatting-bar {
-  height: 90px;
+  height: 40px;
   width: 100%;
   display: flex;
   flex-direction: column;

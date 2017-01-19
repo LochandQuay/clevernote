@@ -43,28 +43,6 @@ const getTimeStamp = (lastUpdatedTime) => {
   }
 };
 
-const getTitlePreview = (title) => {
-  let preview;
-  if (title.length > 25) {
-    preview = title.slice(0, 25) + "...";
-  }
-  else {
-    preview = title;
-  }
-
-  return preview;
-};
-
-const getBodyPreview = (body) => {
-  let preview;
-  if (body.length > 75) {
-    preview = body.slice(0, 75) + "...";
-  }
-  else {
-    preview = body;
-  }
-  return preview;
-};
 
 class NoteIndexItem extends React.Component {
   constructor(props) {
@@ -72,10 +50,36 @@ class NoteIndexItem extends React.Component {
 
     this.state = { deleteModalOpen: false };
 
+    this.getTitlePreview = this.getTitlePreview.bind(this);
+    this.getBodyPreview = this.getBodyPreview.bind(this);
+
     this.selectNote = this.selectNote.bind(this);
     this.deleteHandler = this.deleteHandler.bind(this);
     this.openDeleteModal = this.openDeleteModal.bind(this);
     this.closeDeleteModal = this.closeDeleteModal.bind(this);
+  }
+
+  getTitlePreview (title) {
+    let preview;
+    if (title.length > 25) {
+      preview = title.slice(0, 25) + "...";
+    }
+    else {
+      preview = title;
+    }
+
+    return preview;
+  }
+
+  getBodyPreview (body) {
+    let preview;
+    if (body.length > 75) {
+      preview = body.slice(0, 75) + "...";
+    }
+    else {
+      preview = body;
+    }
+    return preview;
   }
 
   openDeleteModal() {
@@ -109,9 +113,9 @@ class NoteIndexItem extends React.Component {
           onClick={this.openDeleteModal}>
           <i className="fa fa-trash"></i>
         </div>
-        <h3>{getTitlePreview(this.props.note.title)}</h3>
+        <h3>{this.getTitlePreview(this.props.note.title)}</h3>
         <h5>{getTimeStamp(this.props.note.updated_at)}</h5>
-        <p>{getBodyPreview(this.props.note.body)}</p>
+        <p>{this.getBodyPreview(this.props.note.body)}</p>
 
         <Modal
           isOpen={this.state.deleteModalOpen}

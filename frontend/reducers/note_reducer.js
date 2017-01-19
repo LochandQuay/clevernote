@@ -27,24 +27,27 @@ const NoteReducer = (state = _defaultState, action) => {
       return nextState;
 
     case RECEIVE_NOTE:
-      nextState.currentNote = action.note;
-      nextState[action.note.id] = action.note;
+      nextState = merge({}, state, action.note);
+      nextState.currentNote = action.note[Object.keys(action.note)[0]];
       return nextState;
 
 
     // #NB: was >> delete nextState.notes[action.note.id];
 
     case REMOVE_NOTE:
-      delete nextState[action.note.id];
-      if (nextState.currentNote.id === action.note.id) {
+      let deletedNote = action.note[Object.keys(action.note)[0]];
+      delete nextState[deletedNote.id];
+      if (nextState.currentNote.id === deletedNote.id) {
         nextState.currentNote = null;
       }
       return nextState;
 
     // NEW ACTION TYPES (potentially unnecessary):
     case ADD_NOTE:
-      nextState[action.note.id] = action.note;
-      nextState.notes.unshift(action.note);
+      let newNote = action.note[Object.keys(action.note)[0]];
+      nextState[newNote.id] = newNote;
+      nextState.currentNote = newNote;
+      nextState.notes.unshift(newNote);
       return nextState;
 
     case EDIT_NOTE:
@@ -53,7 +56,8 @@ const NoteReducer = (state = _defaultState, action) => {
       return nextState;
 
     case SET_CURRENT_NOTE:
-      return merge({}, state, {currentNote: action.note});
+      nextState.currentNote = action.note;
+      return nextState;
 
     default:
       return state;
