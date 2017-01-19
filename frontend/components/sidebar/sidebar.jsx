@@ -9,7 +9,6 @@ import { NotebookIndexModalStyle }
   from '../modal_styles/notebook_index_modal_style';
 
 // import ReactTransitionGroup from 'react-addons-transition-group';
-// import Drawer from 'react-motion-drawer';
 // import {TweenMax, Power2, TimelineLite} from 'gsap';
 
 class Sidebar extends React.Component {
@@ -18,15 +17,10 @@ class Sidebar extends React.Component {
 
     this.state = {
       userSettingsModalOpen: false,
-      notebooksModalOpen: false,
-      notebooksDrawerOpen: false,
-      tagsDrawerOpen: false
+      notebooksModalOpen: false
     };
 
     // this.addNote = this.addNote.bind(this);
-    // this.openNotebooksDrawer = this.openNotebooksDrawer.bind(this);
-    // this.toggleNotebooksDrawer = this.toggleNotebooksDrawer.bind(this);
-
 
     this.openUserSettingsModal = this.openUserSettingsModal.bind(this);
     this.closeUserSettingsModal = this.closeUserSettingsModal.bind(this);
@@ -35,6 +29,12 @@ class Sidebar extends React.Component {
     this.closeNotebooksModal = this.closeNotebooksModal.bind(this);
 
     this.resetToNotesIndex = this.resetToNotesIndex.bind(this);
+
+    this.setCurrentNoteIfNewNote = this.setCurrentNoteIfNewNote.bind(this);
+    this.setCurrentNoteIfNewNotebook =
+      this.setCurrentNoteIfNewNotebook.bind(this);
+    this.updateIndexIfNewCurrentNotebook =
+      this.updateIndexIfNewCurrentNotebook.bind(this);
   }
 
   componentDidMount() {
@@ -43,12 +43,39 @@ class Sidebar extends React.Component {
 
   // #TODO: revisit--probably better way to do this
   componentWillReceiveProps(props) {
-    if(props.notes.length > this.props.notes.length) {
+    // this.setCurrentNoteIfNewNote(props);
+    this.updateIndexIfNewCurrentNotebook(props);
+  }
+
+  setCurrentNoteIfNewNote(props) {
+    if (props.notes.length > this.props.notes.length) {
       this.props.setCurrentNote(props.notes[0]);
     }
+  }
+
+  setCurrentNoteIfNewNotebook(props) {
+    if (props.currentNotebook && props.currentNote) {
+      if (props.currentNote.notebook) {
+        this.props.setCurrentNote(props.currentNote.notebook.notes[0]);
+      }
+      else {
+        this.props.setCurrentNote(null);
+      }
+    }
+  }
+
+  updateIndexIfNewCurrentNotebook(props) {
     if(!this.props.currentNotebook && props.currentNotebook) {
       this.props.fetchNotebook(props.currentNotebook.id)
+        .then(() => this.props.setCurrentNote(null))
         .then(() => this.closeNotebooksModal());
+    }
+    else if (this.props.currentNotebook && props.currentNotebook) {
+      if (this.props.currentNotebook.id !== props.currentNotebook.id) {
+        this.props.fetchNotebook(props.currentNotebook.id)
+          .then(() => this.props.setCurrentNote(null))
+          .then(() => this.closeNotebooksModal());
+      }
     }
   }
 
@@ -57,19 +84,6 @@ class Sidebar extends React.Component {
       userSettingsModalOpen: false,
       notebooksModalOpen: false}, () => this.props.setCurrentNotebook(null));
   }
-
-  // openNotebooksDrawer() {
-  //   this.setState({ notebooksDrawerOpen: true });
-  // }
-  //
-  // toggleNotebooksDrawer() {
-  //   console.log(this.state.notebooksDrawerOpen);
-  //   const toggledValue = this.state.notebooksDrawerOpen ? false : true;
-  //
-  //   this.setState({
-  //     notebooksDrawerOpen: toggledValue
-  //   });
-  // }
 
   openUserSettingsModal() {
     this.setState({ userSettingsModalOpen: true });
@@ -88,19 +102,6 @@ class Sidebar extends React.Component {
   }
 
   render () {
-    // const drawerStyle = {
-    //   background: 'white',
-    //   boxShadow: 'rgba(0, 0, 0, 0.188235) 0px 10px 20px, rgba(0, 0, 0, 0.227451) 0px 6px 6px',
-    //   marginTop: "-20px",
-    // };
-    //
-    // const drawerProps = {
-    //   overlayColor: 'rgba(255,255,255, 1)',
-    //   drawerStyle: drawerStyle
-    // };
-    //
-    // const notebookDrawerOffset = (this.state.notebookDrawerOpen) ? 100 : 0;
-
     const userImageSetting = this.props.currentUser.image_url ?
     "user-image" : "default-user-icon";
 
@@ -164,7 +165,8 @@ class Sidebar extends React.Component {
           className="react-modal"
           contentLabel="Notebook Index Modal">
           <div className="notebook-index-modal">
-            <NotebookIndexContainer />
+            <NotebookIndexContainer
+              onClick={this.closeNotebooksModal} />
           </div>
         </Modal>
 
@@ -188,13 +190,3 @@ class Sidebar extends React.Component {
 }
 
 export default Sidebar;
-
-//
-// <Drawer
-//   className="notebooks-drawer"
-//   open={this.state.notebooksDrawerOpen}
-//   onChange={open => this.setState({ notebooksDrawerOpen: open})}
-//   width={400}
-//   ofset={notebookDrawerOffset} >
-//   <NotebookIndexContainer />
-// </Drawer>
