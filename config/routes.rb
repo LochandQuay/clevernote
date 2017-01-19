@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     resources :notebooks do
       resources :notes, only: [:index]
     end
+    resources :tags do
+      resources :notes, only: [:index]
+    end
   end
 
   root "static_pages#root"
