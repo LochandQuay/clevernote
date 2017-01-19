@@ -1,13 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import {ReactQuill, Quill} from 'quill';
-
+// import {ReactQuill, Quill} from 'quill';
 // import {Editor, EditorState, RichUtils} from 'draft-js';
-
-
 // import RichEditorExample from './rich_text_editor';
-// import merge from 'lodash/merge';
 
 const toolbarOptions = [
   // toggled buttons
@@ -36,7 +32,8 @@ const toolbarOptions = [
   [{ 'font': [] }],
   [{ 'align': [] }],
 
-  ['clean']                                         // remove formatting button
+  // remove formatting button
+  ['clean']
 ];
 
 // const quill = new ReactQuill('#editor', {
@@ -215,6 +212,8 @@ class NoteEditor extends React.Component {
   render() {
     // const selectedNotebook = (this.state.note.notebook) ?
       // this.state.note.notebook : this.props.notebooks[0];
+    const noteNotebook = (this.props.currentNotebook) ?
+      this.props.currentNotebook : this.props.notebooks[0];
 
     if (this.props.note) {
       return (
@@ -226,7 +225,7 @@ class NoteEditor extends React.Component {
                   Notebook:
                   <span
                     className="notebook-selector">
-                    { this.props.notebooks[0].title }
+                    { noteNotebook.title }
                   </span>
                 </h3>
               </li>
