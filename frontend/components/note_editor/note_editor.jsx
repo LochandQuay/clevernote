@@ -69,22 +69,6 @@ class NoteEditor extends React.Component {
     this.autoSave = this.autoSave.bind(this);
 
   }
-  //
-  // componentWillMount() {
-  //   // if (this.props.note) {
-  //   //   this.props.fetchNote(this.props.note.id);
-  //   // }
-  //   this.props.fetchNotebooks();
-  //   if (this.props.note) {
-  //     this.props.fetchNoteTags(this.props.note.id);
-  //   }
-  // }
-  //
-  // componentDidMount() {
-  //   if (this.props.note) {
-  //     this.saveNote(this.props.note);
-  //   }
-  // }
 
   componentWillReceiveProps(newProps) {
     if (newProps.currentNote) {
@@ -128,25 +112,15 @@ class NoteEditor extends React.Component {
   updateTitle(e) {
     clearTimeout(this.autosaveTimer);
     this.setState({title: e.currentTarget.value});
-    this.autosaveTimer = setTimeout(this.autoSave, 750);
+    this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
   updateBody(text) {
     clearTimeout(this.autosaveTimer);
     this.setState({body: text});
-    this.autosaveTimer = setTimeout(this.autoSave, 750);
+    this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
-
-  // handleKeyCommand(command) {
-  //   const newState =
-  //     RichUtils.handleKeyCommand(this.state.editorState, command);
-  //   if (newState) {
-  //     this.onChange(newState);
-  //     return 'handled';
-  //   }
-  //   return 'not-handled';
-  // }
 
   // selectNotebook(notebook) {
   //   this.setState({
