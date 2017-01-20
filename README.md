@@ -1,26 +1,9 @@
-# README
+# clevernote
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[clevernote][clevernote] is a web application for users to take and organize notes. Inspired by Evernote, clevernote allows users to create notebooks, add notes, and tag notes.
 
-Things you may want to cover:
+[clevernote home page: http://www.clevernote.site][home page]
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-#### NB: Remember to 'npm install', 'bundle install', and 'rake db:setup' when opening on a new machine! 
+[clevernote]: http://www.clevernote.site
+[home page]: [http://www.clevernote.space]
