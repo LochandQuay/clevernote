@@ -44,7 +44,7 @@ class TagForm extends React.Component {
 
     if (this.props.selectedTag) {
       if (this.props.selectedTag.name === this.props.tags[i].name) {
-        this.props.fetchTaggedNotes(this.props.selectedTag.id);
+        this.props.fetchTaggedNotes(this.props.selectedTag);
       }
     }
   }
@@ -56,7 +56,8 @@ class TagForm extends React.Component {
 
     if (this.props.selectedTag) {
       if (this.props.selectedTag.name === tag) {
-        this.props.fetchTaggedNotes(this.props.selectedTag.id);
+        debugger;
+        this.props.fetchTaggedNotes(this.props.selectedTag);
       }
     }
 

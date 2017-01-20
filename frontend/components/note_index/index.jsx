@@ -20,7 +20,9 @@ class Index extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    // console.log(props);
+    if (props.currentTag) {
+      this.props.fetchTaggedNotes(props.currentTag);
+    }
   }
 
   openDeleteModal() {

@@ -21,6 +21,7 @@ window.fetchNote = NoteApiUtil.fetchNote;
 window.createNote = NoteApiUtil.createNote;
 window.updateNote = NoteApiUtil.updateNote;
 window.deleteNote = NoteApiUtil.deleteNote;
+window.fetchTaggedNotes = NoteApiUtil.fetchTaggedNotes;
 
 // NOTEBOOK UTIL ACTIONS
 window.fetchNotebooks = NotebookApiUtil.fetchNotebooks;

@@ -276,8 +276,7 @@ class Sidebar extends React.Component {
           contentLabel="Tag Index Modal">
           <div className="tag-index-modal">
             <TagIndexContainer
-              closeTagsModal={this.closeTagsModal}
-              onClick={this.closeTagsModal} />
+              closeTagsModal={this.closeTagsModal} />
           </div>
         </Modal>
 

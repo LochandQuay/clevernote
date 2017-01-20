@@ -5,21 +5,31 @@ class TagIndexItem extends React.Component {
     super(props);
 
     this.selectTag = this.selectTag.bind(this);
+    this.selectTagHandler = this.selectTagHandler.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
     if (!this.props.currentTag && newProps.currentTag) {
-      this.props.fetchTag(newProps.currentTag.id);
+      this.props.fetchTaggedNotes(newProps.currentTag);
     }
   }
 
   selectTag() {
     this.props.setCurrentTag(this.props.tag);
+    this.props.setCurrentNotebook(null);
+    this.props.closeModal();
+  }
+
+  selectTagHandler() {
+    if (!this.props.currentTag ||
+      this.props.tag.id !== this.props.currentTag.id) {
+        this.selectTag();
+      }
   }
 
   render() {
     return (
-      <div className="tag-index-item" onClick={this.selectTag}>
+      <div className="tag-index-item" onClick={this.selectTagHandler}>
         <h3>{this.props.tag.name}</h3>
       </div>
     );

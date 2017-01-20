@@ -42,7 +42,6 @@ class Api::TagsController < ApplicationController
       notes.each do |note|
         @tagged_notes << note if note.taggings.any? { |tagging| tagging.tag_id == @tag.id }
       end
-
       render json: @tagged_notes
     else
       render json: @tag.errors.full_messages, status: 422

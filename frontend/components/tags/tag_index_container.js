@@ -9,8 +9,9 @@ const mapStateToProps = (state) => ({
   tags: state.tags.sortedTags
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchTags: () => dispatch(fetchTags()),
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  // fetchTags: () => dispatch(fetchTags()),
+  closeTagsModal: ownProps.closeTagsModal,
   createTag: tag => dispatch(createTag(tag)),
   setCurrentTag: tag => dispatch(setCurrentTag(tag))
 });
