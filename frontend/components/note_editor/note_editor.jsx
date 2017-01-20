@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import ReactQuill from 'react-quill';
 import Toolbar from 'react-quill';
 
+import TagFormContainer from './tag_form/tag_form_container';
+
 const _quillModules = {
   toolbar: [
     // toggled buttons
@@ -323,11 +325,12 @@ class NoteEditor extends React.Component {
                   </span>
                 </h3>
               </li>
-            </ul>
-          </div>
-
-          <div className="formatting-bar">
-            <ul className="formatting-bar-buttons">
+              <li className="tag-form">
+                <h3>Tags: </h3>
+              </li>
+              <li>
+                <TagFormContainer note={this.props.currentNote} />
+              </li>
             </ul>
           </div>
 
