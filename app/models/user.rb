@@ -18,6 +18,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_nil: true
 
   after_initialize :ensure_session_token
+  after_create :ensure_default_notebook
 
   attr_reader :password
 
@@ -50,8 +51,25 @@ class User < ApplicationRecord
     self.session_token
   end
 
+  private
+
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(128)
+  end
+
+
+  def ensure_default_notebook
+    Notebook.create!(
+      title: "Personal Notebook",
+      description: "This is your default notebook. Use it for whatever you like!",
+      author_id: self.id)
+
+    Note.create!(
+      title: "Welcome to clevernote!",
+      body: "Thanks for signing up!",
+      notebook_id: self.notebooks.first.id,
+      author_id: self.id
+    )
   end
 
 end

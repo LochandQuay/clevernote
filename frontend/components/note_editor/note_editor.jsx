@@ -65,6 +65,8 @@ class NoteEditor extends React.Component {
     this.closeDropdown = this.closeDropdown.bind(this);
     this.saveNewNote = this.saveNewNote.bind(this);
     this.saveExistingNote = this.saveExistingNote.bind(this);
+
+    this.createTags = this.createTags.bind(this);
     // this.renderNotebookSelectorDropdown = this.renderNotebookSelectorDropdown.bind(this);
 
   }
@@ -74,20 +76,34 @@ class NoteEditor extends React.Component {
     //   this.props.fetchNote(this.props.note.id);
     // }
     this.props.fetchNotebooks();
+    if (this.props.note) {
+      this.props.fetchNoteTags(this.props.note.id);
+    }
   }
 
   componentDidMount() {
-    // this.props.fetchNotebooks();
+    if (this.props.note) {
+      this.saveNote(this.props.note);
+    }
   }
 
   componentWillReceiveProps(newProps) {
+    let tags = [];
+    if (newProps.noteTags) {
+      tags = newProps.noteTags;
+    }
+    else if (newProps.currentTag) {
+      tags = newProps.currentTag;
+    }
+
     if (newProps.note === null) {
       this.setState({
         note: newProps.note,
         title: null,
         body: null,
         author_id: null,
-        notebook_id: null
+        notebook_id: null,
+        tags: tags
       });
       return;
     }
@@ -97,7 +113,8 @@ class NoteEditor extends React.Component {
         title: newProps.note.title,
         body: newProps.note.body,
         author_id: newProps.note.author_id,
-        notebook_id: newProps.note.notebook_id
+        notebook_id: newProps.note.notebook_id,
+        tags: tags
       });
     }
   }
@@ -125,7 +142,9 @@ class NoteEditor extends React.Component {
 
   // #TODO: Remove default notebook
   saveNote(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     let note = {
       title: this.state.title,
       body: this.state.body,
@@ -143,27 +162,48 @@ class NoteEditor extends React.Component {
   }
 
   saveExistingNote(note) {
+    console.log(this.state.tags);
     if (this.props.currentNotebook) {
       this.props.updateNote(note)
+      .then(() => this.createTags(note))
       .then(() => this.props.fetchNotes())
       .then(() => this.props.fetchNotebook(this.props.currentNotebook.id));
     }
+    else if (this.props.currentTag) {
+      this.props.updateNote(note)
+      .then(() => this.createTags(note))
+      .then(() => this.props.fetchNotes())
+      .then(() => this.props.fetchTag(this.props.currentTag.id));
+    }
     else {
       this.props.updateNote(note)
+      .then(() => this.createTags(note))
       .then(() => this.props.fetchNotes());
     }
   }
 
   saveNewNote(note) {
+    // debugger;
     if (this.props.currentNotebook) {
       this.props.createNote(note)
       .then(() => this.props.fetchNotes())
       .then(() => this.props.fetchNotebook(this.props.currentNotebook.id));
     }
+    else if (this.props.currentTag) {
+      this.props.createNote(note)
+      .then(() => this.props.fetchNotes())
+      .then(() => this.props.fetchTag(this.props.currentTag.id));
+    }
     else {
       this.props.createNote(note)
       .then(() => this.props.fetchNotes());
     }
+  }
+
+  createTags(note) {
+    this.state.tags.forEach(tag => (
+      this.createTag({name: tag.name, note_id: note.id})
+    ));
   }
 
   showDropdown() {
