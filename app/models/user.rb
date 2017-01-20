@@ -13,8 +13,8 @@
 #
 
 class User < ApplicationRecord
-  validates :username, :name, :email, :password_digest, :session_token, presence: true
-  validates :username, :email, uniqueness: true
+  validates :username, :password_digest, :session_token, presence: true
+  validates :username, uniqueness: true
   validates :password, length: { minimum: 6 }, allow_nil: true
 
   after_initialize :ensure_session_token
@@ -59,13 +59,15 @@ class User < ApplicationRecord
 
 
   def ensure_default_notebook
+    name = self.name || self.username
+
     Notebook.create!(
-      title: "Personal Notebook",
+      title: "#{name}'s Notebook",
       description: "This is your default notebook. Use it for whatever you like!",
       author_id: self.id)
 
     Note.create!(
-      title: "Welcome to clevernote!",
+      title: "Welcome to clevernote, #{name}!",
       body: "Thanks for signing up!",
       notebook_id: self.notebooks.first.id,
       author_id: self.id
