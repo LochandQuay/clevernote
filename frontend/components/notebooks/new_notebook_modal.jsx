@@ -8,7 +8,7 @@ class NewNotebookModal extends React.Component {
     this.state = {
       title: "",
       description: "",
-      author_id: this.props.userId
+      author_id: this.props.user.id
     };
 
     this.update = this.update.bind(this);
@@ -23,7 +23,7 @@ class NewNotebookModal extends React.Component {
     e.preventDefault();
     this.props.createNotebook(this.state)
       .then(() => this.props.closeModal())
-      .then(() => this.props.fetchNotebooks());
+      .then(() => this.props.closeIndexModal());
   }
 
   render() {

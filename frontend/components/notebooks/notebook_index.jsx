@@ -73,9 +73,9 @@ class NotebookIndex extends React.Component {
 
             <NewNotebookModal
               createNotebook={this.props.createNotebook}
-              fetchNotebooks={this.props.fetchNotebooks}
               closeIndexModal={this.props.closeNotebooksModal}
-              closeModal={this.closeNewNotebookModal} />
+              closeModal={this.closeNewNotebookModal}
+              user={this.props.currentUser} />
           </Modal>
         </div>
     );

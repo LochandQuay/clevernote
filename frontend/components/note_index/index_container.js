@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Index from './index';
-import { deleteNotebook } from '../../actions/notebook_actions';
+import { deleteNotebook} from '../../actions/notebook_actions';
+import { createNote } from '../../actions/note_actions';
 
 
 // #NB: Required Props:
@@ -25,7 +26,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteNotebook: id => dispatch(deleteNotebook(id))
+  deleteNotebook: id => dispatch(deleteNotebook(id)),
+  createNote: note => dispatch(createNote(note))
 });
 
 export default connect(

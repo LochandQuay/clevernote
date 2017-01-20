@@ -41,9 +41,9 @@ const NotebookReducer = (state = _defaultState, action) => {
 
     case REMOVE_NOTEBOOK:
       delete nextState[action.notebook.id];
-      // if (nextState.currentNotebook.id === action.notebook.id) {
-      //   nextState.currentNotebook = null;
-      // }
+      if (nextState.currentNotebook.id === action.notebook.id) {
+        nextState.currentNotebook = null;
+      }
       return nextState;
 
     // NEW ACTION TYPES (potentially unnecessary):
@@ -63,6 +63,7 @@ const NotebookReducer = (state = _defaultState, action) => {
     case MAKE_NOTEBOOK:
       nextState[action.notebook.id] = action.notebook;
       nextState.sortedNotebooks.push(action.notebook);
+      nextState.currentNotebook = action.notebook;
       nextState.sortedNotebooks = alphaSort(nextState.sortedNotebooks);
       return nextState;
 

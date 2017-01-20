@@ -32,12 +32,24 @@ class Index extends React.Component {
   }
 
   deleteHandler(e) {
+    e.preventDefault();
     this.props.deleteNotebook(this.props.currentNotebook.id);
-    this.closeModal();
+    this.closeDeleteModal();
   }
 
   addNoteHandler(e) {
     e.preventDefault();
+    const notebookId = this.props.currentNotebook ?
+      this.props.currentNotebook.id : this.props.notebooks[0].id;
+
+    const blankNote = {
+      title: "",
+      body: "",
+      notebook_id: notebookId,
+      author_id: this.props.currentUser.id
+    };
+
+    this.props.createNote(blankNote);
   }
 
   render() {
@@ -73,7 +85,7 @@ class Index extends React.Component {
             <i className="fa fa-trash"></i>
           </div>
           <div className={`add-${type}note-button`}
-            onClick={this.props.addNoteHandler}>
+            onClick={this.addNoteHandler}>
             <i className="fa fa-plus-circle"></i>
           </div>
 
@@ -83,6 +95,7 @@ class Index extends React.Component {
 
         <div className="note-index-items">
           <NoteIndexContainer
+            addNote={ this.addNoteHandler }
             notes={ notes }
             user={ this.props.currentUser } />
         </div>

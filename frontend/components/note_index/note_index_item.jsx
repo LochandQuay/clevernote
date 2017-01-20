@@ -72,12 +72,9 @@ class NoteIndexItem extends React.Component {
   }
 
   getBodyPreview (body) {
-    let preview;
-    if (body.length > 75) {
-      preview = body.slice(0, 75) + "...";
-    }
-    else {
-      preview = body;
+    let preview = body.replace(/<(?:.|\n)*?>/gm, '');
+    if (preview.length > 50) {
+      preview = preview.slice(0, 50) + "...";
     }
     return preview;
   }
