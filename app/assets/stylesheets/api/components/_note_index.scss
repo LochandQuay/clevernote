@@ -21,6 +21,10 @@
     position: absolute;
     top: 70px;
   }
+
+  .delete-button, .add-note-button {
+    display: none;
+  }
 }
 
 .notebook-notes-header, .tag-notes-header {

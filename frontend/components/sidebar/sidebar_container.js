@@ -2,18 +2,37 @@ import { connect } from 'react-redux';
 import Sidebar from './sidebar';
 import { setCurrentNote, fetchNotes, createNote }
   from '../../actions/note_actions';
-import { fetchNotebooks, fetchNotebook, setCurrentNotebook }
+import { fetchNotebooks, fetchNotebook, setCurrentNotebook, createNotebook }
   from '../../actions/notebook_actions';
 import { fetchTags, fetchTag, setCurrentTag }
   from '../../actions/tag_actions';
 import { logout } from '../../actions/session_actions';
 
+// #NB: Required Props:
+  // currentUser
+  // notes
+  // notebooks
+  // currentNotebook
+  // currentTag
+
+
+// #NB: Requires functions:
+  // logout
+  // fetchNotes
+  // fetchNotebooks
+  // setCurrentNote
+  // createNote
+  // setCurrentNotebook
+  // createNotebook
+  // setCurrentTag
+  //
+
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   notes: state.notes.notes,
   notebooks: state.notebooks.sortedNotebooks,
-  tags: state.tags.sortedTags,
-  currentNote: state.notes.currentNote,
+  // tags: state.tags.sortedTags,
+  // currentNote: state.notes.currentNote,
   currentNotebook: state.notebooks.currentNotebook,
   currentTag: state.tags.currentTag
 });
@@ -24,10 +43,11 @@ const mapDispatchToProps = dispatch => ({
   setCurrentNote: note => dispatch(setCurrentNote(note)),
   createNote: note => dispatch(createNote(note)),
   fetchNotebooks: () => dispatch(fetchNotebooks()),
-  fetchNotebook: (id) => dispatch(fetchNotebook(id)),
-  fetchTags: () => dispatch(fetchTags()),
-  fetchTag: (id) => dispatch(fetchTag(id)),
+  // fetchNotebook: (id) => dispatch(fetchNotebook(id)),
+  // fetchTags: () => dispatch(fetchTags()),
+  // fetchTag: (id) => dispatch(fetchTag(id)),
   setCurrentNotebook: notebook => dispatch(setCurrentNotebook(notebook)),
+  createNotebook: notebook => dispatch(createNotebook(notebook)),
   setCurrentTag: tag => dispatch(setCurrentTag(tag))
 });
 

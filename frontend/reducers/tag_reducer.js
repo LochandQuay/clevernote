@@ -4,7 +4,9 @@ import {
   REMOVE_TAG,
   RECEIVE_NOTE_TAGS,
   SET_CURRENT_TAG,
-  RECEIVE_FILTERED_NOTES
+  RECEIVE_FILTERED_NOTES,
+  MAKE_TAG,
+  REMOVE_ZERO
 } from '../actions/tag_actions';
 
 import merge from 'lodash/merge';
@@ -23,22 +25,26 @@ const TagReducer = (state = _defaultState, action) => {
 
   switch(action.type) {
     case RECEIVE_TAGS:
+      nextState = merge({}, nextState, action.tags);
       nextState.sortedTags = sortTags(action.tags);
-      return merge(nextState, action.tags);
+      return nextState;
+      // return merge(nextState, action.tags);
 
-    case RECEIVE_TAG:
-      nextState.currentTag = action.tag;
-      let tag = action.tag[Object.keys(action.tag)[0]];
-      nextState.sortedTags = sortTags(nextState.sortedTags.concat(tag));
-      return merge(nextState, action.tag);
+    // case RECEIVE_TAG:
+      // nextState.currentTag = action.tag;
+      // let tag = action.tag[Object.keys(action.tag)[0]];
+      // nextState.sortedTags = sortTags(nextState.sortedTags.concat(tag));
+      // return merge(nextState, action.tag);
+
 
     case REMOVE_TAG:
       delete nextState[action.tag.id];
-      if (nextState.currentTag) {
-        if (nextState.currentTag.id === action.tag.id) {
-          nextState.currentTag = null;
-        }
-      }
+      // if (nextState.currentTag) {
+      //   if (nextState.currentTag.id === action.tag.id) {
+      //     nextState.currentTag = null;
+      //   }
+      // }
+      nextState.currentTag = null;
       return nextState;
 
     case RECEIVE_NOTE_TAGS:
@@ -50,7 +56,19 @@ const TagReducer = (state = _defaultState, action) => {
       return nextState;
 
     case SET_CURRENT_TAG:
-      return merge({}, state, {currentTag: action.tag});
+      nextState.currentTag = action.tag;
+      return nextState;
+      // return merge({}, state, {currentTag: action.tag});
+
+    case MAKE_TAG:
+      nextState[action.tag.id] = action.tag;
+      nextState.sortedTags.push(action.tag);
+      nextState.sortedTags = sortTags(nextState.sortedTags);
+      return nextState;
+
+    case REMOVE_ZERO:
+      delete nextState[0];
+      return nextState;
 
     default:
       return state;

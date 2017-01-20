@@ -28,6 +28,14 @@ const App = ({ children }) => {
       <p>
         clevernote: organize your life.
       </p>
+      <div className="footer-links">
+        <a href="www.github.com/LochandQuay">
+          <i className="fa fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/hopewanroy/">
+          <i className="fa fa-linkedin"></i>
+        </a>
+      </div>
     </footer>
     {children}
   </div>

@@ -33,3 +33,8 @@ export const alphaSort = items => {
     return 0;
   });
 };
+
+// new
+export const allNoteTags = tags => Object.keys(tags).map(id => tags[id]);
+
+export const allTags = tags => Object.keys(tags).map(id => tags[id]);

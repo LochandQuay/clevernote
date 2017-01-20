@@ -1,5 +1,3 @@
-import { receiveNotes, receiveNote } from '../actions/note_actions';
-
 export const fetchNotes = () => (
   $.ajax({
     method: "GET",
@@ -34,5 +32,12 @@ export const deleteNote = id => (
   $.ajax({
     method: "DELETE",
     url: `api/notes/${id}`
+  })
+);
+
+export const fetchTaggedNotes = tag => (
+  $.ajax({
+    method: "GET",
+    url: `api/tags/${tag.id}`
   })
 );

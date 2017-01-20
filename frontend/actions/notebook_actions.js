@@ -5,6 +5,9 @@ export const RECEIVE_NOTEBOOK = "RECEIVE_NOTEBOOK";
 export const REMOVE_NOTEBOOK = "REMOVE_NOTEBOOK";
 export const SET_CURRENT_NOTEBOOK = "SET_CURRENT_NOTEBOOK";
 
+export const MAKE_NOTEBOOK = "MAKE_NOTEBOOK";
+export const EDIT_NOTEBOOK = "EDIT_NOTEBOOK";
+
 export const fetchNotebooks = () => dispatch => (
   NotebookApiUtil.fetchNotebooks()
     .then(notebooks => dispatch(receiveNotebooks(notebooks)))
@@ -15,14 +18,24 @@ export const fetchNotebook = id => dispatch => (
     .then(notebook => dispatch(receiveNotebook(notebook)))
 );
 
+// export const createNotebook = notebook => dispatch => (
+//   NotebookApiUtil.createNotebook(notebook)
+//     .then(newNotebook => dispatch(receiveNotebook(newNotebook)))
+// );
+
 export const createNotebook = notebook => dispatch => (
   NotebookApiUtil.createNotebook(notebook)
-    .then(newNotebook => dispatch(receiveNotebook(newNotebook)))
+    .then(newNotebook => dispatch(makeNotebook(newNotebook)))
 );
+
+// export const updateNotebook = notebook => dispatch => (
+//   NotebookApiUtil.updateNotebook(notebook)
+//     .then(updated => dispatch(receiveNotebook(updated)))
+// );
 
 export const updateNotebook = notebook => dispatch => (
   NotebookApiUtil.updateNotebook(notebook)
-    .then(updated => dispatch(receiveNotebook(updated)))
+    .then(updated => dispatch(editNotebook(updated)))
 );
 
 export const deleteNotebook = id => dispatch => (
@@ -47,5 +60,16 @@ export const removeNotebook = notebook => ({
 
 export const setCurrentNotebook = notebook => ({
   type: SET_CURRENT_NOTEBOOK,
+  notebook
+});
+
+// new
+export const makeNotebook = notebook => ({
+  type: MAKE_NOTEBOOK,
+  notebook
+});
+
+export const editNotebook = notebook => ({
+  type: EDIT_NOTEBOOK,
   notebook
 });

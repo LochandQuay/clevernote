@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# ID 1 (notebook id #1)
 User.create!(
   username: "eevee",
   name: "Eevee",
@@ -13,6 +14,7 @@ User.create!(
   password: "password"
 )
 
+# ID 2 (notebook id #2)
 User.create!(
   username: "gatsby",
   name: "Gatsby Caterpie",
@@ -20,14 +22,16 @@ User.create!(
   password: "password"
 )
 
+# ID 3
 Notebook.create!(
   author_id: 1, title: "Sample Notebook", description: "First Notebook"
 )
-
+# ID 4
 Notebook.create!(
 author_id: 1, title: "Project Notes", description: "so meta."
 )
 
+# ID 5
 Notebook.create!(
   author_id: 1, title: "React Notes", description: ""
 )
@@ -62,7 +66,7 @@ Note.create!(
   body: "-Remove unnecessary code\n-DRY up store/state access in containers where possible\n-CSS: lighten up line below title of note\n-CSS: add better accent colors where possible\n-Complete Splash page (quick auth or some kind of welcome/greeting)",
   author_id: 1,
   archived: false,
-  notebook_id: 2
+  notebook_id: 4
 )
 
 Note.create!(
@@ -70,7 +74,7 @@ Note.create!(
   body: "-Add new note button to Index View?\n\n-Allow user to change notebook note belongs to (currently first of alphabet or currentNotebook)\n\n-Add updated view in index while typing? (likely an autosave)\n\n-Add basic formatting in editor through HTML?\n\n-Add onKeyCommands to save on CMD+SHIFT+ENTER or something\n\n-deactivate Search Button if not implementing before due date\n\n-add nav bar (github/linkedin) footer",
   author_id: 1,
   archived: false,
-  notebook_id: 2
+  notebook_id: 4
 )
 
 Note.create!(
@@ -78,5 +82,5 @@ Note.create!(
   body: "FIXED-When clicking through index of notebooks, modal doesn't always close and open to notes index for that notebook (although it appears the correct view is rendering behind the modal--basically the modal isn't closing when it should)\n FIXED -appears to only work on first click to updated currentNotebook (following a reset/currentNotebook=null). Sometimes seemed like need two clicks on the reset (all notes) to work\n\nFIXED-When deleting a Notebook Index of Notes, index does not automatically update (fetchNotebook issue?)\n\nFIXED-CurrentNote should reset or something when switching to a notebook view other than it's own\n\n-Intentional bug: when clicking notebooks index, sets currentNotebook to null (to avoid no action onClick of same currentNotebook OR automatically closing the Modal when currentNotebook already exists)\n\n-Not sure if stlll an issue, but on Heroku, demo does not logout on button click. Confirm that's just outdated.\n\n\nCSS Issues: \n-footer\n-likely something wrong with potential overflow in the description input of New Notebook",
   author_id: 1,
   archived: false,
-  notebook_id: 2
+  notebook_id: 4
 )

@@ -9,7 +9,7 @@ class NotebookIndex extends React.Component {
     super(props);
 
     this.state = {
-      notebooks: this.props.notebooks,
+      // notebooks: this.props.notebooks,
       newNotebookModalOpen: false
     };
 
@@ -17,13 +17,13 @@ class NotebookIndex extends React.Component {
     this.closeNewNotebookModal = this.closeNewNotebookModal.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchNotebooks();
-  }
-
-  componentWillReceiveProps(newProps) {
-    this.setState({notebooks: newProps.notebooks});
-  }
+  // componentDidMount() {
+  //   this.props.fetchNotebooks();
+  // }
+  //
+  // componentWillReceiveProps(newProps) {
+  //   this.setState({notebooks: newProps.notebooks});
+  // }
 
   openNewNotebookModal() {
     this.setState({newNotebookModalOpen: true});
@@ -34,9 +34,15 @@ class NotebookIndex extends React.Component {
   }
 
   render() {
-      const notebookListItems = this.state.notebooks.map((notebook, idx) => (
+      // const notebookListItems = this.state.notebooks.map((notebook, idx) => (
+      //   <li key={`notebook-list-item-${idx}`}>
+      //     <NotebookIndexItemContainer notebook={notebook} />
+      //   </li>
+      // ));
+      const notebookListItems = this.props.notebooks.map((notebook, idx) => (
         <li key={`notebook-list-item-${idx}`}>
-          <NotebookIndexItemContainer notebook={notebook} />
+          <NotebookIndexItemContainer notebook={notebook}
+            closeModal={this.props.closeNotebooksModal} />
         </li>
       ));
 
@@ -49,7 +55,7 @@ class NotebookIndex extends React.Component {
                 onClick={this.openNewNotebookModal}></i>
             </div>
             <h2>Notebooks</h2>
-            <h4>{this.state.notebooks.length} notebooks</h4>
+            <h4>{this.props.notebooks.length} notebooks</h4>
           </div>
 
           <div className="notebook-index-items">
@@ -68,8 +74,8 @@ class NotebookIndex extends React.Component {
             <NewNotebookModal
               createNotebook={this.props.createNotebook}
               fetchNotebooks={this.props.fetchNotebooks}
-              closeModal={this.closeNewNotebookModal}
-              userId={this.props.currentUser.id} />
+              closeIndexModal={this.props.closeNotebooksModal}
+              closeModal={this.closeNewNotebookModal} />
           </Modal>
         </div>
     );

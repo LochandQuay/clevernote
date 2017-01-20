@@ -82,7 +82,8 @@ class NoteIndexItem extends React.Component {
     return preview;
   }
 
-  openDeleteModal() {
+  openDeleteModal(e) {
+    e.stopPropagation();
     this.setState({ deleteModalOpen: true });
   }
 
@@ -101,20 +102,33 @@ class NoteIndexItem extends React.Component {
   deleteHandler(e){
     e.preventDefault();
 
-    if (this.props.currentNotebook) {
-      this.props.deleteNote(this.props.note.id)
-      .then(() => this.props.fetchNotebook(this.props.currentNotebook.id))
-      .then(() => this.props.fetchNotes());
+    const noteId = this.props.note.id;
+    let nextNote = (this.props.notes[0].id === noteId) ? 1 : 0;
+
+    if (this.props.note.id === this.props.currentNote.id) {
+      this.props.setCurrentNote(null);
     }
-    else if (this.props.currentTag) {
-      this.props.deleteNote(this.props.note.id)
-      .then(() => this.props.fetchTag(this.props.currentTag.id))
+
+    this.props.deleteNote(this.props.note.id)
       .then(() => this.props.fetchNotes());
-    }
-    else {
-      this.props.deleteNote(this.props.note.id)
-      .then(() => this.props.fetchNotes());
-    }
+
+    this.props.fetchTags();
+    this.props.setCurrentNote(this.props.notes[nextNote]);
+
+    // if (this.props.currentNotebook) {
+    //   this.props.deleteNote(this.props.note.id)
+    //   .then(() => this.props.fetchNotebook(this.props.currentNotebook.id))
+    //   .then(() => this.props.fetchNotes());
+    // }
+    // else if (this.props.currentTag) {
+    //   this.props.deleteNote(this.props.note.id)
+    //   .then(() => this.props.fetchTag(this.props.currentTag.id))
+    //   .then(() => this.props.fetchNotes());
+    // }
+    // else {
+    //   this.props.deleteNote(this.props.note.id)
+    //   .then(() => this.props.fetchNotes());
+    // }
 
     this.closeDeleteModal();
   }

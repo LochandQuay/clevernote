@@ -1,5 +1,3 @@
-import { receiveNotebooks, receiveNotebook } from '../actions/notebook_actions';
-
 export const fetchNotebooks = () => (
   $.ajax({
     method: "GET",
