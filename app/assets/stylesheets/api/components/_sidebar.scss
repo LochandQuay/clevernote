@@ -106,3 +106,10 @@
   }
 
 }
+
+// #TODO: remove property when search implemented
+.note-action-buttons {
+  .search-notes {
+    display: none;
+  }
+}
