@@ -11,29 +11,10 @@ class NoteIndex extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   notes: this.props.notes,
-    //   deleteModalOpen: false
-    // };
-
-    // this.deleteHandler = this.deleteHandler.bind(this);
-    // this.openDeleteModal = this.openDeleteModal.bind(this);
-    // this.closeDeleteModal = this.closeDeleteModal.bind(this);
   }
 
-  // componentWillMount() {
-  //   if (this.props.currentNotebook) {
-  //     this.props.fetchNotebook(this.props.currentNotebook.id);
-  //   }
-  // }
-
-  // componentDidMount() {
-  //   this.props.fetchNotes();
-  // }
-
-  // #TODO
   componentWillReceiveProps(props) {
-    if (!this.props.currentNote && props.notes.length > 0) {
+    if (!props.currentNote && props.notes.length > 0) {
       this.props.setCurrentNote(props.notes[0]);
     }
   }
