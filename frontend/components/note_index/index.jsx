@@ -20,8 +20,9 @@ class Index extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    if (props.currentTag) {
-      this.props.fetchTaggedNotes(props.currentTag);
+    if (!this.props.currentTag && props.currentTag) {
+      this.props.fetchTaggedNotes(props.currentTag)
+        .then((notes) => this.setCurrentNote(notes[0]));
     }
   }
 

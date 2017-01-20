@@ -16,6 +16,7 @@ class TagIndexItem extends React.Component {
 
   selectTag() {
     this.props.setCurrentTag(this.props.tag);
+    this.props.setCurrentNote(null);
     this.props.setCurrentNotebook(null);
     this.props.closeModal();
   }

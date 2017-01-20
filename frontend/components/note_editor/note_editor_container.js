@@ -9,19 +9,6 @@ import { fetchNoteTags, fetchTag, createTag, deleteNoteTag, fetchTags }
 import { fetchNotebooks, fetchNotebook } from '../../actions/notebook_actions';
 import NoteEditor from './note_editor';
 
-// // #NB REQUIRED PROPS:
-//   currentNote (duh)
-//   notebooks
-//   currentUser
-//   noteCount (?)
-//   notes
-// // #NB REQUIRED FUNCTIONS:
-//   updateNote
-//   deleteNote
-//   setCurrentNote
-//   fetchNoteTags
-//   fetchNotes
-
 const mapStateToProps = (state) => {
   return ({
     // loggedOut: Boolean(!state.session.currentUser),
@@ -39,7 +26,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchNotes: () => dispatch(fetchNotes()),
-  // fetchNote: (noteId) => dispatch(fetchNote(noteId)),
+  fetchNote: (noteId) => dispatch(fetchNote(noteId)),
   updateNote: (note) => dispatch(updateNote(note)),
   // createNote: (note) => dispatch(createNote(note)),
   deleteNote: (noteId) => dispatch(deleteNote(noteId)),

@@ -71,6 +71,9 @@ class NoteEditor extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    if (newProps.currentNote && !newProps.currentNote.notebook) {
+      this.props.fetchNote(newProps.currentNote.id);
+    }
     if (newProps.currentNote) {
       if (newProps.currentNote.id !== this.state.id) {
         if (this.props.currentNote && this.props.notebooks.length > 0) {

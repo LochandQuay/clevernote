@@ -9,7 +9,8 @@ import {
 }
   from '../../actions/tag_actions';
 
-import { fetchNotes, fetchTaggedNotes } from '../../actions/note_actions';
+import { fetchNotes, fetchTaggedNotes, setCurrentNote }
+  from '../../actions/note_actions';
 import { setCurrentNotebook } from '../../actions/notebook_actions';
 
 const mapStateToProps = (state) => ({
@@ -28,7 +29,8 @@ const mapDispatchToProps = dispatch => ({
   fetchTaggedNotes: (tag) => dispatch(fetchTaggedNotes(tag)),
   deleteTag: (tagId) => dispatch(deleteTag(tagId)),
   createTag: (tag) => dispatch(createTag(tag)),
-  fetchNotes: () => dispatch(fetchNotes())
+  fetchNotes: () => dispatch(fetchNotes()),
+  setCurrentNote: note => dispatch(setCurrentNote(note))
 });
 
 export default connect(
