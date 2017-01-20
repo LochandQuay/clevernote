@@ -4,9 +4,9 @@
 #
 #  id              :integer          not null, primary key
 #  username        :string           not null
-#  name            :string           not null
+#  name            :string
 #  password_digest :string
-#  email           :string           not null
+#  email           :string
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

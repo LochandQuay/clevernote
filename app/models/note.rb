@@ -3,7 +3,7 @@
 # Table name: notes
 #
 #  id          :integer          not null, primary key
-#  title       :string           not null
+#  title       :string
 #  body        :text
 #  author_id   :integer          not null
 #  archived    :boolean          default("false"), not null
@@ -13,9 +13,9 @@
 #
 
 class Note < ApplicationRecord
-  validates :title, :author, :notebook, presence: true
+  validates :author, :notebook, presence: true
   validates :archived, inclusion: [true, false]
-  validates :title, length: { maximum: 140 }
+  validates :title, length: { maximum: 100 }
 
   belongs_to :author,
     foreign_key: :author_id,

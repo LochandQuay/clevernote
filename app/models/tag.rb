@@ -10,6 +10,7 @@
 
 class Tag < ApplicationRecord
   validates :name, presence: true, uniqueness: true
+  validates :name, length: { maximum: 25 }
 
   has_many :taggings,
     dependent: :destroy
