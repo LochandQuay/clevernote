@@ -40,8 +40,11 @@ class NoteIndex extends React.Component {
     else if (props.currentNotebook && props.currentNotebook.notes) {
       this.setState({ notes: props.currentNotebook.notes });
     }
-    else if (props.filteredNotesByTag) {
-      this.setState({ notes: props.filteredNotesByTag });
+    else if (props.currentTag && props.filteredNotes.length === 0) {
+      this.props.fetchTag(props.currentTag.id);
+    }
+    else if (props.currentTag && props.filteredNotes.length > 0) {
+      this.setState({ notes: props.filteredNotes });
     }
     else {
       this.setState({ notes: props.notes });

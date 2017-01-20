@@ -4,7 +4,7 @@ import { fetchNotes, setCurrentNote } from '../../actions/note_actions';
 import { fetchNotebooks, fetchNotebook, deleteNotebook }
   from '../../actions/notebook_actions';
 import { fetchTags, fetchTag, deleteTag, fetchNoteTags,
-  deleteNoteTag }
+  setCurrentTag, deleteNoteTag }
   from '../../actions/tag_actions';
 
 const mapStateToProps = (state, ownProps) => ({

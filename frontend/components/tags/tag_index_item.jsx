@@ -14,6 +14,7 @@ class TagIndexItem extends React.Component {
   }
 
   selectTag() {
+    this.props.setCurrentTag(this.props.tag);
   }
 
   render() {

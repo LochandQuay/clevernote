@@ -18,6 +18,18 @@
   h4 {
     margin: 0;
     padding-bottom: 5px;
+    position: absolute;
+    top: 70px;
+  }
+}
+
+.notebook-notes-header, .tag-notes-header {
+  h2 {
+    padding-top: 10px;
+    font-size: 30px;
+    overflow: hidden;
+    line-height: 35px;
+    height: 45px;
   }
 }
 
@@ -135,7 +147,7 @@
 }
 
 // NEW NOTEBOOKNOTE BUTTON
-.add-notebook-note-button {
+.add-notebook-note-button, .add-tag-note-button {
   float: right;
   font-size: 25px;
   color: $fox-red;
@@ -144,7 +156,7 @@
 }
 
 /* Flashing Hover */
-.add-notebook-note-button:hover i {
+.add-notebook-note-button:hover, .add-tag-note-button:hover i {
 	opacity: 1;
 	-webkit-animation: flash 1.5s;
 	animation: flash 1.5s;

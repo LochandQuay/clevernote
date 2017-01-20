@@ -4,7 +4,7 @@ import { setCurrentNote, fetchNotes, createNote }
   from '../../actions/note_actions';
 import { fetchNotebooks, fetchNotebook, setCurrentNotebook }
   from '../../actions/notebook_actions';
-import { fetchTags, fetchTag }
+import { fetchTags, fetchTag, setCurrentTag }
   from '../../actions/tag_actions';
 import { logout } from '../../actions/session_actions';
 
@@ -27,7 +27,8 @@ const mapDispatchToProps = dispatch => ({
   fetchNotebook: (id) => dispatch(fetchNotebook(id)),
   fetchTags: () => dispatch(fetchTags()),
   fetchTag: (id) => dispatch(fetchTag(id)),
-  setCurrentNotebook: notebook => dispatch(setCurrentNotebook(notebook))
+  setCurrentNotebook: notebook => dispatch(setCurrentNotebook(notebook)),
+  setCurrentTag: tag => dispatch(setCurrentTag(tag))
 });
 
 export default connect(

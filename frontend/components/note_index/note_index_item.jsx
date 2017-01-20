@@ -93,7 +93,7 @@ class NoteIndexItem extends React.Component {
   selectNote() {
     if ((this.props.currentNote &&
       this.props.note.id !== this.props.currentNote.id) ||
-      (!this.props.currrentNote)) {
+      (!this.props.currentNote)) {
         this.props.setCurrentNote(this.props.note);
     }
   }
@@ -104,6 +104,11 @@ class NoteIndexItem extends React.Component {
     if (this.props.currentNotebook) {
       this.props.deleteNote(this.props.note.id)
       .then(() => this.props.fetchNotebook(this.props.currentNotebook.id))
+      .then(() => this.props.fetchNotes());
+    }
+    else if (this.props.currentTag) {
+      this.props.deleteNote(this.props.note.id)
+      .then(() => this.props.fetchTag(this.props.currentTag.id))
       .then(() => this.props.fetchNotes());
     }
     else {

@@ -37,12 +37,13 @@ class Sidebar extends React.Component {
     this.closeTagsModal = this.closeTagsModal.bind(this);
 
     this.resetToNotesIndex = this.resetToNotesIndex.bind(this);
+    this.resetCurrentFilters = this.resetCurrentFilters.bind(this);
 
     this.setCurrentNoteIfNewNote = this.setCurrentNoteIfNewNote.bind(this);
     this.setCurrentNoteIfNewNotebook =
       this.setCurrentNoteIfNewNotebook.bind(this);
-    this.updateIndexIfNewCurrentNotebook =
-      this.updateIndexIfNewCurrentNotebook.bind(this);
+    this.updateIndexIfNewCurrentFilter =
+      this.updateIndexIfNewCurrentFilter.bind(this);
   }
 
   componentDidMount() {
@@ -53,7 +54,7 @@ class Sidebar extends React.Component {
   // #TODO: revisit--probably better way to do this
   componentWillReceiveProps(props) {
     // this.setCurrentNoteIfNewNote(props);
-    this.updateIndexIfNewCurrentNotebook(props);
+    this.updateIndexIfNewCurrentFilter(props);
   }
 
   setCurrentNoteIfNewNote(props) {
@@ -73,7 +74,7 @@ class Sidebar extends React.Component {
     }
   }
 
-  updateIndexIfNewCurrentNotebook(props) {
+  updateIndexIfNewCurrentFilter(props) {
     if(!this.props.currentNotebook && props.currentNotebook) {
       this.props.fetchNotebook(props.currentNotebook.id)
         .then(() => this.props.setCurrentNote(null))
@@ -86,16 +87,37 @@ class Sidebar extends React.Component {
           .then(() => this.closeNotebooksModal());
       }
     }
+    else if(!this.props.currentTag && props.currentTag) {
+      this.props.fetchTag(props.currentTag.id)
+        .then(() => this.props.setCurrentNote(null))
+        .then(() => this.closeTagsModal());
+    }
+    else if (this.props.currentTag && props.currentTag) {
+      if (this.props.currentTag.id !== props.currentTag.id) {
+        this.props.fetchTag(props.currentTag.id)
+          .then(() => this.props.setCurrentNote(null))
+          .then(() => this.closeTagsModal());
+      }
+    }
   }
 
   resetToNotesIndex() {
     this.setState({
       userSettingsModalOpen: false,
-      notebooksModalOpen: false}, () => this.props.setCurrentNotebook(null));
+      notebooksModalOpen: false,
+      tagsModalOpen: false}, () => this.resetCurrentFilters());
+  }
+
+  resetCurrentFilters() {
+    this.props.setCurrentNotebook(null);
+    this.props.setCurrentTag(null);
   }
 
   openUserSettingsModal() {
-    this.setState({ userSettingsModalOpen: true });
+    this.setState({
+      userSettingsModalOpen: true,
+      notebooksModalOpen: false,
+      tagsModalOpen: false });
   }
 
   closeUserSettingsModal() {
@@ -103,7 +125,11 @@ class Sidebar extends React.Component {
   }
 
   openNotebooksModal() {
-    this.setState({ notebooksModalOpen: true }, () => this.props.setCurrentNotebook(null));
+    this.setState({
+      notebooksModalOpen: true,
+      userSettingsModalOpen: false,
+      tagsModalOpen: false
+    }, () => this.resetCurrentFilters());
   }
 
   closeNotebooksModal() {
@@ -111,7 +137,11 @@ class Sidebar extends React.Component {
   }
 
   openTagsModal() {
-    this.setState({ tagsModalOpen: true });
+    this.setState({
+      tagsModalOpen: true,
+      userSettingsModalOpen: false,
+      notebooksModalOpen: false
+    }, () => this.resetCurrentFilters());
   }
 
   closeTagsModal() {
