@@ -4,6 +4,15 @@
 
 [clevernote home page: http://www.clevernote.site][home page]
 
+## Features
+
+- User accounts with secure authentication
+- Add and edit notes 
+- Organize notes into notebooks
+- Tag notes
+- View notes by notebook or tag
+- Rich Text Editor
+
 
 [clevernote]: http://www.clevernote.site
 [home page]: [http://www.clevernote.space]
