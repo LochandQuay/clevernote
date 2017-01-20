@@ -110,22 +110,6 @@ class NoteIndexItem extends React.Component {
       .then(() => this.props.setCurrentNote(this.props.notes[nextNote]));
 
     this.props.fetchTags();
-
-    // if (this.props.currentNotebook) {
-    //   this.props.deleteNote(this.props.note.id)
-    //   .then(() => this.props.fetchNotebook(this.props.currentNotebook.id))
-    //   .then(() => this.props.fetchNotes());
-    // }
-    // else if (this.props.currentTag) {
-    //   this.props.deleteNote(this.props.note.id)
-    //   .then(() => this.props.fetchTag(this.props.currentTag.id))
-    //   .then(() => this.props.fetchNotes());
-    // }
-    // else {
-    //   this.props.deleteNote(this.props.note.id)
-    //   .then(() => this.props.fetchNotes());
-    // }
-
     this.closeDeleteModal();
   }
 

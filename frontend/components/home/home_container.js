@@ -11,17 +11,6 @@ import { logout } from '../../actions/session_actions';
 import { fetchNotes } from '../../actions/note_actions';
 import { fetchNotebooks } from '../../actions/notebook_actions';
 
-// #NB: Required functions:
-  // fetch notes
-  // fetch notebooks
-  // fetch tags
-  // log out
-
-// #NB: Required Props:
-  // current user
-  // logged in boolean
-
-
 const mapStateToProps = ({session, notes, notebooks, tags}) => {
   return ({
     currentUser: session.currentUser,

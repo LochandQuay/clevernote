@@ -35,7 +35,10 @@ class Index extends React.Component {
 
   deleteHandler(e) {
     e.preventDefault();
-    this.props.deleteNotebook(this.props.currentNotebook.id);
+    this.props.deleteNotebook(this.props.currentNotebook.id)
+      .then(() => this.props.fetchNotebooks())
+      .then(() => this.props.fetchNotes())
+      .then(() => this.props.setCurrentNote(null));
     this.closeDeleteModal();
   }
 
