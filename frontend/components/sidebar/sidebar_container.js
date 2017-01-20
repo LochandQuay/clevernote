@@ -8,25 +8,6 @@ import { fetchTags, fetchTag, setCurrentTag }
   from '../../actions/tag_actions';
 import { logout } from '../../actions/session_actions';
 
-// #NB: Required Props:
-  // currentUser
-  // notes
-  // notebooks
-  // currentNotebook
-  // currentTag
-
-
-// #NB: Requires functions:
-  // logout
-  // fetchNotes
-  // fetchNotebooks
-  // setCurrentNote
-  // createNote
-  // setCurrentNotebook
-  // createNotebook
-  // setCurrentTag
-  //
-
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   notes: state.notes.notes,

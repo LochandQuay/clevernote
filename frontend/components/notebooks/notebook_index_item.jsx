@@ -20,6 +20,10 @@ class NotebookIndexItem extends React.Component {
     //   (!this.props.currentNotebook)) {
     //     this.props.setCurrentNotebook(this.props.notebook);
     //   }
+    if (this.props.currentNote && this.props.currentNote.notebook_id !==
+      this.props.notebook.id) {
+        this.props.setCurrentNote(null);
+      }
     this.props.setCurrentNotebook(this.props.notebook);
     this.props.setCurrentTag(null);
     this.props.closeModal();
@@ -30,6 +34,9 @@ class NotebookIndexItem extends React.Component {
       this.props.notebook.id !== this.props.currentNotebook.id) {
         this.selectNotebook();
       }
+    else {
+      this.props.closeModal();
+    }
   }
 
   render() {

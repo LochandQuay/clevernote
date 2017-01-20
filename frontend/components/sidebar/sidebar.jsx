@@ -263,6 +263,7 @@ class Sidebar extends React.Component {
           contentLabel="Notebook Index Modal">
           <div className="notebook-index-modal">
             <NotebookIndexContainer
+              createNotebook={this.props.createNotebook}
               closeNotebooksModal={this.closeNotebooksModal} />
           </div>
         </Modal>

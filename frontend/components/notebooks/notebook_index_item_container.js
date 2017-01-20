@@ -9,23 +9,8 @@ import {
 }
   from '../../actions/notebook_actions';
 
-import { fetchNotes } from '../../actions/note_actions';
+import { fetchNotes, setCurrentNote } from '../../actions/note_actions';
 import { setCurrentTag } from '../../actions/tag_actions';
-
-// #NB: Required Props:
-//   currentNote
-//   currentNotebook
-//   notes
-//   notebooks
-//
-// // #NB: Required functions:
-//   fetchNotes
-//   setCurrentNote
-//   fetchNotebooks
-//   createNotebook
-//   deleteNotebook
-//   setCurrentNotebook
-//   setCurrentTag
 
 const mapStateToProps = (state) => ({
   currentNote: state.notes.currentNote,
@@ -36,6 +21,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentTag: tag => dispatch(setCurrentTag(tag)),
+  setCurrentNote: note => dispatch(setCurrentNote(note)),
   setCurrentNotebook: (notebook) => dispatch(setCurrentNotebook(notebook)),
   fetchNotebooks: () => dispatch(fetchNotebooks()),
   fetchNotebook: (id) => dispatch(fetchNotebook(id)),

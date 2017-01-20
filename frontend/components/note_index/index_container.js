@@ -18,10 +18,10 @@ import { createNote, fetchTaggedNotes } from '../../actions/note_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUser: state.session.currentUser,
-  notes: state.notes.notes,
-  notebooks: state.notebooks.sortedNotebooks,
   currentNotebook: state.notebooks.currentNotebook,
   currentTag: state.tags.currentTag,
+  notes: state.notes.notes,
+  notebooks: state.notebooks.sortedNotebooks,
   taggedNotes: state.notes.taggedNotes
 });
 

@@ -25,6 +25,9 @@ class TagIndexItem extends React.Component {
       this.props.tag.id !== this.props.currentTag.id) {
         this.selectTag();
       }
+    else {
+      this.props.closeModal();
+    }
   }
 
   render() {
