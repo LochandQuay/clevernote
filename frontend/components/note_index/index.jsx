@@ -78,7 +78,6 @@ class Index extends React.Component {
       title = "Notes";
       count = this.props.notes.length;
     }
-
     return (
       <div className="note-index">
         <div className={`notes-header ${type}notes-header`}>

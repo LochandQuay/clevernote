@@ -6,10 +6,11 @@ import { fetchNotebook } from '../../actions/notebook_actions';
 import { fetchTag, fetchTags, setCurrentTag } from '../../actions/tag_actions';
 
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   tagCount: state.tags.sortedTags.length,
   currentNote: state.notes.currentNote,
-  notes: state.notes.notes
+  notes: ownProps.notes,
+  allNotes: state.notes.notes
 });
 
 const mapDispatchToProps = dispatch => ({
