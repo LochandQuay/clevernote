@@ -1,12 +1,16 @@
 import React from 'react';
 import Modal from 'react-modal';
 import NotebookIndexContainer from '../notebooks/notebook_index_container';
+import TagIndexContainer from '../tags/tag_index_container';
 
 import { UserSettingsModalStyle }
   from '../modal_styles/user_settings_modal_style';
 
 import { NotebookIndexModalStyle }
   from '../modal_styles/notebook_index_modal_style';
+
+import { TagIndexModalStyle }
+  from '../modal_styles/tag_index_modal_style';
 
 // import ReactTransitionGroup from 'react-addons-transition-group';
 // import {TweenMax, Power2, TimelineLite} from 'gsap';
@@ -17,7 +21,8 @@ class Sidebar extends React.Component {
 
     this.state = {
       userSettingsModalOpen: false,
-      notebooksModalOpen: false
+      notebooksModalOpen: false,
+      tagsModalOpen: false
     };
 
     // this.addNote = this.addNote.bind(this);
@@ -27,6 +32,9 @@ class Sidebar extends React.Component {
 
     this.openNotebooksModal = this.openNotebooksModal.bind(this);
     this.closeNotebooksModal = this.closeNotebooksModal.bind(this);
+
+    this.openTagsModal = this.openTagsModal.bind(this);
+    this.closeTagsModal = this.closeTagsModal.bind(this);
 
     this.resetToNotesIndex = this.resetToNotesIndex.bind(this);
 
@@ -39,6 +47,7 @@ class Sidebar extends React.Component {
 
   componentDidMount() {
     this.props.fetchNotebooks();
+    this.props.fetchTags();
   }
 
   // #TODO: revisit--probably better way to do this
@@ -101,6 +110,14 @@ class Sidebar extends React.Component {
     this.setState({ notebooksModalOpen: false });
   }
 
+  openTagsModal() {
+    this.setState({ tagsModalOpen: true });
+  }
+
+  closeTagsModal() {
+    this.setState({ tagsModalOpen: false });
+  }
+
   render () {
     const userImageSetting = this.props.currentUser.image_url ?
     "user-image" : "default-user-icon";
@@ -144,7 +161,8 @@ class Sidebar extends React.Component {
           </div>
 
           <div
-            className="tags-button icon-circle sidebar-icon" >
+            className="tags-button icon-circle sidebar-icon"
+            onClick={this.openTagsModal} >
             <i className="fa fa-tags"></i>
           </div>
         </div>
@@ -167,6 +185,18 @@ class Sidebar extends React.Component {
           <div className="notebook-index-modal">
             <NotebookIndexContainer
               onClick={this.closeNotebooksModal} />
+          </div>
+        </Modal>
+
+        <Modal
+          isOpen={this.state.tagsModalOpen}
+          onRequestClose={this.closeTagsModal}
+          style={ TagIndexModalStyle }
+          className="react-modal"
+          contentLabel="Tag Index Modal">
+          <div className="tag-index-modal">
+            <TagIndexContainer
+              onClick={this.closeTagsModal} />
           </div>
         </Modal>
 

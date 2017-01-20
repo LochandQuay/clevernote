@@ -4,7 +4,8 @@ import SidebarContainer from '../sidebar/sidebar_container';
 import NoteIndexContainer from '../note_index/note_index_container';
 import NoteEditorContainer from '../note_editor/note_editor_container';
 
-// import RichTextEditorContainer from '../note_editor/rich_text_editor_container';
+// import RichTextEditorContainer from
+//'../note_editor/rich_text_editor_container';
 
 import SplashContainer from '../splash/splash_container';
 
@@ -16,7 +17,8 @@ class Home extends React.Component {
 
     this.state = {
       currentNote: this.props.currentNote,
-      currentNotebook: this.props.currentNotebook
+      currentNotebook: this.props.currentNotebook,
+      currentTag: this.props.currentTag
     };
 
     this.addNote = this.addNote.bind(this);
@@ -25,6 +27,7 @@ class Home extends React.Component {
   componentDidMount() {
     this.props.fetchNotes();
     this.props.fetchNotebooks();
+    this.props.fetchTags();
   }
 
   // componentWillUpdate() {

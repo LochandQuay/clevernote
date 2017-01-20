@@ -9,8 +9,6 @@ import * as SessionApiUtil from './util/session_api_util';
 import * as NoteApiUtil from './util/note_api_util';
 import * as NotebookApiUtil from './util/notebook_api_util';
 import * as TagApiUtil from './util/tag_api_util';
-import { fetchNotes, fetchNote } from './actions/note_actions';
-import { fetchNotebooks, fetchNotebook } from './actions/notebook_actions';
 
 // SESSION UTIL ACTIONS
 window.login = SessionApiUtil.login;

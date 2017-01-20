@@ -1,18 +1,18 @@
-export const NewNotebookModal = {
+export const TagIndexModalStyle = {
   overlay: {
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(150, 150, 150, 0.85)'
+    backgroundColor: 'rgba(150, 150, 150, 0.1)'
   },
   content : {
     position                   : 'absolute',
     width                      : '400px',
     height                     : '100%',
-    left                       : '50%',
-    top                        : '50%',
+    left                       : '70px',
+    top                        : '0px',
     border                     : '1px solid #ccc',
     background                 : '#fff',
     overflow                   : 'auto',
@@ -21,6 +21,4 @@ export const NewNotebookModal = {
     outline                    : 'none'
 
   }
-
-
 };

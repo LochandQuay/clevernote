@@ -12,6 +12,16 @@ export const sorted = items => {
   });
 };
 
+export const sortTags = tags => {
+  return tags.sort((a, b) => {
+    let aname = a.name.toLowerCase();
+    let bname = b.name.toLowerCase();
+    if (aname < bname) { return -1; }
+    if (aname > bname) { return 1; }
+    return 0;
+  });
+};
+
 export const alphaSort = items => {
   let array = Object.keys(items).map(id => items[id]);
 

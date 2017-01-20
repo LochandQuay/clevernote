@@ -2,15 +2,18 @@ import {
   RECEIVE_TAGS,
   RECEIVE_TAG,
   REMOVE_TAG,
-  RECEIVE_NOTE_TAGS
+  RECEIVE_NOTE_TAGS,
+  SET_CURRENT_TAG,
+  RECEIVE_FILTERED_NOTES
 } from '../actions/tag_actions';
 
 import merge from 'lodash/merge';
-import { alphaSort, sorted } from './selectors';
+import { sortTags, sorted } from './selectors';
 
 const _defaultState = {
   currentTag: null,
   sortedTags: [],
+  filteredNotesByTag: [],
   currentNoteTags: []
 };
 
@@ -20,13 +23,13 @@ const TagReducer = (state = _defaultState, action) => {
 
   switch(action.type) {
     case RECEIVE_TAGS:
-      nextState.sortedTags = alphaSort(action.tags);
+      nextState.sortedTags = sortTags(action.tags);
       return merge(nextState, action.tags);
 
     case RECEIVE_TAG:
       nextState.currentTag = action.tag;
       let tag = action.tag[Object.keys(action.tag)[0]];
-      nextState.sortedTags = alphaSort(nextState.sortedTags.concat(tag));
+      nextState.sortedTags = sortTags(nextState.sortedTags.concat(tag));
       return merge(nextState, action.tag);
 
     case REMOVE_TAG:
@@ -39,10 +42,19 @@ const TagReducer = (state = _defaultState, action) => {
       return nextState;
 
     case RECEIVE_NOTE_TAGS:
-      nextState.currentNoteTags = alphaSort(action.tags);
+      nextState.currentNoteTags = sortTags(action.tags);
       return nextState;
+
+    case RECEIVE_FILTERED_NOTES:
+      nextState.filteredNotesByTag = sorted(action.notes);
+      return nextState;
+
+    case SET_CURRENT_TAG:
+      return merge({}, state, {currentTag: action.tag});
 
     default:
       return state;
   }
 };
+
+export default TagReducer;

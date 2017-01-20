@@ -40,6 +40,9 @@ class NoteIndex extends React.Component {
     else if (props.currentNotebook && props.currentNotebook.notes) {
       this.setState({ notes: props.currentNotebook.notes });
     }
+    else if (props.filteredNotesByTag) {
+      this.setState({ notes: props.filteredNotesByTag });
+    }
     else {
       this.setState({ notes: props.notes });
     }
@@ -60,33 +63,43 @@ class NoteIndex extends React.Component {
     // .then(() => this.props.fetchNotebooks())
   }
 
-  renderNotebookNoteIndexHeader() {
+  renderFilteredNoteIndexHeader(filter) {
+    const header = (filter === 'notebook') ?
+      this.props.currentNotebook.title : this.props.currentTag.name;
     return (
-      <div className="notebook-notes-header">
+      <div className={`${filter}-notes-header`}>
         <div
-          className="delete-notebook-button"
+          className={`delete-${filter}-button`}
           onClick={this.openDeleteModal}>
           <i className="fa fa-trash"></i>
         </div>
         <div
-          className="add-notebook-note-button"
+          className={`add-${filter}-note-button`}
           onClick={this.props.addNote}>
           <i className="fa fa-plus-circle"></i>
         </div>
-        <h2>{this.props.currentNotebook.title}</h2>
+        <h2>{header}</h2>
       </div>
     );
   }
 
   render() {
-    const notesHeader = (this.props.currentNotebook) ?
-      (this.renderNotebookNoteIndexHeader()) : (<h2>Notes</h2>);
+    let filter;
+    if (this.props.currentNotebook) {
+      filter = 'notebook';
+    }
+    else if (this.props.currentTag) {
+      filter = 'tag';
+    }
+    const notesHeader = (filter) ?
+      (this.renderFilteredNoteIndexHeader(filter)) : (<h2>Notes</h2>);
 
     const noteListItems = this.state.notes.map((note, idx) => (
       <li key={`note-list-item-${idx}`}>
         <NoteIndexItemContainer
           note={note}
-          currentNotebook={this.props.currentNotebook} />
+          currentNotebook={this.props.currentNotebook}
+          currentTag={this.props.currentTag} />
       </li>
     ));
 

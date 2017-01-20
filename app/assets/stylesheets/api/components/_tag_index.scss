@@ -1,0 +1,117 @@
+.tag-index {
+  box-sizing: border-box;
+}
+
+.tags-header {
+  border-bottom: 1px solid $gray;
+  padding: 10px 20px;
+  padding-bottom: 0;
+  height: 90px;
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    margin: 0;
+    padding-bottom: 5px;
+  }
+}
+
+.tag-index-items {
+}
+
+.tag-index-item {
+  height: 70px;
+  padding: 20px;
+  border-bottom: 1px solid $gray;
+  box-sizing: border-box;
+  transition: border 0.1s;
+  overflow: hidden;
+
+  h3 {
+    color: $bad-blood;
+    margin: 0;
+    font-size: 20px;
+  }
+}
+
+.tag-index-item:hover {
+  border: 4px solid $fox-red;
+}
+
+.add-tag-button {
+  float: right;
+  font-size: 30px;
+  color: $fox-red;
+  vertical-align: middle;
+  transition: font-size 0.1s;
+}
+
+/* Flashing Hover */
+.add-tag-button:hover i {
+	opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
+}
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+
+// MODAL STYLING
+.delete-tag-button {
+  font-size: 24px;
+  line-height: 20px;
+  float: left;
+  color: $gray;
+  transition: color 0.1s;
+}
+
+.delete-tag-button:hover {
+  color: $bad-blood;
+}
+
+
+// NEW TAG MODAL STYLING
+.new-tag-modal {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 500px;
+  height: 350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 45px;
+}
+
+.new-tag-name-input {
+  border: 1px solid $lightest-gray;
+  box-sizing: border-box;
+  border-radius: 4px;
+  color: $bad-blood;
+  margin: 20px;
+  background-color: $light-gray;
+}
+
+.cancel-new-tag-button, .create-new-tag-button {
+  width: 205px;
+  height: 50px;
+  margin: 20px;
+  font-size: 20px;
+}

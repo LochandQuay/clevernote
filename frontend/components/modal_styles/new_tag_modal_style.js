@@ -1,4 +1,4 @@
-export const NewNotebookModal = {
+export const NewTagModalStyle = {
   overlay: {
     position: 'fixed',
     top: 0,

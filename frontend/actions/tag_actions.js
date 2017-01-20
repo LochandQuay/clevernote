@@ -1,10 +1,12 @@
 import * as TagApiUtil from '../util/tag_api_util';
-import { receiveNotes } from './note_actions';
 
 export const RECEIVE_TAGS = "RECEIVE_TAGS";
 export const RECEIVE_TAG = "RECEIVE_TAG";
 export const REMOVE_TAG = "REMOVE_TAG";
 export const RECEIVE_NOTE_TAGS = "RECEIVE_NOTE_TAGS";
+export const SET_CURRENT_TAG = "SET_CURRENT_TAG";
+export const RECEIVE_FILTERED_NOTES = "RECEIVE_FILTERED_NOTES";
+export const REMOVE_TAGGING = "REMOVE_TAGGING";
 
 export const fetchTags = () => dispatch => (
   TagApiUtil.fetchTags()
@@ -18,7 +20,7 @@ export const createTag = tag => dispatch => (
 
 export const fetchTag = id => dispatch => (
   TagApiUtil.fetchTag(id)
-    .then(taggedNotes => dispatch(receiveNotes(taggedNotes)))
+    .then(taggedNotes => dispatch(receiveFilteredNotes(taggedNotes)))
 );
 
 export const deleteTag = id => dispatch => (
@@ -31,6 +33,10 @@ export const fetchNoteTags = id => dispatch => (
     .then(tags => dispatch(receiveNoteTags(tags)))
 );
 
+export const deleteNoteTag = data => dispatch => (
+  TagApiUtil.deleteNoteTag(data)
+    .then(tagging => dispatch(receiveNoteTags(tagging.note_id)))
+);
 
 export const receiveTags = tags => ({
   type: RECEIVE_TAGS,
@@ -50,4 +56,14 @@ export const removeTag = tag => ({
 export const receiveNoteTags = tags => ({
   type: RECEIVE_NOTE_TAGS,
   tags
+});
+
+export const setCurrentTag = tag => ({
+  type: SET_CURRENT_TAG,
+  tag
+});
+
+export const receiveFilteredNotes = notes => ({
+  type: RECEIVE_FILTERED_NOTES,
+  notes
 });
