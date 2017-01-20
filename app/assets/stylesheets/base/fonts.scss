@@ -1,39 +1,13 @@
-// 'https://fonts.googleapis.com/css?family=Amaranth|Cabin|Lobster|Lobster+Two|Titillium+Web'
-
-@font-face {
-  font-family: 'Cabin';
-  src: url('Cabin-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Amaranth';
-  src: url('Amaranth-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lobster';
-  src: url('Lobster-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'TitilliumWeb';
-  src: url('TitilliumWeb-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
+// 'https://fonts.googleapis.com/css?family=Amaranth|Cabin|Lobster+Two|Poppins'
 
 $serif: serif;
-$sans-serif: 'Titillium Web', helvetica, sans-serif;
+$sans-serif: helvetica, sans-serif;
+// $sans-serif: 'Poppins', helvetica, sans-serif;
+// $sans-serif: 'Amaranth', helvetica, sans-serif;
+// $sans-serif: 'Cabin', helvetica, sans-serif;
+$cursive: 'Lobster Two', cursive;
 
 $amaranth: 'Amaranth', sans-serif;
-$titillium: 'Titillium Web', sans-serif;
-$lobster: 'Lobster', cursive;
 $lobster-two: 'Lobster Two', cursive;
 $cabin: 'Cabin', sans-serif;
+$poppins: 'Poppins', sans-serif;

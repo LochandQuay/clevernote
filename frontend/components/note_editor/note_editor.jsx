@@ -3,38 +3,47 @@ import { Link } from 'react-router';
 
 import ReactQuill from 'react-quill';
 import Toolbar from 'react-quill';
-// import {Editor, EditorState, RichUtils} from 'draft-js';
-// import RichEditorExample from './rich_text_editor';
 
-const toolbarOptions = [
-  // toggled buttons
-  ['bold', 'italic', 'underline', 'strike'],
-  ['blockquote', 'code-block'],
+const _quillModules = {
+  toolbar: [
+    // toggled buttons
+    ['bold', 'italic', 'underline', 'strike'],
+    ['blockquote', 'code-block'],
 
-  // custom button values
-  [{ 'header': 1 }, { 'header': 2 }],
-  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    // custom button values
+    [{ 'header': 1 }, { 'header': 2 }],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
 
-  // superscript/subscript
-  [{ 'script': 'sub'}, { 'script': 'super' }],
+    // superscript/subscript
+    [{ 'script': 'sub'}, { 'script': 'super' }],
 
-  // outdent/indent
-  [{ 'indent': '-1'}, { 'indent': '+1' }],
+    // outdent/indent
+    [{ 'indent': '-1'}, { 'indent': '+1' }],
 
-  // text direction
-  [{ 'direction': 'rtl' }],
+    // text direction
+    [{ 'direction': 'rtl' }],
 
-  // custom dropdown
-  [{ 'size': ['small', false, 'large', 'huge'] }],
-  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    // custom dropdown
+    [{ 'size': ['small', false, 'large', 'huge'] }],
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
-  // dropdown with defaults from theme
-  [{ 'color': [] }, { 'background': [] }],
-  [{ 'font': [] }],
-  [{ 'align': [] }],
+    // dropdown with defaults from theme
+    [{ 'color': [] }, { 'background': [] }],
+    [{ 'font': [] }],
+    [{ 'align': [] }],
 
-  // remove formatting button
-  ['clean']
+    // remove formatting button
+    ['clean']
+  ]
+};
+
+const _quillFormats = [
+  "background", "color", "font", "size",
+  "list", "bullet", "script",
+  "bold", "italic", "underline", "strike",
+  "blockquote", "indent", "link", "header", "align",
+  "direction", "formula", "image", "video",
+  "code", "code-block"
 ];
 
 
@@ -331,17 +340,18 @@ class NoteEditor extends React.Component {
 
           <div className="text-editor-input">
             <ReactQuill
+              theme='snow'
+              modules={_quillModules}
+              formats={_quillFormats}
+              toolbar={false}
+              value={this.state.body}
               key="editor"
               ref='editor'
               className="quill-contents"
-              theme='snow'
-              value={this.state.body}
+              bounds={`.text-editor-input`}
               onChange={this.updateBody}
               getText={this.getText}>
-              <ReactQuill.Toolbar
-                key="toolbar"
-                ref="toolbar"
-                items={ReactQuill.Toolbar.defaultItems} />
+
             </ReactQuill>
           </div>
 
@@ -354,6 +364,10 @@ class NoteEditor extends React.Component {
       );
     }
   }
+
+  // <ReactQuill.Toolbar
+  //   key="toolbar"
+  //   ref="toolbar" />
   // render() {
   //   // const selectedNotebook = (this.state.note.notebook) ?
   //     // this.state.note.notebook : this.props.notebooks[0];
