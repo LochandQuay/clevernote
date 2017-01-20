@@ -159,13 +159,13 @@ class NoteEditor extends React.Component {
   updateTitle(e) {
     clearTimeout(this.autosaveTimer);
     this.setState({title: e.currentTarget.value});
-    this.autosaveTimer = setTimeout(this.autoSave, 2000);
+    this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
   updateBody(text) {
     clearTimeout(this.autosaveTimer);
     this.setState({body: text});
-    this.autosaveTimer = setTimeout(this.autoSave, 2000);
+    this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
 
