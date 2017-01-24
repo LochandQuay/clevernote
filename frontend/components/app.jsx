@@ -29,7 +29,7 @@ const App = ({ children }) => {
         clevernote: organize your life.
       </p>
       <div className="footer-links">
-        <a href="www.github.com/LochandQuay">
+        <a href="https://www.github.com/LochandQuay">
           <i className="fa fa-github"></i>
         </a>
         <a href="https://www.linkedin.com/in/hopewanroy/">
