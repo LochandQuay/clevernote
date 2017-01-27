@@ -1,3 +1,6 @@
+// #TODO: Add responsive design to dashboard: hide index unless clicked on notes index in sidebar
+// #TODO: Add notes index modal
+
 import React from 'react';
 import Modal from 'react-modal';
 import NoteIndexContainer from './note_index_container';
