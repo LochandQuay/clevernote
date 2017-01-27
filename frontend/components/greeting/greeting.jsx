@@ -29,19 +29,14 @@ class Header extends React.Component {
 
     this.state = {
       sessionModalOpen: false,
-      navModalOpen: false,
       formType: 'login'
     };
 
     this.openSessionModal = this.openSessionModal.bind(this);
-    this.openNavModal = this.openNavModal.bind(this);
     this.closeSessionModal = this.closeSessionModal.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
     this.handleClick = this.handleClick.bind(this);
-  }
-
-  openNavModal() {
-    this.setState({ navModalOpen: true });
+    this.toggleMenu = this.toggleMenu.bind(this);
   }
 
   openSessionModal() {
@@ -56,7 +51,9 @@ class Header extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    this.setState({ formType: e.target.value },
+    const formTypeValue = e.target.value !== 0 ?
+      e.target.value : e.target.attributes.name.value;
+    this.setState({ formType: formTypeValue },
       () => this.openSessionModal());
   }
 
@@ -64,6 +61,12 @@ class Header extends React.Component {
     e.preventDefault();
     const user = { username: "eevee", password: "password" };
     this.props.login(user);
+  }
+
+  toggleMenu(e) {
+    e.preventDefault();
+    e.currentTarget.children[1].classList.toggle("open");
+    e.currentTarget.children[1].classList.toggle("closed");
   }
 
   render () {
@@ -93,8 +96,27 @@ class Header extends React.Component {
           </button>
         </nav>
 
-        <div className="hamburger-menu" onCick={this.openNavModal}>
+        <div className="hamburger-menu" onClick={this.toggleMenu}>
           <i className="fa fa-bars"></i>
+
+          <nav className="hamburger-menu-dropdown closed">
+            <ul>
+              <li className="hamburger-menu-dropdown-item"
+                name="signup"
+                onClick={this.handleClick}>
+                Sign Up
+              </li>
+              <li className="hamburger-menu-dropdown-item"
+                name="login"
+                onClick={this.handleClick}>
+                Log In
+              </li>
+              <li className="hamburger-menu-dropdown-item"
+                onClick={this.demoLogin}>
+                Demo
+              </li>
+            </ul>
+          </nav>
         </div>
 
         <Modal

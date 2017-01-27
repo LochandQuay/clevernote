@@ -133,8 +133,43 @@ $main-page-header-height: 60px;
   .hamburger-menu {
     font-size: 35px;
     color: $fox-red;
-    display: inline-block;
+    display: block;
     margin: 5px 0px;
+
+    i {
+      float: right;
+    }
+
+    .open {
+      position: relative;
+      top: 35px;
+      left: 30px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .closed {
+      display: none;
+    }
+  }
+
+  .hamburger-menu-dropdown {
+    background-color: $white-ish;
+    border: 1px solid $gray;
+  }
+
+  .hamburger-menu-dropdown-item {
+    font-size: 25px;
+    padding: 10px 20px;
+    color: $bad-blood;
+    border-bottom: 1px solid $light-gray;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+  }
+
+  .hamburger-menu-dropdown-item:hover {
+    box-sizing: border-box;
+    background-color: $sage;
   }
 
   .splash-signup-form {
