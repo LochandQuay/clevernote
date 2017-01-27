@@ -1,10 +1,15 @@
-$main-page-header-height: 70px;
-
+$main-page-header-height: 60px;
 
 .main-page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: $white-ish;
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px 10px 20px;
+  padding: 5px 20px 5px 20px;
   height: $main-page-header-height;
   border-bottom: 1px solid $bad-blood;
   box-sizing: border-box;
@@ -32,12 +37,16 @@ $main-page-header-height: 70px;
 .login-signup, .header-group {
   display: inherit;
   flex-direction: row;
-  margin: 10px 0px;
+  margin: 9px 0px 8px;
+}
+
+.hamburger-menu {
+  display: none;
 }
 
 .button {
   position: relative;
-  top: 6px;
+  // top: 6px;
   height: auto;
   width: 80px;
 	background-color: $fox-red;
@@ -113,4 +122,35 @@ $main-page-header-height: 70px;
 	100% {
 		opacity: 1;
 	}
+}
+
+
+@media all and (max-width: 700px) {
+  .login-signup {
+    display: none;
+  }
+
+  .hamburger-menu {
+    font-size: 35px;
+    color: $fox-red;
+    display: inline-block;
+    margin: 5px 0px;
+  }
+
+  .splash-signup-form {
+  	position: absolute;
+    top: 475px;
+    z-index: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 30px 0px;
+    padding-bottom: 20px;
+  }
+}
+
+@media all and (max-width: 550px) {
+  .splash-signup-form {
+    .half-field {
+    }
+  }
 }

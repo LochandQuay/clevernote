@@ -43,3 +43,5 @@ const App = ({ children }) => {
 
 export default App;
 // <HomeContainer />
+
+// #TODO: Add Modal welcome and sign up to main page

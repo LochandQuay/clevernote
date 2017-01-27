@@ -1,12 +1,20 @@
+// #TODO: set up mobile restrictions to 700px width
+// #TODO: set up hamburger menu, move signup below splash
+
 .home-main-content {
   height: calc(100% - 80px);
+}
+
+.splash {
+
 }
 
 .splash-image {
   position: relative;
   overflow: hidden;
   object-fit: cover;
-  min-width: 800px;
+  min-width: 700px;
+  max-height: 650px;
 }
 
 .splash-image-text-overlay {
@@ -19,4 +27,52 @@
   z-index: 1;
   width: 100%;
   text-align: center;
+}
+
+.splash-signup-form {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
+  font-size: 15px;
+
+  input {
+    box-sizing: border-box;
+    border: 1px solid $gray;
+    background-color: $white-ish;
+    border-radius: 5px;
+    width: 500px;
+    padding: 5px 5px 5px 10px;
+  }
+
+  .half-field {
+    width: 240px;
+  }
+
+  .right {
+    margin-left: 10px;
+  }
+
+  .left {
+    margin-right: 10px;
+  }
+
+  .splash-submit-button {
+    box-sizing: border-box;
+  	background-color: $fox-red;
+  	color: white;
+  	font-weight: bold;
+  	padding: 8px;
+  	border-radius: 5px;
+  	transition: background-color 0.3s;
+  	font-family: $sans-serif;
+  	text-transform: uppercase;
+  	text-align: center;
+  }
+
+  .splash-submit-button:hover {
+    text-decoration: none;
+  	background-color: $bad-blood;
+  }
 }

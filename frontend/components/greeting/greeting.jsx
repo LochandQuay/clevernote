@@ -29,13 +29,19 @@ class Header extends React.Component {
 
     this.state = {
       sessionModalOpen: false,
+      navModalOpen: false,
       formType: 'login'
     };
 
     this.openSessionModal = this.openSessionModal.bind(this);
+    this.openNavModal = this.openNavModal.bind(this);
     this.closeSessionModal = this.closeSessionModal.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  openNavModal() {
+    this.setState({ navModalOpen: true });
   }
 
   openSessionModal() {
@@ -85,8 +91,11 @@ class Header extends React.Component {
             onClick={this.handleClick}>
             Sign Up
           </button>
-
         </nav>
+
+        <div className="hamburger-menu" onCick={this.openNavModal}>
+          <i className="fa fa-bars"></i>
+        </div>
 
         <Modal
           isOpen={this.state.sessionModalOpen}
