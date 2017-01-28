@@ -3,7 +3,7 @@
 
 [clevernote][clevernote] is a web application for users to take and organize notes. Inspired by Evernote, clevernote allows users to create notebooks, add notes, and tag notes.
 
-![splash][splash]
+![splash-page][splash]
 
 ![dashboard][dashboard]
 
@@ -30,6 +30,6 @@ clevernote is a single-page application built with Rails and React.js.
 
 [logo]: ./docs/images/clevernote-logo.png "clevernote logo"
 [clevernote]: http://www.clevernote.site
-[splash]: ./docs/images/clevernote-home.png "splash page"-
+[splash]: ./docs/images/splash-page.png "splash page"
 [dashboard]: ./docs/images/clevernote-dashboard.png "dashboard"
 [proposal]: ./docs/README.md
