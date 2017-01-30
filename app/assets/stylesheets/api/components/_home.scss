@@ -18,23 +18,18 @@
   z-index: -1;
 }
 
-.splash-image-text-overlay {
-  h1 {
-
-    font-size: 4vw;
-  }
-  position: absolute;
-  top: 40vh;
-  width: 100%;
-  text-align: center;
-}
-
 .splash-signup-form {
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%);
   font-size: 15px;
+
+  h1 {
+    font-size: 50px;
+    text-align: center;
+    text-shadow: 0px 2px 10px $dark-gray;
+  }
 
   input {
     box-sizing: border-box;
@@ -43,6 +38,7 @@
     border-radius: 5px;
     width: 500px;
     padding: 5px 5px 5px 10px;
+    box-shadow: 0px 2px 10px $bad-blood;
   }
 
   .half-field {

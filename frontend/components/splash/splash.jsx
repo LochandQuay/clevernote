@@ -39,6 +39,7 @@ class Splash extends React.Component {
           className="splash-image" />
 
         <div className="splash-signup-form">
+          <h1>Organize everything.</h1><br />
           <form onSubmit={this.signup}>
             <label>
               <input
