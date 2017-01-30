@@ -48,7 +48,6 @@ class Api::TagsController < ApplicationController
     end
   end
 
-#  #TODO: Confirm whether this is the best way of going about this
   def destroyTagging
     @tag = Tag.find(params[:id])
     @tagging = @tag.taggings.select { |tagging| tagging.note_id == tag_params[:note_id].to_i }.first

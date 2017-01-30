@@ -1,5 +1,3 @@
-// NB: should not need to edit this any further for a while, if ever
-
 import React from 'react';
 import { Link } from 'react-router';
 import HeaderContainer from './greeting/greeting_container';
