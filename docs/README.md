@@ -19,7 +19,6 @@ MVP Features
  - [ ] Notebooks for organizing notes
  - [ ] Tags
  - [ ] Rich Text Editing
- - [ ] Infinite Scroll
  - [ ] Production README
 
 
