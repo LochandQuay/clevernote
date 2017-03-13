@@ -13,12 +13,12 @@ clevernote: project proposal
 clevernote is a web application inspired by Evernote built using Ruby on Rails and React/Redux.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data and sufficient CSS styling:
 
 MVP Features
- - [ ] Hosting on Heroku
- - [ ] New account creation, login, and guest/demo login
- - [ ] Notes
- - [ ] Notebooks for organizing notes
- - [ ] Tags
- - [ ] Rich Text Editing
+ - [x] Hosting on Heroku
+ - [x] New account creation, login, and guest/demo login
+ - [x] Notes
+ - [x] Notebooks for organizing notes
+ - [x] Tags
+ - [x] Rich Text Editing
  - [ ] Production README
 
 
@@ -88,10 +88,11 @@ the API.
 
 ### Bonus Features
 
+ - [x] Autosave
  - [ ] Search Functionality (notes, notebooks, tags)
  - [ ] Infinite Scroll
  - [ ] Search notes by content
- - [ ] Code snippets
+ - [x] Code snippets
  - [ ] Wiki View
  - [ ] Set reminders on notes
  - [ ] Changelogs for Notes
