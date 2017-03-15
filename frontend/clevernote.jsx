@@ -37,8 +37,6 @@ window.fetchNoteTags = TagApiUtil.fetchNoteTags;
 window.createTag = TagApiUtil.createTag;
 window.deleteTag = TagApiUtil.deleteTag;
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   if (window.currentUser) {
