@@ -35,7 +35,7 @@ class Splash extends React.Component {
     return (
       <div className="splash group">
         <img
-          src="https://res.cloudinary.com/clevernote/image/upload/q_auto:good/v1485473434/splash.jpg"
+          src="http://res.cloudinary.com/clevernote/image/upload/q_70/v1489622273/aleks-dorohovich-26_uerxji.jpg"
           className="splash-image" />
 
         <div className="splash-signup-form">

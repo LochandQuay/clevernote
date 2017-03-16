@@ -6,6 +6,7 @@ import { fetchNotebooks, fetchNotebook, setCurrentNotebook, createNotebook }
   from '../../actions/notebook_actions';
 import { fetchTags, fetchTag, setCurrentTag }
   from '../../actions/tag_actions';
+import { logout } from '../../actions/session_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
@@ -18,7 +19,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch({type: "LOGOUT"}),
+  logout: () => dispatch(logout()),
   fetchNotes: () => dispatch(fetchNotes()),
   setCurrentNote: note => dispatch(setCurrentNote(note)),
   createNote: note => dispatch(createNote(note)),
