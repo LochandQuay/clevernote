@@ -1,12 +1,12 @@
 .note-index {
   box-sizing: border-box;
-  border-right: 1px solid $darkest-gray;
+  border-right: 1px solid $charcoal;
   width: $note-index-width;
   height: 100%;
 }
 
 .notes-header {
-  border-bottom: 1px solid $gray;
+  border-bottom: 1px solid $charcoal;
   padding: 10px;
   padding-bottom: 0;
   height: 90px;
@@ -64,7 +64,8 @@
   padding: 10px 20px;
   border-bottom: 1px solid $gray;
   box-sizing: border-box;
-  transition: border 0.1s;
+  // transition: border 0.1s;
+  // transition: background-color 0.1s;
   overflow: hidden;
 
   .delete-note-button {
@@ -76,12 +77,12 @@
   }
 
   h3 {
-    color: $bad-blood;
+    color: $maru;
     font-size: 17px;
   }
 
   h5, p {
-    color: $darkest-gray;
+    color: $charcoal;
   }
 
   p {
@@ -96,8 +97,23 @@
   }
 }
 
+.clamped-title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.clamped-body {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 .note-index-item:hover {
-  border: 4px solid $fox-red;
+  // border: 4px solid $fox-rose;
+  background-color: $peach;
 
   .delete-note-button {
     display: block;
@@ -108,12 +124,12 @@
   font-size: 20px;
   line-height: 17px;
   float: right;
-  color: $gray;
+  color: $charcoal;
   transition: color 0.1s;
 }
 
 .delete-note-button:hover {
-  color: $bad-blood;
+  color: $maru;
 }
 
 .delete-note-modal {
@@ -129,7 +145,7 @@
   left: 50%;
   transform: translateX(-50%);
   transform: translateY(-50%);
-  border: 1px solid $bad-blood;
+  border: 1px solid $charcoal;
   border-radius: 4px;
   font-size: 20px;
 
@@ -154,7 +170,7 @@
 .add-notebook-note-button, .add-tag-note-button {
   float: right;
   font-size: 25px;
-  color: $fox-red;
+  color: $fox-rose;
   vertical-align: text-top;
   transition: font-size 0.1s;
 }

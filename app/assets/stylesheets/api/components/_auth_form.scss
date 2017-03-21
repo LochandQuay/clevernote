@@ -3,12 +3,12 @@
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  color: $bad-blood;
+  color: $charcoal;
   width: 300px;
   height: auto;
-  border: 1px solid $bad-blood;
+  border: 1px solid $charcoal;
   border-radius: 5px;
-  box-shadow: 0px 5px 20px 3px $bad-blood;
+  box-shadow: 0px 5px 20px 3px $charcoal;
   font-family: $sans-serif;
   font-size: 15px;
   padding: 20px 30px;
@@ -29,12 +29,12 @@
 
   .submit-button {
     box-sizing: border-box;
-    background-color: $fox-red;
+    background-color: $fox-rose;
     font-weight: bold;
     font-size: 18px;
     color: $white-ish;
     text-transform: uppercase;
-    border: 1px solid $bad-blood;
+    border: 1px solid $charcoal;
     border-radius: 2px;
     width: 300px;
     height: auto;
@@ -45,7 +45,7 @@
 
   .submit-button:hover {
     text-decoration: none;
-    background-color: $bad-blood;
+    background-color: $maru;
   }
 
   a {

@@ -12,8 +12,9 @@
   position: relative;
   overflow: hidden;
   object-fit: cover;
-  min-width: 700px;
-  max-height: 650px;
+  min-width: 1000px;
+  height: auto;
+  // height: 650px;
   z-index: -1;
 }
 
@@ -23,6 +24,10 @@
   left: 50%;
   transform: translate(-50%);
   font-size: 15px;
+  // background-color: $eggshell;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   h1 {
     font-size: 50px;
@@ -37,7 +42,6 @@
     border-radius: 5px;
     width: 500px;
     padding: 5px 5px 5px 10px;
-    // box-shadow: 0px 2pxs 10px $bad-blood;
   }
 
   .half-field {
@@ -53,11 +57,14 @@
   }
 
   .splash-submit-button {
+    display: flex;
+    align-self: center;
     box-sizing: border-box;
-  	background-color: $fox-red;
+  	background-color: $fox-rose;
   	color: white;
   	font-weight: bold;
-  	padding: 8px;
+  	padding: 10px;
+    font-size: 16px;
   	border-radius: 5px;
   	transition: background-color 0.3s;
   	font-family: $sans-serif;
@@ -67,6 +74,6 @@
 
   .splash-submit-button:hover {
     text-decoration: none;
-  	background-color: $bad-blood;
+  	background-color: $maru;
   }
 }

@@ -3,7 +3,7 @@
   top: 300px;
   left: 50%;
   transform: translateX(-50%);
-  color: $bad-blood;
+  color: $charcoal;
   width: 300px;
   height: auto;
   // border: 1px solid $bad-blood;
@@ -29,12 +29,12 @@
 
   .submit-button {
     box-sizing: border-box;
-    background-color: $fox-red;
+    background-color: $fox-rose;
     font-weight: bold;
     font-size: 18px;
     color: $white-ish;
     text-transform: uppercase;
-    border: 1px solid $bad-blood;
+    border: 1px solid $charcoal;
     border-radius: 2px;
     width: 300px;
     height: auto;
@@ -45,7 +45,7 @@
 
   .submit-button:hover {
     text-decoration: none;
-    background-color: $bad-blood;
+    background-color: $maru;
   }
 
   a {
@@ -68,7 +68,7 @@
 
 hr.or-line {
   width: 300px;
-  border-top: 2px solid $bad-blood;
+  border-top: 2px solid $maru;
   text-align: center;
 }
 
@@ -78,7 +78,7 @@ hr.or-line:after {
 	position: relative;
 	top: -15px;
 	padding: 0 10px;
-	color: $bad-blood;
+	color: $maru;
 	font-size: 18px;
 }
 

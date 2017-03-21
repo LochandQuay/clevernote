@@ -13,8 +13,8 @@ body {
 }
 
 button {
-	background-color: $fox-red;
-	border-color: $bad-blood;
+	background-color: $fox-rose;
+	border-color: $charcoal;
 	color: white;
 	font-weight: bold;
 	padding: 5px 5px;
@@ -27,7 +27,7 @@ button {
 }
 
 button:hover {
-	background-color: $bad-blood;
+	background-color: $maru;
 }
 
 a:hover {
@@ -45,13 +45,13 @@ a:hover {
 h1 {
 	font-family: $lobster-two;
 	font-size: 40px;
-	color: $bad-blood;
+	color: $maru;
 }
 
 h2 {
 	font-family: $lobster-two;
 	font-size: 36px;
-	color: $bad-blood;
+	color: $maru;
 	text-align: center;
 }
 

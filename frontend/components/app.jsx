@@ -14,7 +14,7 @@ const App = ({ children }) => {
         <h1>clevernote</h1>
         <img
           className="main-page-logo"
-          src="https://res.cloudinary.com/clevernote/image/upload/v1484120473/clevernote-2_rao7v9.png"
+          src="http://res.cloudinary.com/clevernote/image/upload/v1489710980/fox_mrfgjm.png"
           alt="clevernote logo" />
       </Link>
       <HeaderContainer />

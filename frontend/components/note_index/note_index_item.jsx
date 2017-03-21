@@ -61,8 +61,8 @@ class NoteIndexItem extends React.Component {
 
   getTitlePreview (title) {
     let preview;
-    if (title.length > 25) {
-      preview = title.slice(0, 25) + "...";
+    if (title.length > 22) {
+      preview = title.slice(0, 22) + "...";
     }
     else {
       preview = title;
@@ -73,9 +73,9 @@ class NoteIndexItem extends React.Component {
 
   getBodyPreview (body) {
     let preview = body.replace(/<(?:.|\n)*?>/gm, '');
-    if (preview.length > 50) {
-      preview = preview.slice(0, 50) + "...";
-    }
+    // if (preview.length > 50) {
+      // preview = preview.slice(0, 50) + "...";
+    // }
     return preview;
   }
 
@@ -122,9 +122,9 @@ class NoteIndexItem extends React.Component {
           onClick={this.openDeleteModal}>
           <i className="fa fa-trash"></i>
         </div>
-        <h3>{this.getTitlePreview(this.props.note.title)}</h3>
+        <h3 className="clamped-title note-index-title">{this.props.note.title}</h3>
         <h5>{getTimeStamp(this.props.note.updated_at)}</h5>
-        <p>{this.getBodyPreview(this.props.note.body)}</p>
+        <p className="clamped-body note-index-body">{this.getBodyPreview(this.props.note.body)}</p>
 
         <Modal
           isOpen={this.state.deleteModalOpen}
