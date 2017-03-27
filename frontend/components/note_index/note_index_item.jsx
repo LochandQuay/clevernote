@@ -139,7 +139,8 @@ class NoteIndexItem extends React.Component {
             closeModal={this.closeDeleteModal}
             noteTitle={this.props.note.title} />
         </Modal>
-        <hr />
+
+        <span className="bottom-border"></span>
       </div>
     );
   }

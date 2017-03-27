@@ -9,7 +9,7 @@
   justify-content: space-between;
   flex-direction: column;
   align-content: center;
-  background-color: $eggshell;
+  background-color: $lightest-gray;
 
   .sidebar-logo {
     width: calc($sidebar-width - 10px);
@@ -28,7 +28,7 @@
     vertical-align: middle;
     position: relative;
     padding: 1.2rem;
-    border: 1px solid $charcoal;
+    border: 1px solid $dark-gray;
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -38,18 +38,21 @@
     background-color: $white-ish;
   }
 
-  .icon-circle:hover {
-    background-color: $peach;
-  }
-
-
   i {
-    color: $charcoal;
+    color: $fox-rose;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     transition: color 0.3s;
+  }
+
+  .icon-circle:hover {
+    background-color: $fox-rose;
+
+    i {
+      color: $white-ish;
+    }
   }
 
   .user-icon {
@@ -59,8 +62,9 @@
     vertical-align: middle;
     position: relative;
     padding: 1.2rem;
-    border: 1px solid $charcoal;
-    background-color: white;
+    border: 1px solid $gray;
+    border-radius: 4px;
+    background-color: $white-ish;
     width: 50px;
     height: 50px;
     font-size: 40px;
