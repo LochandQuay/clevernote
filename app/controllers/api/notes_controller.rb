@@ -1,4 +1,6 @@
 class Api::NotesController < ApplicationController
+  # before_action :require_login
+
   def new
     @note = Note.new
   end
@@ -11,6 +13,9 @@ class Api::NotesController < ApplicationController
 
   def edit
     @note = Note.find(params[:id])
+    if @note.author_id != current_user.id
+      render status: 401
+    end
   end
 
   def update
@@ -27,6 +32,9 @@ class Api::NotesController < ApplicationController
 
   def show
     @note = Note.find(params[:id])
+    if !current_user || @note.author_id != current_user.id
+      render json: {}
+    end
   end
 
   def index

@@ -43,6 +43,7 @@ class NoteIndex extends React.Component {
             key={`note-index-item-${idx}`}
             note={note}
             notes={this.props.notes} />
+
         ))}
       </ul>
     );

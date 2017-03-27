@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :require_login
 
   def current_user
     return nil unless session[:session_token]
@@ -25,10 +25,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  #
-  # def require_login
-  #   render json: {base: ['invalid credentials']}, status: 401 if !current_user
-  # end
+
+  def require_login
+    render status: 401 unless logged_in?
+  end
 
   def user_params
     params.require(:user).permit(:username, :password, :name, :email)

@@ -11,7 +11,6 @@ const _quillModules = {
     ['blockquote', 'code-block'],
 
     // custom button values
-    [{ 'header': 1 }, { 'header': 2 }],
     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
 
     // superscript/subscript
@@ -19,21 +18,21 @@ const _quillModules = {
 
     // outdent/indent
     [{ 'indent': '-1'}, { 'indent': '+1' }],
-
-    // text direction
-    [{ 'direction': 'rtl' }],
-
-    // custom dropdown
-    [{ 'size': ['small', false, 'large', 'huge'] }],
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-    // dropdown with defaults from theme
-    [{ 'color': [] }, { 'background': [] }],
-    [{ 'font': [] }],
     [{ 'align': [] }],
 
+    // text direction
+    // [{ 'direction': 'rtl' }],
+
+    // custom dropdown
+    [{ 'font': [] }],
+    [{ 'size': ['small', false, 'large', 'huge'] }],
+
+    // dropdown with defaults from theme
+    [{ 'header': 1 }, { 'header': 2 }],
+    [{ 'color': [] }, { 'background': [] }],
+
     // remove formatting button
-    ['clean']
+    // ['clean']
   ]
 };
 
@@ -42,7 +41,7 @@ const _quillFormats = [
   "list", "bullet", "script",
   "bold", "italic", "underline", "strike",
   "blockquote", "indent", "link", "header", "align",
-  "direction", "formula", "image", "video",
+  // "direction", "formula", "image", "video",
   "code", "code-block"
 ];
 
@@ -122,6 +121,10 @@ class NoteEditor extends React.Component {
     clearTimeout(this.autosaveTimer);
     this.setState({body: text});
     this.autosaveTimer = setTimeout(this.autoSave, 1000);
+  }
+
+  componentWillUnmount() {
+
   }
 
 
