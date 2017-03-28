@@ -44,7 +44,7 @@ $main-page-header-height: 60px;
   display: none;
 }
 
-.button {
+.button, .demo-button {
   position: relative;
   // top: 6px;
   height: auto;
@@ -62,9 +62,13 @@ $main-page-header-height: 60px;
 	text-align: center;
 }
 
-.button:hover {
+.button:hover, .demo-button:hover {
   text-decoration: none;
-	background-color: $maru;
+	background-color: $bright-navy;
+}
+
+.demo-button {
+  background-color: $maru;
 }
 
 .header-group .button {
@@ -170,7 +174,8 @@ $main-page-header-height: 60px;
 
   .hamburger-menu-dropdown-item:hover {
     box-sizing: border-box;
-    background-color: $sage;
+    // background-color: $sage;
+    background-color: $bright-navy;
   }
 
   .splash-signup-form {

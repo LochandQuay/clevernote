@@ -4,12 +4,20 @@ import { hashHistory } from 'react-router';
 class Splash extends React.Component {
   constructor(props) {
     super(props);
+
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   componentWillReceiveProps(props) {
     if (props.loggedIn) {
       hashHistory.push("/home");
     }
+  }
+
+  demoLogin(e) {
+    e.preventDefault();
+    const user = { username: "eevee", password: "password" };
+    this.props.login(user);
   }
 
   render() {
@@ -25,7 +33,8 @@ class Splash extends React.Component {
           <br /><br />
 
           <button
-            className="splash-submit-button">Sign up for free</button>
+            className="splash-submit-button"
+            onClick={ this.demoLogin }>Try the demo</button>
         </div>
       </div>
     );

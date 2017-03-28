@@ -79,11 +79,6 @@ class Header extends React.Component {
         <nav className="login-signup">
           <button
             className="button"
-            onClick={this.demoLogin}>
-            Demo
-          </button>
-          <button
-            className="button"
             value="login"
             onClick={this.handleClick}>
             Log In
@@ -93,6 +88,11 @@ class Header extends React.Component {
             value="signup"
             onClick={this.handleClick}>
             Sign Up
+          </button>
+          <button
+            className="button demo-button"
+            onClick={this.demoLogin}>
+            Demo
           </button>
         </nav>
 

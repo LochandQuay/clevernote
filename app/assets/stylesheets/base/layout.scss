@@ -27,7 +27,7 @@ button {
 }
 
 button:hover {
-	background-color: $maru;
+	background-color: $bright-navy;
 }
 
 a:hover {
@@ -49,9 +49,12 @@ h1 {
 }
 
 h2 {
-	font-family: $lobster-two;
+	// font-family: $lobster-two;
+	// color: $maru;
 	font-size: 36px;
-	color: $maru;
+	font-family: $poppins;
+	text-transform: uppercase;
+	color: $bright-navy;
 	text-align: center;
 }
 

@@ -114,10 +114,14 @@ class NoteIndexItem extends React.Component {
   }
 
   render() {
+    let noteClass = "note-index-item";
+    if (this.props.currentNote && this.props.currentNote.id === this.props.note.id) {
+      noteClass = "note-index-item selected-note";
+    }
 
     return (
       <span className="bottom-border">
-        <div className="note-index-item" onClick={this.selectNote}>
+        <div className={noteClass} onClick={this.selectNote}>
 
           <div
             className="delete-note-button"
