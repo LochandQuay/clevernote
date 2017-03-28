@@ -114,7 +114,7 @@
 
 .note-index-item:hover {
   border: 4px solid $fox-rose;
-  background-color: $peach;
+  // background-color: $peach;
 
   .delete-note-button {
     display: block;
@@ -124,7 +124,7 @@
 .bottom-border {
   display: block;
   content: "";
-  margin-bottom: 1px;
+  // margin-bottom: 1px;
   border-bottom: 1px solid $gray;
 }
 
@@ -132,7 +132,7 @@
   font-size: 20px;
   line-height: 17px;
   float: right;
-  color: $charcoal;
+  color: $gray;
   transition: color 0.1s;
 }
 

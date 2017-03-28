@@ -56,6 +56,6 @@ Rails.application.configure do
 
 
   # Running guard-livereload with better_errors:
-  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
-  # config.middleware.insert_before Rack::Lock, Rack::LiveReload
+  # config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
+  config.middleware.insert_before(ActionDispatch::Executor, Rack::LiveReload)
 end

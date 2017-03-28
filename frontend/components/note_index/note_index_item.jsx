@@ -116,32 +116,34 @@ class NoteIndexItem extends React.Component {
   render() {
 
     return (
-      <div className="note-index-item" onClick={this.selectNote}>
-        <div
-          className="delete-note-button"
-          onClick={this.openDeleteModal}>
-          <i className="fa fa-trash"></i>
+      <span className="bottom-border">
+        <div className="note-index-item" onClick={this.selectNote}>
+
+          <div
+            className="delete-note-button"
+            onClick={this.openDeleteModal}>
+            <i className="fa fa-trash"></i>
+          </div>
+          <h3 className="clamped-title note-index-title">{this.props.note.title}</h3>
+          <h5>{getTimeStamp(this.props.note.updated_at)}</h5>
+          <p className="clamped-body note-index-body">{this.getBodyPreview(this.props.note.body)}</p>
+
+          <Modal
+            isOpen={this.state.deleteModalOpen}
+            onRequestClose={this.closeDeleteModal}
+            className="delete-note-modal"
+            shouldCloseOnOverlayClick={false}
+            style={ DeleteNoteModalStyle }
+            contentLabel="Delete Note Modal">
+
+            <DeleteNoteModal
+              deleteNote={this.deleteHandler}
+              closeModal={this.closeDeleteModal}
+              noteTitle={this.props.note.title} />
+          </Modal>
+
         </div>
-        <h3 className="clamped-title note-index-title">{this.props.note.title}</h3>
-        <h5>{getTimeStamp(this.props.note.updated_at)}</h5>
-        <p className="clamped-body note-index-body">{this.getBodyPreview(this.props.note.body)}</p>
-
-        <Modal
-          isOpen={this.state.deleteModalOpen}
-          onRequestClose={this.closeDeleteModal}
-          className="delete-note-modal"
-          shouldCloseOnOverlayClick={false}
-          style={ DeleteNoteModalStyle }
-          contentLabel="Delete Note Modal">
-
-          <DeleteNoteModal
-            deleteNote={this.deleteHandler}
-            closeModal={this.closeDeleteModal}
-            noteTitle={this.props.note.title} />
-        </Modal>
-
-        <span className="bottom-border"></span>
-      </div>
+      </span>
     );
   }
 }
