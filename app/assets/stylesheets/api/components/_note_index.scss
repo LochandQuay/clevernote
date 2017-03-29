@@ -158,9 +158,9 @@
   display: flex;
   justify-content: center;
   width: 300px;
-  height: 150px;
+  // height: 150px;
   position: absolute;
-  background-color: $white-ish;
+  background-color: $antiflash-white;
   top: 50%;
   left: 50%;
   transform: translateX(-50%);
@@ -169,20 +169,33 @@
   border-radius: 4px;
   font-size: 20px;
 
-  p {
-    margin-bottom: 30px;
+  p:last-of-type {
+    margin-bottom: 20px;
+  }
+}
+
+.delete-modal-message p {
+  line-height: 30px;
+
+  span {
+    color: $bright-navy;
+    overflow: hidden;
   }
 }
 
 .delete-modal {
   .delete-cancel-button {
-    margin: 10px;
-    width: 100px;
+    margin: 20px;
+    padding: 10px;
+    width: 110px;
+    font-size: 15px;
   }
 
   .delete-button {
-    margin: 10px;
-    width: 100px;
+    margin: 20px;
+    padding: 10px;
+    width: 110px;
+    font-size: 15px;
   }
 }
 
