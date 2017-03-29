@@ -11,7 +11,7 @@ const App = ({ children }) => {
   <div>
     <header className="main-page-header">
       <Link to="/" className="home-link">
-        <h1>clevernote</h1>
+        <h1>clevernote.</h1>
         <img
           className="main-page-logo"
           src="http://res.cloudinary.com/clevernote/image/upload/e_make_transparent:10/v1489710654/fox_mrfgjm.png"

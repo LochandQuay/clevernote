@@ -33,9 +33,11 @@ class TagIndexItem extends React.Component {
 
   render() {
     return (
-      <div className="tag-index-item" onClick={this.selectTagHandler}>
-        <h3>{this.props.tag.name}</h3>
-      </div>
+      <span className="bottom-border">
+        <div className="tag-index-item" onClick={this.selectTagHandler}>
+          <h3>{this.props.tag.name}</h3>
+        </div>
+      </span>
     );
   }
 }

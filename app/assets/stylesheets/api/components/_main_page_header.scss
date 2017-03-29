@@ -6,7 +6,7 @@ $main-page-header-height: 60px;
   left: 0;
   width: 100%;
   z-index: 1;
-  background-color: $white-ish;
+  background-color: $antiflash-white;
   display: flex;
   justify-content: space-between;
   padding: 5px 20px 5px 20px;
@@ -20,12 +20,18 @@ $main-page-header-height: 60px;
   flex-direction: row-reverse;
 
   h1 {
+    color: $fox-rose;
     padding-top: 10px;
+    transition: color 0.3s;
   }
 }
 
 .home-link:hover {
   text-decoration: none;
+
+  h1 {
+    color: $bright-navy;
+  }
 }
 
 .main-page-logo {

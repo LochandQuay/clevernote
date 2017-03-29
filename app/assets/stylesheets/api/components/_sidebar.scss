@@ -14,6 +14,8 @@
   .sidebar-logo {
     width: calc($sidebar-width - 10px);
     height: auto;
+    // #TODO: Can remove when logo updated (probably)
+    padding: 15px 0px;
   }
 
   .note-action-buttons, .index-buttons, .user-button {
