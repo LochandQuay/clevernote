@@ -6,9 +6,9 @@ import SessionForm from './session_form';
 // map boolean value for currentUser to loggedIn prop
 // pass errors array
 // #TODO: set up errors array for store
-const mapStateToProps = ({session}, ownProps) => ({
-  loggedIn: Boolean(session.currentUser),
-  errors: session.errors
+const mapStateToProps = (state, ownProps) => ({
+  loggedIn: Boolean(state.session.currentUser),
+  errors: state.errors
 });
 
 const mapDispatchToProps = (dispatch, {formType}) => {
