@@ -12,11 +12,13 @@ import {
 import { fetchNotes, setCurrentNote } from '../../actions/note_actions';
 import { setCurrentTag } from '../../actions/tag_actions';
 
+import { sorted, alphaSort } from '../../reducers/selectors';
+
 const mapStateToProps = (state) => ({
-  currentNote: state.notes.currentNote,
-  notes: state.notes.notes,
-  currentNotebook: state.notebooks.currentNotebook,
-  notebooks: state.notebooks.sortedNotebooks
+  currentNote: state.currentNote,
+  notes: sorted(state.notes),
+  currentNotebook: state.currentNotebook,
+  notebooks: alphaSort(state.notebooks)
 });
 
 const mapDispatchToProps = (dispatch) => ({

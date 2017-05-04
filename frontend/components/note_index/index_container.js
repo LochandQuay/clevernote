@@ -1,22 +1,32 @@
 import { connect } from 'react-redux';
 import Index from './index';
 import { deleteNotebook, fetchNotebooks } from '../../actions/notebook_actions';
-import { createNote, fetchTaggedNotes, fetchNotes, setCurrentNote }
+import { createNote, fetchNotes, setCurrentNote }
   from '../../actions/note_actions';
 
-const mapStateToProps = (state, ownProps) => ({
-  currentUser: state.session.currentUser,
-  currentNotebook: state.notebooks.currentNotebook,
-  currentTag: state.tags.currentTag,
-  notes: state.notes.notes,
-  notebooks: state.notebooks.sortedNotebooks,
-  taggedNotes: state.notes.taggedNotes
-});
+import { sorted, alphaSort, filteredNotes } from '../../reducers/selectors';
+
+const mapStateToProps = (state, ownProps) => {
+  let notes = sorted(state.notes);
+  if (state.currentNotebook) {
+    notes = filteredNotes(notes, 'notebook', state.currentNotebook.id);
+  }
+  else if (state.currentTag) {
+    notes = filteredNotes(notes, 'tag', state.currentTag.id);
+  }
+
+  return ({
+    currentUser: state.session.currentUser,
+    currentNotebook: state.currentNotebook,
+    currentTag: state.currentTag,
+    notes: notes,
+    notebooks: alphaSort(state.notebooks),
+  });
+};
 
 const mapDispatchToProps = dispatch => ({
   deleteNotebook: id => dispatch(deleteNotebook(id)),
   createNote: note => dispatch(createNote(note)),
-  fetchTaggedNotes: tag => dispatch(fetchTaggedNotes(tag)),
   fetchNotes: () => dispatch(fetchNotes()),
   fetchNotebooks: () => dispatch(fetchNotebooks()),
   setCurrentNote: (note) => dispatch(setCurrentNote(note))

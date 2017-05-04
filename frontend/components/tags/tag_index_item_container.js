@@ -9,15 +9,16 @@ import {
 }
   from '../../actions/tag_actions';
 
-import { fetchNotes, fetchTaggedNotes, setCurrentNote }
+import { fetchNotes, setCurrentNote }
   from '../../actions/note_actions';
 import { setCurrentNotebook } from '../../actions/notebook_actions';
+import { sortTags } from '../../reducers/selectors';
 
 const mapStateToProps = (state) => ({
-  currentNote: state.notes.currentNote,
+  currentNote: state.currentNote,
   notes: state.notes.notes,
-  currentTag: state.tags.currentTag,
-  tags: state.tags.sortedTags
+  currentTag: state.currentTag,
+  tags: sortTags(state.tags)
 });
 
 // NOTE THAT FETCH TAG RETURNS ARRAY OF TAGGED NOTES
@@ -26,7 +27,6 @@ const mapDispatchToProps = dispatch => ({
   setCurrentNotebook: (notebook) => dispatch(setCurrentNotebook(notebook)),
   fetchTags: () => dispatch(fetchTags()),
   fetchTag: (id) => dispatch(fetchTag(id)),
-  fetchTaggedNotes: (tag) => dispatch(fetchTaggedNotes(tag)),
   deleteTag: (tagId) => dispatch(deleteTag(tagId)),
   createTag: (tag) => dispatch(createTag(tag)),
   fetchNotes: () => dispatch(fetchNotes()),

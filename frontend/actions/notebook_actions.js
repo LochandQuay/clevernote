@@ -18,20 +18,10 @@ export const fetchNotebook = id => dispatch => (
     .then(notebook => dispatch(receiveNotebook(notebook)))
 );
 
-// export const createNotebook = notebook => dispatch => (
-//   NotebookApiUtil.createNotebook(notebook)
-//     .then(newNotebook => dispatch(receiveNotebook(newNotebook)))
-// );
-
 export const createNotebook = notebook => dispatch => (
   NotebookApiUtil.createNotebook(notebook)
     .then(newNotebook => dispatch(makeNotebook(newNotebook)))
 );
-
-// export const updateNotebook = notebook => dispatch => (
-//   NotebookApiUtil.updateNotebook(notebook)
-//     .then(updated => dispatch(receiveNotebook(updated)))
-// );
 
 export const updateNotebook = notebook => dispatch => (
   NotebookApiUtil.updateNotebook(notebook)

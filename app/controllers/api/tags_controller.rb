@@ -36,16 +36,22 @@ class Api::TagsController < ApplicationController
   def show
     @tag = Tag.find(params[:id])
 
-    @tagged_notes = []
-    notes = current_user.notes.includes(:taggings)
     if @tag
-      notes.each do |note|
-        @tagged_notes << note if note.taggings.any? { |tagging| tagging.tag_id == @tag.id }
-      end
-      render json: @tagged_notes
+      render json: @tag
     else
-      render json: @tag.errors.full_messages, status: 422
+      render json: ["tag does not exist"], status: 404
     end
+
+    # @tagged_notes = []
+    # tags = current_user.includes(:tags)
+    # if @tag
+    #   notes.each do |note|
+    #     @tagged_notes << note if note.taggings.any? { |tagging| tagging.tag_id == @tag.id }
+    #   end
+    #   render json: @tagged_notes
+    # else
+    #   render json: @tag.errors.full_messages, status: 422
+    # end
   end
 
   def destroyTagging

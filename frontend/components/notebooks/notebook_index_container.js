@@ -3,10 +3,12 @@ import NotebookIndex from './notebook_index';
 import { fetchNotebooks, createNotebook, setCurrentNotebook }
   from '../../actions/notebook_actions';
 
+import { alphaSort } from '../../reducers/selectors';
+
 const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
-  currentNotebook: state.notebooks.currentNotebook,
-  notebooks: state.notebooks.sortedNotebooks
+  currentNotebook: state.currentNotebook,
+  notebooks: alphaSort(state.notebooks)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

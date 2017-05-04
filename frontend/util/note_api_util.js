@@ -34,10 +34,3 @@ export const deleteNote = id => (
     url: `api/notes/${id}`
   })
 );
-
-export const fetchTaggedNotes = tag => (
-  $.ajax({
-    method: "GET",
-    url: `api/tags/${tag.id}`
-  })
-);

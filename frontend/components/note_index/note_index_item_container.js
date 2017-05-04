@@ -5,10 +5,10 @@ import { setCurrentNote, fetchNotes, deleteNote }
 import { fetchNotebook } from '../../actions/notebook_actions';
 import { fetchTag, fetchTags, setCurrentTag } from '../../actions/tag_actions';
 
-
 const mapStateToProps = (state, ownProps) => ({
-  tagCount: state.tags.sortedTags.length,
-  currentNote: state.notes.currentNote,
+  tagCount: Object.keys(state.tags).length,
+  // currentNote: state.notes.currentNote,
+  currentNote: state.currentNote,
   notes: ownProps.notes,
   allNotes: state.notes.notes
 });

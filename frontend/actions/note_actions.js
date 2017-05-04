@@ -7,8 +7,6 @@ export const ADD_NOTE = "ADD_NOTE";
 export const EDIT_NOTE = "EDIT_NOTE";
 export const SET_CURRENT_NOTE = "SET_CURRENT_NOTE";
 
-export const RECEIVE_TAGGED_NOTES = "RECEIVE_TAGGED_NOTES";
-
 export const fetchNotes = () => dispatch => (
   NoteApiUtil.fetchNotes()
     .then(notes => dispatch(receiveNotes(notes)))
@@ -24,11 +22,6 @@ export const createNote = note => dispatch => (
     .then(newNote => dispatch(addNote(newNote)))
 );
 
-// export const updateNote = note => dispatch => (
-//   NoteApiUtil.updateNote(note)
-//     .then(updated => dispatch(receiveNote(updated)))
-// );
-
 export const updateNote = note => dispatch => (
   NoteApiUtil.updateNote(note)
     .then(updated => dispatch(editNote(updated)))
@@ -37,11 +30,6 @@ export const updateNote = note => dispatch => (
 export const deleteNote = id => dispatch => (
   NoteApiUtil.deleteNote(id)
     .then(note => dispatch(removeNote(note)))
-);
-
-export const fetchTaggedNotes = tag => dispatch => (
-  NoteApiUtil.fetchTaggedNotes(tag)
-    .then(notes => dispatch(receiveTaggedNotes(notes)))
 );
 
 export const receiveNotes = notes => ({
@@ -72,10 +60,4 @@ export const removeNote = note => ({
 export const setCurrentNote = note => ({
   type: SET_CURRENT_NOTE,
   note
-});
-
-// NEW
-export const receiveTaggedNotes = notes => ({
-  type: RECEIVE_TAGGED_NOTES,
-  notes
 });

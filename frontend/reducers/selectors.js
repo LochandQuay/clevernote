@@ -3,6 +3,7 @@ export const selectNote = ({ notes }, id) => {
    return note;
 };
 
+// SORTS NOTES BY MOST RECENTLY UPDATED
 export const sorted = items => {
   let array = Object.keys(items).map(id => items[id]);
   return array.sort((x, y) => {
@@ -13,7 +14,9 @@ export const sorted = items => {
 };
 
 export const sortTags = tags => {
-  return tags.sort((a, b) => {
+  let array = Object.keys(tags).map(id => tags[id]);
+
+  return array.sort((a, b) => {
     let aname = a.name.toLowerCase();
     let bname = b.name.toLowerCase();
     if (aname < bname) { return -1; }
@@ -32,6 +35,17 @@ export const alphaSort = items => {
     if (atitle > btitle) { return 1; }
     return 0;
   });
+};
+
+export const filteredNotes = (notes, filterType, filter) => {
+  switch(filterType) {
+    case 'notebook':
+      return notes.filter( note => note.notebook_id === filter );
+    case 'tag':
+      return notes.filter( note => note.tags.some( tag => tag.id === filter) );
+    default:
+      return notes;
+  }
 };
 
 // new

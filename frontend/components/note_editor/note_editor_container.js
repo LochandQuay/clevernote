@@ -9,14 +9,21 @@ import { fetchNoteTags, fetchTag, createTag, deleteNoteTag, fetchTags }
 import { fetchNotebooks, fetchNotebook } from '../../actions/notebook_actions';
 import NoteEditor from './note_editor';
 
+import { sorted, alphaSort } from '../../reducers/selectors';
+
 const mapStateToProps = (state) => {
+  let notes = sorted(state.notes);
+
   return ({
     // loggedOut: Boolean(!state.session.currentUser),
-    noteCount: state.notes.notes.length,
-    currentNote: state.notes.currentNote,
+    // noteCount: state.notes.notes.length,
+    noteCount: notes.length,
+    // currentNote: state.notes.currentNote,
+    currentNote: state.currentNote,
     user: state.session.currentUser,
-    notebooks: state.notebooks.sortedNotebooks,
-    notes: state.notes.notes,
+    notebooks: alphaSort(state.notebooks),
+    notes: notes
+    // notes: state.notes.notes,
     // currentNotebook: state.notebooks.currentNotebook,
     // currentTag: state.tags.currentTag,
     // tags: state.tags.sortedTags,
@@ -31,7 +38,7 @@ const mapDispatchToProps = dispatch => ({
   // createNote: (note) => dispatch(createNote(note)),
   deleteNote: (noteId) => dispatch(deleteNote(noteId)),
   // fetchTags: () => dispatch(fetchTags()),
-  fetchNoteTags: (id) => dispatch(fetchNoteTags(id)),
+  // fetchNoteTags: (id) => dispatch(fetchNoteTags(id)),
   // fetchTag: (id) => dispatch(fetchTag(id)),
   // createTag: (tag) => dispatch(createTag(tag)),
   // deleteNoteTag: (data) => dispatch(deleteNoteTag(data)),

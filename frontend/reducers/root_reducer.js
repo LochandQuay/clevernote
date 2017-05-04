@@ -3,17 +3,20 @@ import SessionReducer from './session_reducer';
 import NoteReducer from './note_reducer';
 import NotebookReducer from './notebook_reducer';
 import TagReducer from './tag_reducer';
+import CurrentNoteReducer from './current_note_reducer';
+import CurrentNotebookReducer from './current_notebook_reducer';
+import CurrentTagReducer from './current_tag_reducer';
 import ErrorReducer from './error_reducer';
 
 const AppReducer = combineReducers ({
   session: SessionReducer,
   errors: ErrorReducer,
   notes: NoteReducer,
-  currentNote: NoteReducer,
+  currentNote: CurrentNoteReducer,
   notebooks: NotebookReducer,
-  currentNotebook: NotebookReducer,
+  currentNotebook: CurrentNotebookReducer,
   tags: TagReducer,
-  currentTag: TagReducer
+  currentTag: CurrentTagReducer
 });
 
 const RootReducer = (state, action) => {

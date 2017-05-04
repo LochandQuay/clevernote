@@ -10,7 +10,8 @@ class TagIndexItem extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (!this.props.currentTag && newProps.currentTag) {
-      this.props.fetchTaggedNotes(newProps.currentTag);
+      // #TODO: Fix to be filteredNotes
+      // this.props.fetchTaggedNotes(newProps.currentTag);
     }
   }
 

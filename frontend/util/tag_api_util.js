@@ -29,20 +29,20 @@ export const deleteTag = id => (
   })
 );
 
-export const fetchNoteTags = id => (
-  $.ajax({
-    method: "GET",
-    url: `api/notes/${id}/tags`
-  })
-);
+// export const fetchNoteTags = id => (
+//   $.ajax({
+//     method: "GET",
+//     url: `api/notes/${id}/tags`
+//   })
+// );
 
-export const deleteNoteTag = ({id, note_id}) => (
-  $.ajax({
-    method: "DELETE",
-    url: `api/tagging/${id}`,
-    data: {tag: {note_id}}
-  })
-);
+// export const deleteNoteTag = ({id, note_id}) => (
+//   $.ajax({
+//     method: "DELETE",
+//     url: `api/tagging/${id}`,
+//     data: {tag: {note_id}}
+//   })
+// );
 
 export const deleteTagging = ({id, note_id}) => (
   $.ajax({

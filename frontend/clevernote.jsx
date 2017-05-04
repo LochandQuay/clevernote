@@ -9,6 +9,7 @@ import * as SessionApiUtil from './util/session_api_util';
 import * as NoteApiUtil from './util/note_api_util';
 import * as NotebookApiUtil from './util/notebook_api_util';
 import * as TagApiUtil from './util/tag_api_util';
+import * as Selectors from './reducers/selectors';
 
 // SESSION UTIL ACTIONS
 window.login = SessionApiUtil.login;
@@ -21,7 +22,7 @@ window.fetchNote = NoteApiUtil.fetchNote;
 window.createNote = NoteApiUtil.createNote;
 window.updateNote = NoteApiUtil.updateNote;
 window.deleteNote = NoteApiUtil.deleteNote;
-window.fetchTaggedNotes = NoteApiUtil.fetchTaggedNotes;
+// window.fetchTaggedNotes = NoteApiUtil.fetchTaggedNotes;
 
 // NOTEBOOK UTIL ACTIONS
 window.fetchNotebooks = NotebookApiUtil.fetchNotebooks;
@@ -36,6 +37,8 @@ window.fetchTag = TagApiUtil.fetchTag;
 window.fetchNoteTags = TagApiUtil.fetchNoteTags;
 window.createTag = TagApiUtil.createTag;
 window.deleteTag = TagApiUtil.deleteTag;
+
+window.filteredNotes = Selectors.filteredNotes;
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;

@@ -26,9 +26,14 @@ export const createTag = tagData => dispatch => (
     .then(tag => dispatch(makeTag(tag)))
 );
 
+// export const fetchTag = id => dispatch => (
+//   TagApiUtil.fetchTag(id)
+//     .then(taggedNotes => dispatch(receiveFilteredNotes(taggedNotes)))
+// );
+
 export const fetchTag = id => dispatch => (
   TagApiUtil.fetchTag(id)
-    .then(taggedNotes => dispatch(receiveFilteredNotes(taggedNotes)))
+    .then(tag => dispatch(receiveTag(tag)))
 );
 
 // export const deleteTag = id => dispatch => (
@@ -41,10 +46,10 @@ export const deleteTag = id => dispatch => (
     .then(tag => dispatch(removeTag(tag)))
 );
 
-export const fetchNoteTags = id => dispatch => (
-  TagApiUtil.fetchNoteTags(id)
-    .then(tags => dispatch(receiveNoteTags(tags)))
-);
+// export const fetchNoteTags = id => dispatch => (
+//   TagApiUtil.fetchNoteTags(id)
+//     .then(tags => dispatch(receiveNoteTags(tags)))
+// );
 
 // export const deleteNoteTag = data => dispatch => (
 //   TagApiUtil.deleteNoteTag(data)
@@ -71,20 +76,20 @@ export const removeTag = tag => ({
   tag
 });
 
-export const receiveNoteTags = tags => ({
-  type: RECEIVE_NOTE_TAGS,
-  tags
-});
+// export const receiveNoteTags = tags => ({
+//   type: RECEIVE_NOTE_TAGS,
+//   tags
+// });
 
 export const setCurrentTag = tag => ({
   type: SET_CURRENT_TAG,
   tag
 });
 
-export const receiveFilteredNotes = notes => ({
-  type: RECEIVE_FILTERED_NOTES,
-  notes
-});
+// export const receiveFilteredNotes = notes => ({
+//   type: RECEIVE_FILTERED_NOTES,
+//   notes
+// });
 
 /// NEW
 export const removeTagging = tagging => ({

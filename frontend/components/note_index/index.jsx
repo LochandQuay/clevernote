@@ -23,10 +23,12 @@ class Index extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    if (!this.props.currentTag && props.currentTag) {
-      this.props.fetchTaggedNotes(props.currentTag)
-        .then((notes) => this.setCurrentNote(notes[0]));
-    }
+    // debugger;
+
+    // if (!this.props.currentTag && props.currentTag) {
+    //   this.props.fetchTaggedNotes(props.currentTag)
+    //     .then((notes) => this.props.setCurrentNote(notes[0]));
+    // }
   }
 
   openDeleteModal() {
@@ -63,27 +65,27 @@ class Index extends React.Component {
 
   render() {
     let type;
-    let count;
     let title;
     let notes = this.props.notes;
+    let count = notes.length;
 
     if (this.props.currentNotebook) {
       type = "notebook-";
       title = this.props.currentNotebook.title;
-      notes = notes.filter(
-        (note) => note.notebook_id === this.props.currentNotebook.id);
-      count = notes.length;
+      // notes = notes.filter(
+      //   (note) => note.notebook_id === this.props.currentNotebook.id);
+      // count = notes.length;
     }
     else if (this.props.currentTag) {
       type = "tag-";
       title = this.props.currentTag.name;
-      notes = this.props.taggedNotes;
-      count = notes.length;
+      // notes = this.props.taggedNotes;
+      // count = notes.length;
     }
     else {
       type="";
       title = "Notes";
-      count = this.props.notes.length;
+      // count = this.props.notes.length;
     }
     return (
       <div className="note-index">

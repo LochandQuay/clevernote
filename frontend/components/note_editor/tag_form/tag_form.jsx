@@ -6,7 +6,6 @@ import { WithContext as ReactTags } from 'react-tag-input';
 class TagForm extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = { tags: this.props.tags };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,8 +23,8 @@ class TagForm extends React.Component {
   }
 
   refreshTags() {
-    this.props.fetchNoteTags(this.props.note.id);
-    this.props.fetchTags();
+    // this.props.fetchNoteTags(this.props.note.id);
+    // this.props.fetchTags();
   }
 
   handleChange(tags) {
@@ -37,27 +36,34 @@ class TagForm extends React.Component {
   }
 
   handleDelete(i) {
+    let tags = this.state.tags;
+    tags.splice(i, 1);
     this.props.deleteTagging({
       id: this.props.tags[i].id,
       note_id: this.props.note.id
-    }).then(() => this.refreshTags());
+    }).then(() => this.setState({ tags }));
 
     if (this.props.selectedTag) {
       if (this.props.selectedTag.name === this.props.tags[i].name) {
-        this.props.fetchTaggedNotes(this.props.selectedTag);
+        // #TODO: Adjust to be filteredNotes
+        // this.props.fetchTaggedNotes(this.props.selectedTag);
       }
     }
   }
 
   handleAddition(tag) {
+    let tags = this.state.tags;
     this.props.createTag({
       name: tag, note_id: this.props.note.id
-    }).then(() => this.refreshTags());
+    }).then((response) => {
+      tags.push(response.tag);
+      this.setState({ tags });
+    });
 
     if (this.props.selectedTag) {
       if (this.props.selectedTag.name === tag) {
-        debugger;
-        this.props.fetchTaggedNotes(this.props.selectedTag);
+        // debugger;
+        // this.props.fetchTaggedNotes(this.props.selectedTag);
       }
     }
 
@@ -89,13 +95,3 @@ class TagForm extends React.Component {
 }
 
 export default TagForm;
-
-//
-// <TagsInput
-//   placeholder="Add a tag"
-//   value={this.state.tags}
-//   onChange={this.handleChange}
-//   inputValue={this.state.tag}
-//   onChangeInput={this.handleChangeInput}
-//   onlyUnique={true}
-//   className="react-tag-input" />

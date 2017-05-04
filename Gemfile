@@ -27,6 +27,7 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'cloudinary'
 gem 'seed_dump'
+gem 'cancancan'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -83,10 +83,11 @@ class NoteEditor extends React.Component {
           //   }
         }
         this.setState(newProps.currentNote);
-        this.props.fetchNoteTags(newProps.currentNote.id);
+        // this.props.fetchNoteTags(newProps.currentNote.id);
       }
 
       else if (newProps.currentNote.id === this.state.id) {
+        // debugger;
         if (this.props.currentNote.title !== this.state.title ||
           this.props.currentNote.body !== this.state.body) {
             this.saveHandler();
