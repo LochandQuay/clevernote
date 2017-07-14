@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --watch",
-    "postinstall": "./node_modules/.bin/webpack"
+    "postinstall": "npm run webpack"
   },
   "repository": {
     "type": "git",
