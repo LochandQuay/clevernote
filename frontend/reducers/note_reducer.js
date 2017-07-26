@@ -24,14 +24,11 @@ const NoteReducer = (state = blankState, action) => {
   switch(action.type) {
 
     case RECEIVE_NOTES:
-      // nextState = merge({}, state, action.notes);
-      // nextState = merge({}, state, {byId: action.payload.byId, allIds: action.payload.allIds});
       nextState.byId = action.payload.byId;
       nextState.allIds = action.payload.allIds;
       return nextState;
 
     case RECEIVE_NOTE:
-      // nextState[action.note.id] = action.note;
       nextState.byId[action.note.id] = action.note;
       nextState.allIds = [action.note.id].concat(
         nextState.allIds.filter(idx => idx !== action.note.id));
@@ -69,7 +66,7 @@ const NoteReducer = (state = blankState, action) => {
     case SET_CURRENT_NOTE:
       nextState.currentNote = action.note.id;
       return nextState;
-      
+
     default:
       return state;
   }
