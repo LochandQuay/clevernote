@@ -3,21 +3,7 @@ export const selectNote = ({ notes }, id) => {
    return note;
 };
 
-// SORTS NOTES BY MOST RECENTLY UPDATED
-// export const sorted = items => {
-//   let array = Object.keys(items).map(id => items[id]);
-//   return array.sort((x, y) => {
-//     let xDate = new Date(x.updated_at);
-//     let yDate = new Date(y.updated_at);
-//     return yDate - xDate;
-//   });
-// };
-
-export const sorted = notes => {
-  return (
-    notes.allIds.map(idx => notes.byId[idx])
-  );
-};
+export const sorted = notes => notes.allIds.map(idx => notes.byId[idx]);
 
 export const sortTags = tags => {
   let array = Object.keys(tags).map(id => tags[id]);
