@@ -21,7 +21,6 @@ const NotebookReducer = (state = blankState, action) => {
   switch(action.type) {
 
     case RECEIVE_NOTEBOOKS:
-      // nextState = merge({}, state, action.notebooks);
       nextState.byId = action.payload.byId;
       nextState.allIds = action.payload.allIds;
       return nextState;

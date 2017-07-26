@@ -22,13 +22,11 @@ const TagReducer = (state = blankState, action) => {
 
   switch(action.type) {
     case RECEIVE_TAGS:
-      // nextState = merge({}, nextState, action.tags);
       nextState.byId = action.payload.byId;
       nextState.allIds = action.payload.allIds;
       return nextState;
 
     case RECEIVE_TAG:
-      // nextState[action.tag.id] = action.tag;
       nextState.byId[action.tag.id] = action.tag;
       nextState.allIds = [action.tag.id].concat(
         nextState.allIds.filter(idx => idx !== action.tag.id));

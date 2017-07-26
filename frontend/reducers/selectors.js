@@ -40,7 +40,6 @@ export const filteredNotes = (notes, filterType, filter) => {
   }
 };
 
-// new
 export const allNoteTags = tags => Object.keys(tags).map(id => tags[id]);
 
 export const allTags = tags => Object.keys(tags).map(id => tags[id]);
