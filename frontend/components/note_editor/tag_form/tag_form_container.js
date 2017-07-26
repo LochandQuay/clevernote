@@ -8,7 +8,7 @@ import { sortTags } from '../../../reducers/selectors';
 
 const mapStateToProps = (state) => ({
   // tags: state.tags.currentNoteTags,
-  tags: state.currentNote.tags,
+  tags: state.notes.byId[state.notes.currentNote].tags,
   // selectedTag: state.tags.currentTag,
   selectedTag: state.currentTag,
   allTags: sortTags(state.tags)
