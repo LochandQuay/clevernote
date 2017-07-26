@@ -13,7 +13,7 @@ export const REMOVE_ZERO = "REMOVE_ZERO";
 
 export const fetchTags = () => dispatch => (
   TagApiUtil.fetchTags()
-    .then(tags => dispatch(receiveTags(tags)))
+    .then(payload => dispatch(receiveTags(payload)))
 );
 
 // export const createTag = tag => dispatch => (
@@ -61,9 +61,9 @@ export const deleteTagging = taggingData => dispatch => (
     .then(tagging => dispatch(removeTagging(tagging)))
 );
 
-export const receiveTags = tags => ({
+export const receiveTags = payload => ({
   type: RECEIVE_TAGS,
-  tags
+  payload
 });
 
 export const receiveTag = tag => ({

@@ -17,7 +17,7 @@ import { sorted, sortTags } from '../../reducers/selectors';
 const mapStateToProps = (state) => ({
   currentNote: state.notes.byId[state.notes.currentNote],
   notes: sorted(state.notes),
-  currentTag: state.currentTag,
+  currentTag: state.tags.byId[state.tags.currentTag],
   tags: sortTags(state.tags)
 });
 

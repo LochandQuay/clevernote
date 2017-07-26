@@ -6,7 +6,7 @@ export const selectNote = ({ notes }, id) => {
 export const sorted = notes => notes.allIds.map(idx => notes.byId[idx]);
 
 export const sortTags = tags => {
-  let array = Object.keys(tags).map(id => tags[id]);
+  let array = Object.keys(tags.byId).map(id => tags.byId[id]);
 
   return array.sort((a, b) => {
     let aname = a.name.toLowerCase();

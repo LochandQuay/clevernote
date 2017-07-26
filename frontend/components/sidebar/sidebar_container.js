@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
   notes: sorted(state.notes),
   notebooks: alphaSort(state.notebooks),
   currentNotebook: state.currentNotebook,
-  currentTag: state.currentTag
+  currentTag: state.tags.byId[state.tags.currentTag]
 });
 
 const mapDispatchToProps = dispatch => ({

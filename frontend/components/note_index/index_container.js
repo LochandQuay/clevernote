@@ -7,19 +7,18 @@ import { createNote, fetchNotes, setCurrentNote }
 import { sorted, alphaSort, filteredNotes } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
-  // let notes = sorted(state.notes);
   let notes = sorted(state.notes);
   if (state.currentNotebook) {
     notes = filteredNotes(notes, 'notebook', state.currentNotebook.id);
   }
-  else if (state.currentTag) {
-    notes = filteredNotes(notes, 'tag', state.currentTag.id);
+  else if (state.tags.currentTag) {
+    notes = filteredNotes(notes, 'tag', state.tags.currentTag);
   }
 
   return ({
     currentUser: state.session.currentUser,
     currentNotebook: state.currentNotebook,
-    currentTag: state.currentTag,
+    currentTag: state.tags.byId[state.tags.currentTag],
     notes: notes,
     notebooks: alphaSort(state.notebooks),
   });

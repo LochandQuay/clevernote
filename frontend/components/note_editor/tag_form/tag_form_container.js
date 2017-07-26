@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
   // tags: state.tags.currentNoteTags,
   tags: state.notes.byId[state.notes.currentNote].tags,
   // selectedTag: state.tags.currentTag,
-  selectedTag: state.currentTag,
+  selectedTag: state.tags.byId[state.tags.currentTag],
   allTags: sortTags(state.tags)
 });
 

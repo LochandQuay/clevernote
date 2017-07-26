@@ -64,7 +64,11 @@ const NoteReducer = (state = blankState, action) => {
       return nextState;
 
     case SET_CURRENT_NOTE:
-      nextState.currentNote = action.note.id;
+      if (action.note) {
+        nextState.currentNote = action.note.id;
+      } else {
+        nextState.currentNote = null;
+      }
       return nextState;
 
     default:

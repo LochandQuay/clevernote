@@ -29,8 +29,8 @@ class Api::TagsController < ApplicationController
     notes.each do |note|
       @tags += note.tags
     end
-
-    render json: @tags.uniq
+    @tags = @tags.uniq
+    @tag_ids = @tags.pluck(:id)
   end
 
   def show
