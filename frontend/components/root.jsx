@@ -5,7 +5,6 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import App from './app';
 import HomeContainer from './home/home_container';
-import ErrorPage from './custom_error_pages/error_page';
 // import SessionFormContainer from './session_form/session_form_container';
 
 
@@ -47,10 +46,6 @@ const Root = ({ store }) => {
           path="/home"
           component={ HomeContainer }
           onEnter={_ensureLoggedIn} />
-
-        <Route
-          path='/api'
-          component={ ErrorPage } />
       </Router>
     </Provider>
   );
