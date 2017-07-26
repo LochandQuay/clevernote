@@ -88,8 +88,8 @@ class NoteEditor extends React.Component {
 
       else if (newProps.currentNote.id === this.state.id) {
         // debugger;
-        if (this.props.currentNote.title !== this.state.title ||
-          this.props.currentNote.body !== this.state.body) {
+        if (newProps.currentNote.title !== this.state.title ||
+          newProps.currentNote.body !== this.state.body) {
             this.saveHandler();
         }
       }

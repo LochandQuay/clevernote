@@ -17,7 +17,7 @@ import { sorted, alphaSort } from '../../reducers/selectors';
 const mapStateToProps = (state) => ({
   currentNote: state.notes.byId[state.notes.currentNote],
   notes: sorted(state.notes),
-  currentNotebook: state.currentNotebook,
+  currentNotebook: state.notebooks.byId[state.notebooks.currentNotebook],
   notebooks: alphaSort(state.notebooks)
 });
 

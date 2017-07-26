@@ -7,7 +7,7 @@ import { alphaSort } from '../../reducers/selectors';
 
 const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
-  currentNotebook: state.currentNotebook,
+  currentNotebook: state.notebooks.byId[state.notebooks.currentNotebook],
   notebooks: alphaSort(state.notebooks)
 });
 

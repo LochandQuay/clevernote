@@ -10,7 +10,7 @@ export const EDIT_NOTEBOOK = "EDIT_NOTEBOOK";
 
 export const fetchNotebooks = () => dispatch => (
   NotebookApiUtil.fetchNotebooks()
-    .then(notebooks => dispatch(receiveNotebooks(notebooks)))
+    .then(payload => dispatch(receiveNotebooks(payload)))
 );
 
 export const fetchNotebook = id => dispatch => (
@@ -33,9 +33,9 @@ export const deleteNotebook = id => dispatch => (
     .then(notebook => dispatch(removeNotebook(notebook)))
 );
 
-export const receiveNotebooks = notebooks => ({
+export const receiveNotebooks = payload => ({
   type: RECEIVE_NOTEBOOKS,
-  notebooks
+  payload
 });
 
 export const receiveNotebook = notebook => ({

@@ -18,7 +18,7 @@ export const sortTags = tags => {
 };
 
 export const alphaSort = items => {
-  let array = Object.keys(items).map(id => items[id]);
+  let array = Object.keys(items.byId).map(id => items.byId[id]);
 
   return array.sort((a, b) => {
     let atitle = a.title.toLowerCase();
