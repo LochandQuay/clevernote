@@ -13,13 +13,13 @@ import { sorted, alphaSort } from '../../reducers/selectors';
 
 const mapStateToProps = (state) => {
   // let notes = sorted(state.notes);
-  let notes = state.notes.allIds.map(idx => state.notes.byId[idx]);
+  let notes = sorted(state.notes);
   return ({
     // loggedOut: Boolean(!state.session.currentUser),
     // noteCount: state.notes.notes.length,
     noteCount: notes.length,
     // currentNote: state.notes.currentNote,
-    currentNote: state.currentNote,
+    currentNote: state.notes.byId[state.notes.currentNote],
     user: state.session.currentUser,
     notebooks: alphaSort(state.notebooks),
     notes: notes

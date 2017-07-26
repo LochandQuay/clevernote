@@ -15,7 +15,7 @@ import { setCurrentTag } from '../../actions/tag_actions';
 import { sorted, alphaSort } from '../../reducers/selectors';
 
 const mapStateToProps = (state) => ({
-  currentNote: state.currentNote,
+  currentNote: state.notes.byId[state.notes.currentNote],
   notes: sorted(state.notes),
   currentNotebook: state.currentNotebook,
   notebooks: alphaSort(state.notebooks)

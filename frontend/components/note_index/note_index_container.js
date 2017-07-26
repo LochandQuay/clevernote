@@ -10,7 +10,7 @@ import { fetchNotes, setCurrentNote } from '../../actions/note_actions';
 const mapStateToProps = (state, ownProps) => ({
   notes: ownProps.notes,
   // currentNote: state.notes.currentNote
-  currentNote: state.currentNote
+  currentNote: state.notes.byId[state.notes.currentNote]
 });
 
 const mapDispatchToProps = dispatch => ({

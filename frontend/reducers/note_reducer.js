@@ -4,6 +4,7 @@ import {
   REMOVE_NOTE,
   ADD_NOTE,
   EDIT_NOTE,
+  SET_CURRENT_NOTE
 } from '../actions/note_actions';
 
 import { REMOVE_NOTEBOOK } from '../actions/notebook_actions';
@@ -65,6 +66,9 @@ const NoteReducer = (state = blankState, action) => {
       }
       return nextState;
 
+    case SET_CURRENT_NOTE:
+      nextState.currentNote = action.note.id;
+      return nextState;
     default:
       return state;
   }
