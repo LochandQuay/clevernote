@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => ({
   // currentNote: state.notes.currentNote,
   currentNote: state.currentNote,
   notes: ownProps.notes,
-  allNotes: state.notes.notes
+  allNotes: state.notes.allIds.map(idx => state.notes.byId[idx])
 });
 
 const mapDispatchToProps = dispatch => ({

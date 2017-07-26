@@ -9,7 +9,7 @@ export const SET_CURRENT_NOTE = "SET_CURRENT_NOTE";
 
 export const fetchNotes = () => dispatch => (
   NoteApiUtil.fetchNotes()
-    .then(notes => dispatch(receiveNotes(notes)))
+    .then(payload => dispatch(receiveNotes(payload)))
 );
 
 export const fetchNote = id => dispatch => (
@@ -32,9 +32,9 @@ export const deleteNote = id => dispatch => (
     .then(note => dispatch(removeNote(note)))
 );
 
-export const receiveNotes = notes => ({
+export const receiveNotes = payload => ({
   type: RECEIVE_NOTES,
-  notes
+  payload
 });
 
 export const receiveNote = note => ({

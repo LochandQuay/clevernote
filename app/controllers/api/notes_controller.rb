@@ -46,6 +46,7 @@ class Api::NotesController < ApplicationController
 
   def index
     @notes = Note.find_notes_by_author(current_user)
+    @sorted_notes = @notes.order(updated_at: :desc).pluck(:id)
     render :index
   end
 

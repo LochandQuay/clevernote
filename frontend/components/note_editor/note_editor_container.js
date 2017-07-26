@@ -12,8 +12,8 @@ import NoteEditor from './note_editor';
 import { sorted, alphaSort } from '../../reducers/selectors';
 
 const mapStateToProps = (state) => {
-  let notes = sorted(state.notes);
-
+  // let notes = sorted(state.notes);
+  let notes = state.notes.allIds.map(idx => state.notes.byId[idx]);
   return ({
     // loggedOut: Boolean(!state.session.currentUser),
     // noteCount: state.notes.notes.length,

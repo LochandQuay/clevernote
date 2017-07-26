@@ -10,26 +10,43 @@ import { REMOVE_NOTEBOOK } from '../actions/notebook_actions';
 
 import merge from 'lodash/merge';
 
-const NoteReducer = (state = {}, action) => {
+const blankState = {
+  byId: {},
+  allIds: [],
+  currentNote: null
+};
+
+const NoteReducer = (state = blankState, action) => {
   Object.freeze(state);
   let nextState = merge({}, state);
 
   switch(action.type) {
 
     case RECEIVE_NOTES:
-      nextState = merge({}, state, action.notes);
+      // nextState = merge({}, state, action.notes);
+      // nextState = merge({}, state, {byId: action.payload.byId, allIds: action.payload.allIds});
+      nextState.byId = action.payload.byId;
+      nextState.allIds = action.payload.allIds;
       return nextState;
 
     case RECEIVE_NOTE:
-      nextState[action.note.id] = action.note;
+      // nextState[action.note.id] = action.note;
+      nextState.byId[action.note.id] = action.note;
+      nextState.allIds = [action.note.id].concat(
+        nextState.allIds.filter(idx => idx !== action.note.id));
+      nextState.currentNote = action.note.id;
       return nextState;
 
     case REMOVE_NOTE:
-      delete nextState[action.note.id];
+      delete nextState.byId[action.note.id];
+      nextState.allIds = nextState.allIds.filter(idx => idx !== action.note.id);
       return nextState;
 
     case ADD_NOTE:
-      nextState[action.note.id] = action.note;
+      nextState.byId[action.note.id] = action.note;
+      nextState.allIds = [action.note.id].concat(
+        nextState.allIds.filter(idx => idx !== action.note.id));
+      nextState.currentNote = action.note.id;
       return nextState;
 
     case EDIT_NOTE:
@@ -37,11 +54,15 @@ const NoteReducer = (state = {}, action) => {
       return nextState;
 
     case REMOVE_NOTEBOOK:
-      Object.keys(nextState).forEach( noteId => {
-        if (nextState[noteId].notebook_id === action.notebook.id) {
-          delete nextState[noteId];
+      Object.keys(nextState.byId).forEach( noteId => {
+        if (nextState.byId[noteId].notebook_id === action.notebook.id) {
+          delete nextState.byId[noteId];
+          nextState.allIds = nextState.allIds.filter(idx => idx !== noteId);
         }
       });
+      if (!nextState.byId[nextState.currentNote]) {
+        nextState.currentNote = nextState.allIds[0];
+      }
       return nextState;
 
     default:

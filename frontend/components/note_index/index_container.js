@@ -7,7 +7,8 @@ import { createNote, fetchNotes, setCurrentNote }
 import { sorted, alphaSort, filteredNotes } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
-  let notes = sorted(state.notes);
+  // let notes = sorted(state.notes);
+  let notes = state.notes.allIds.map(idx => state.notes.byId[idx]);
   if (state.currentNotebook) {
     notes = filteredNotes(notes, 'notebook', state.currentNotebook.id);
   }
