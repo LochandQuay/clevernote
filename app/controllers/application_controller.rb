@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?, :require_login
+  helper_method :current_user, :logged_in?, :require_login, :confirm_source
 
   def current_user
     return nil unless session[:session_token]
@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def confirm_source
+    # debugger
+  end
 
   def require_login
     render status: 401 unless logged_in?

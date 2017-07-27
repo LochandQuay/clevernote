@@ -1,5 +1,6 @@
 class Api::NotesController < ApplicationController
   # before_action :require_login
+  before_action :confirm_source
 
   def new
     @note = Note.new

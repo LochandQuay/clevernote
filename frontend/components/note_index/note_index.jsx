@@ -41,9 +41,7 @@ class NoteIndex extends React.Component {
         { this.props.notes.map((note, idx) => (
           <NoteIndexItemContainer
             key={`note-index-item-${idx}`}
-            note={note}
-            notes={this.props.notes} />
-
+            note={note} />
         ))}
       </ul>
     );

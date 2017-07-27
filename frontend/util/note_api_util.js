@@ -1,7 +1,10 @@
 export const fetchNotes = () => (
   $.ajax({
     method: "GET",
-    url: "api/notes"
+    url: "api/notes",
+    headers: {
+      test_header: 'eevee'
+    }
   })
 );
 

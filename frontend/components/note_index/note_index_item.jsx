@@ -89,8 +89,7 @@ class NoteIndexItem extends React.Component {
   }
 
   selectNote() {
-    if ((this.props.currentNote &&
-      this.props.note.id !== this.props.currentNote.id) ||
+    if ((this.props.note.id !== this.props.currentNote) ||
       (!this.props.currentNote)) {
         this.props.setCurrentNote(this.props.note);
     }
@@ -98,24 +97,24 @@ class NoteIndexItem extends React.Component {
 
   deleteHandler(e){
     e.preventDefault();
-    let nextNote = null;
+    // let nextNote = null;
 
-    const noteId = this.props.note.id;
-    if (this.props.notes.length > 1) {
-      nextNote = 0;
-    }
+    // const noteId = this.props.note.id;
+    // if (this.props.notes.length > 1) {
+    //   nextNote = 0;
+    // }
 
-    this.props.deleteNote(this.props.note.id)
-      .then(() => this.props.fetchNotes())
-      .then(() => this.props.setCurrentNote(this.props.notes[nextNote]));
+    this.props.deleteNote(this.props.note.id);
+      // .then(() => this.props.setCurrentNote(this.props.notes[nextNote]));
+      // .then(() => this.props.fetchNotes())
 
-    this.props.fetchTags();
+    // this.props.fetchTags();
     this.closeDeleteModal();
   }
 
   render() {
     let noteClass = "note-index-item";
-    if (this.props.currentNote && this.props.currentNote.id === this.props.note.id) {
+    if (this.props.currentNote === this.props.note.id) {
       noteClass = "note-index-item selected-note";
     }
 

@@ -38,6 +38,9 @@ const NoteReducer = (state = blankState, action) => {
     case REMOVE_NOTE:
       delete nextState.byId[action.note.id];
       nextState.allIds = nextState.allIds.filter(idx => idx !== action.note.id);
+      if (nextState.currentNote === action.note.id) {
+        nextState.currentNote = nextState.allIds[0];
+      }
       return nextState;
 
     case ADD_NOTE:

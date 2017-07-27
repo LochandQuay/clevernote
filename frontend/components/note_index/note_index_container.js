@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import NoteIndex from './note_index';
 import { fetchNotes, setCurrentNote } from '../../actions/note_actions';
+import { sorted } from '../../reducers/selectors';
 // import { fetchNotebooks, fetchNotebook, deleteNotebook }
 //   from '../../actions/notebook_actions';
 // import { fetchTags, fetchTag, deleteTag, fetchNoteTags,
@@ -8,9 +9,8 @@ import { fetchNotes, setCurrentNote } from '../../actions/note_actions';
 //   from '../../actions/tag_actions';
 
 const mapStateToProps = (state, ownProps) => ({
-  notes: ownProps.notes,
-  // currentNote: state.notes.currentNote
-  currentNote: state.notes.byId[state.notes.currentNote]
+  // notes: sorted(state.notes),
+  currentNote: state.notes.currentNote
 });
 
 const mapDispatchToProps = dispatch => ({

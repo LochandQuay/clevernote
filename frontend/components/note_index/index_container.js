@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return ({
     currentUser: state.session.currentUser,
-    currentNotebook: state.currentNotebook,
+    currentNotebook: state.notebooks.byId[state.notebooks.currentNotebook],
     currentTag: state.tags.byId[state.tags.currentTag],
     notes: notes,
     notebooks: alphaSort(state.notebooks),
