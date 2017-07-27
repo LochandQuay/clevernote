@@ -1,24 +1,17 @@
 import { connect } from 'react-redux';
 import NoteIndexItem from './note_index_item';
-import { setCurrentNote, fetchNotes, deleteNote }
+import { setCurrentNote, deleteNote }
   from '../../actions/note_actions';
-import { fetchTags, setCurrentTag } from '../../actions/tag_actions';
-import { sorted, alphaSort, filteredNotes } from '../../reducers/selectors';
 
 
 const mapStateToProps = (state, ownProps) => ({
-  tagCount: Object.keys(state.tags).length,
-  currentNote: state.notes.currentNote,
-  // notes: ownProps.notes,
-  // allNotes: state.notes.allIds.map(idx => state.notes.byId[idx])
+  tagCount: Object.keys(state.tags.byId).length,
+  currentNote: state.notes.currentNote
 });
 
 const mapDispatchToProps = dispatch => ({
   setCurrentNote: (note) => dispatch(setCurrentNote(note)),
-  // fetchNotes: () => dispatch(fetchNotes()),
-  deleteNote: noteId => dispatch(deleteNote(noteId)),
-  // fetchTags: () => dispatch(fetchTags()),
-  // setCurrentTag: tag => dispatch(setCurrentTag(tag))
+  deleteNote: noteId => dispatch(deleteNote(noteId))
 });
 
 export default connect(

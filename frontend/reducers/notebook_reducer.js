@@ -35,6 +35,9 @@ const NotebookReducer = (state = blankState, action) => {
     case REMOVE_NOTEBOOK:
       delete nextState.byId[action.notebook.id];
       nextState.allIds = nextState.allIds.filter(idx => idx !== action.notebook.id);
+      if (action.notebook.id === nextState.currentNotebook) {
+        nextState.currentNotebook = null;
+      }
       return nextState;
 
     case MAKE_NOTEBOOK:

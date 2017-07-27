@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router';
 import Modal from 'react-modal';
 import DeleteNoteModal from './delete_note_modal';
 import DeleteNoteModalStyle from '../modal_styles/delete_note_modal_style';
@@ -97,18 +96,7 @@ class NoteIndexItem extends React.Component {
 
   deleteHandler(e){
     e.preventDefault();
-    // let nextNote = null;
-
-    // const noteId = this.props.note.id;
-    // if (this.props.notes.length > 1) {
-    //   nextNote = 0;
-    // }
-
     this.props.deleteNote(this.props.note.id);
-      // .then(() => this.props.setCurrentNote(this.props.notes[nextNote]));
-      // .then(() => this.props.fetchNotes())
-
-    // this.props.fetchTags();
     this.closeDeleteModal();
   }
 
