@@ -30,45 +30,16 @@ class TagForm extends React.Component {
   }
 
   handleDelete(i) {
-    // let tags = this.state.tags;
-    // tags.splice(i, 1);
     this.props.deleteTagging({
       id: this.props.tags[i].id,
       note_id: this.props.note.id
     });
-    // .then(() => this.setState({ tags }));
-
-    // if (this.props.selectedTag) {
-    //   if (this.props.selectedTag.name === this.props.tags[i].name) {
-    //     // #TODO: Adjust to be filteredNotes
-    //     // this.props.fetchTaggedNotes(this.props.selectedTag);
-    //   }
-    // }
   }
 
   handleAddition(tag) {
-    // let tags = this.state.tags;
     this.props.createTag({
       name: tag, note_id: this.props.note.id
     });
-    // .then((response) => {
-    //   tags.push(response.tag);
-    //   this.setState({ tags });
-    // });
-
-    // if (this.props.selectedTag) {
-    //   if (this.props.selectedTag.name === tag) {
-    //     // debugger;
-    //     // this.props.fetchTaggedNotes(this.props.selectedTag);
-    //   }
-    // }
-
-    // let tags = this.state.tags;
-    // tags.push({
-    //   id: tags.length + 1,
-    //   name: tag
-    // });
-    // this.setState({tags: tags});
   }
 
   render() {

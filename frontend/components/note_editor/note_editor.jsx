@@ -70,14 +70,6 @@ class NoteEditor extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-
-
-
-
-
-
-
-
     if (newProps.currentNote && !newProps.currentNote.notebook) {
       // this.props.fetchNote(newProps.currentNote.id);
     }
@@ -102,6 +94,7 @@ class NoteEditor extends React.Component {
       //   }
       // }
     }
+    this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
   autoSave() {
@@ -116,8 +109,8 @@ class NoteEditor extends React.Component {
 
   saveHandler(e) {
     clearTimeout(this.autosaveTimer);
-    this.props.updateNote(this.state);
-    // .then(() => this.props.fetchNotes());
+    this.props.updateNote(this.state).then(note => this.setState(note));
+    this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
   updateTitle(e) {
@@ -133,9 +126,9 @@ class NoteEditor extends React.Component {
   }
 
   componentWillUnmount() {
-
+    clearTimeout(this.autosaveTimer);
+    this.props.updateNote(this.state);
   }
-
 
   // selectNotebook(notebook) {
   //   this.setState({

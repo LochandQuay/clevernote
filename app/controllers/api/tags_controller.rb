@@ -27,7 +27,6 @@ class Api::TagsController < ApplicationController
   end
 
   def index
-    # get all tags by user
     @tags = current_user.tags.uniq
     @tag_ids = @tags.pluck(:id)
   end
@@ -38,23 +37,11 @@ class Api::TagsController < ApplicationController
     if !@tag
       render json: ["tag does not exist"], status: 404
     end
-
-    # @tagged_notes = []
-    # tags = current_user.includes(:tags)
-    # if @tag
-    #   notes.each do |note|
-    #     @tagged_notes << note if note.taggings.any? { |tagging| tagging.tag_id == @tag.id }
-    #   end
-    #   render json: @tagged_notes
-    # else
-    #   render json: @tag.errors.full_messages, status: 422
-    # end
   end
 
   def destroyTagging
     @tag = Tag.find(params[:id])
     @tagging = Tagging.find_by(note_id: tag_params[:note_id], tag_id: params[:id])
-    # @tagging = @tag.taggings.select { |tagging| tagging.note_id == tag_params[:note_id].to_i }.first
     if @tagging
       @tagging.destroy
       @note = Note.find(tag_params[:note_id])
