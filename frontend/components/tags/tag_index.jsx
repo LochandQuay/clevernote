@@ -44,6 +44,11 @@ class TagIndex extends React.Component {
       return (
         <div className="tag-index">
           <div className="tags-header">
+            <div className="refresh-button">
+              <i className="fa fa-refresh"
+                onClick={this.props.fetchTags}></i>
+              <div className="refresh-tooltip">Refresh Tags</div>
+            </div>
             <h2>Tags</h2>
             <h4>{this.props.tags.length} tags</h4>
           </div>
