@@ -14,7 +14,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   closeTagsModal: ownProps.closeTagsModal,
   createTag: tag => dispatch(createTag(tag)),
-  setCurrentTag: tag => dispatch(setCurrentTag(tag))
+  setCurrentTag: tag => dispatch(setCurrentTag(tag)),
+  fetchTags: () => dispatch(fetchTags())
 });
 
 export default connect(

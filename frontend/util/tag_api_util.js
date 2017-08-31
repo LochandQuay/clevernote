@@ -5,13 +5,6 @@ export const fetchTags = () => (
   })
 );
 
-export const fetchTag = id => (
-  $.ajax({
-    method: "GET",
-    url: `api/tags/${id}`
-  })
-);
-
 // can include note_id and tag name
 export const createTag = tag => (
   $.ajax({
@@ -21,29 +14,6 @@ export const createTag = tag => (
   })
 );
 
-// removes tag and taggings from all notes
-export const deleteTag = id => (
-  $.ajax({
-    method: "DELETE",
-    url: `api/tags/${id}`
-  })
-);
-
-// export const fetchNoteTags = id => (
-//   $.ajax({
-//     method: "GET",
-//     url: `api/notes/${id}/tags`
-//   })
-// );
-
-// export const deleteNoteTag = ({id, note_id}) => (
-//   $.ajax({
-//     method: "DELETE",
-//     url: `api/tagging/${id}`,
-//     data: {tag: {note_id}}
-//   })
-// );
-
 export const deleteTagging = ({id, note_id}) => (
   $.ajax({
     method: "DELETE",
@@ -51,3 +21,19 @@ export const deleteTagging = ({id, note_id}) => (
     data: {tag: {id: id, note_id: note_id}}
   })
 );
+
+// removes tag and taggings from all notes
+// #NOTE: Currently not in use
+// export const deleteTag = id => (
+//   $.ajax({
+//     method: "DELETE",
+//     url: `api/tags/${id}`
+//   })
+// );
+
+// export const fetchTag = id => (
+//   $.ajax({
+//     method: "GET",
+//     url: `api/tags/${id}`
+//   })
+// );

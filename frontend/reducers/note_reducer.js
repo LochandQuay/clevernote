@@ -7,6 +7,8 @@ import {
   SET_CURRENT_NOTE
 } from '../actions/note_actions';
 
+import { RECEIVE_TAGGING } from '../actions/tag_actions';
+
 import { REMOVE_NOTEBOOK } from '../actions/notebook_actions';
 
 import merge from 'lodash/merge';
@@ -54,6 +56,14 @@ const NoteReducer = (state = blankState, action) => {
       nextState[action.note.id] = action.note;
       return nextState;
 
+    case SET_CURRENT_NOTE:
+      if (action.note) {
+        nextState.currentNote = action.note.id;
+      } else {
+        nextState.currentNote = null;
+      }
+      return nextState;
+
     case REMOVE_NOTEBOOK:
       Object.keys(nextState.byId).forEach( noteId => {
         if (nextState.byId[noteId].notebook_id === action.notebook.id) {
@@ -66,12 +76,13 @@ const NoteReducer = (state = blankState, action) => {
       }
       return nextState;
 
-    case SET_CURRENT_NOTE:
-      if (action.note) {
-        nextState.currentNote = action.note.id;
-      } else {
-        nextState.currentNote = null;
-      }
+    case RECEIVE_TAGGING:
+      nextState.byId[action.payload.tagging.note_id].tags.forEach((tag) => {
+        if (tag.id === action.payload.tag.id) {
+          return nextState;
+        }
+      });
+      nextState.byId[action.payload.tagging.note_id].tags.push(action.payload.tag);
       return nextState;
 
     default:

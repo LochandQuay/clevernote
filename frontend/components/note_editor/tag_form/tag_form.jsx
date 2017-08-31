@@ -11,7 +11,6 @@ class TagForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
 
-    this.refreshTags = this.refreshTags.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
   }
@@ -20,11 +19,6 @@ class TagForm extends React.Component {
     if (newProps.note) {
       this.setState({ tags: newProps.tags });
     }
-  }
-
-  refreshTags() {
-    // this.props.fetchNoteTags(this.props.note.id);
-    // this.props.fetchTags();
   }
 
   handleChange(tags) {
@@ -36,36 +30,38 @@ class TagForm extends React.Component {
   }
 
   handleDelete(i) {
-    let tags = this.state.tags;
-    tags.splice(i, 1);
+    // let tags = this.state.tags;
+    // tags.splice(i, 1);
     this.props.deleteTagging({
       id: this.props.tags[i].id,
       note_id: this.props.note.id
-    }).then(() => this.setState({ tags }));
+    });
+    // .then(() => this.setState({ tags }));
 
-    if (this.props.selectedTag) {
-      if (this.props.selectedTag.name === this.props.tags[i].name) {
-        // #TODO: Adjust to be filteredNotes
-        // this.props.fetchTaggedNotes(this.props.selectedTag);
-      }
-    }
+    // if (this.props.selectedTag) {
+    //   if (this.props.selectedTag.name === this.props.tags[i].name) {
+    //     // #TODO: Adjust to be filteredNotes
+    //     // this.props.fetchTaggedNotes(this.props.selectedTag);
+    //   }
+    // }
   }
 
   handleAddition(tag) {
-    let tags = this.state.tags;
+    // let tags = this.state.tags;
     this.props.createTag({
       name: tag, note_id: this.props.note.id
-    }).then((response) => {
-      tags.push(response.tag);
-      this.setState({ tags });
     });
+    // .then((response) => {
+    //   tags.push(response.tag);
+    //   this.setState({ tags });
+    // });
 
-    if (this.props.selectedTag) {
-      if (this.props.selectedTag.name === tag) {
-        // debugger;
-        // this.props.fetchTaggedNotes(this.props.selectedTag);
-      }
-    }
+    // if (this.props.selectedTag) {
+    //   if (this.props.selectedTag.name === tag) {
+    //     // debugger;
+    //     // this.props.fetchTaggedNotes(this.props.selectedTag);
+    //   }
+    // }
 
     // let tags = this.state.tags;
     // tags.push({
