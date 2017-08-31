@@ -41,9 +41,11 @@ class NotebookIndexItem extends React.Component {
 
   render() {
     return (
-      <div className="notebook-index-item" onClick={this.selectNotebookHandler}>
-        <h3>{this.props.notebook.title}</h3>
-      </div>
+      <span className="bottom-border">
+        <div className="notebook-index-item" onClick={this.selectNotebookHandler}>
+          <h3>{this.props.notebook.title}</h3>
+        </div>
+      </span>
     );
   }
 }

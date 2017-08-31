@@ -11,7 +11,6 @@ const _quillModules = {
     ['blockquote', 'code-block'],
 
     // custom button values
-    [{ 'header': 1 }, { 'header': 2 }],
     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
 
     // superscript/subscript
@@ -19,21 +18,21 @@ const _quillModules = {
 
     // outdent/indent
     [{ 'indent': '-1'}, { 'indent': '+1' }],
-
-    // text direction
-    [{ 'direction': 'rtl' }],
-
-    // custom dropdown
-    [{ 'size': ['small', false, 'large', 'huge'] }],
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-    // dropdown with defaults from theme
-    [{ 'color': [] }, { 'background': [] }],
-    [{ 'font': [] }],
     [{ 'align': [] }],
 
+    // text direction
+    // [{ 'direction': 'rtl' }],
+
+    // custom dropdown
+    [{ 'font': [] }],
+    [{ 'size': ['small', false, 'large', 'huge'] }],
+
+    // dropdown with defaults from theme
+    [{ 'header': 1 }, { 'header': 2 }],
+    [{ 'color': [] }, { 'background': [] }],
+
     // remove formatting button
-    ['clean']
+    // ['clean']
   ]
 };
 
@@ -42,7 +41,7 @@ const _quillFormats = [
   "list", "bullet", "script",
   "bold", "italic", "underline", "strike",
   "blockquote", "indent", "link", "header", "align",
-  "direction", "formula", "image", "video",
+  // "direction", "formula", "image", "video",
   "code", "code-block"
 ];
 
@@ -72,7 +71,7 @@ class NoteEditor extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.currentNote && !newProps.currentNote.notebook) {
-      this.props.fetchNote(newProps.currentNote.id);
+      // this.props.fetchNote(newProps.currentNote.id);
     }
     if (newProps.currentNote) {
       if (newProps.currentNote.id !== this.state.id) {
@@ -84,16 +83,18 @@ class NoteEditor extends React.Component {
           //   }
         }
         this.setState(newProps.currentNote);
-        this.props.fetchNoteTags(newProps.currentNote.id);
+        // this.props.fetchNoteTags(newProps.currentNote.id);
       }
-
-      else if (newProps.currentNote.id === this.state.id) {
-        if (this.props.currentNote.title !== this.state.title ||
-          this.props.currentNote.body !== this.state.body) {
-            this.saveHandler();
-        }
-      }
+      //
+      // else if (newProps.currentNote.id === this.state.id) {
+      //   // debugger;
+      //   if (newProps.currentNote.title !== this.state.title ||
+      //     newProps.currentNote.body !== this.state.body) {
+      //       this.saveHandler();
+      //   }
+      // }
     }
+    this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
   autoSave() {
@@ -108,8 +109,8 @@ class NoteEditor extends React.Component {
 
   saveHandler(e) {
     clearTimeout(this.autosaveTimer);
-    this.props.updateNote(this.state)
-      .then(() => this.props.fetchNotes());
+    this.props.updateNote(this.state).then(note => this.setState(note));
+    this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
   updateTitle(e) {
@@ -124,6 +125,10 @@ class NoteEditor extends React.Component {
     this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.autosaveTimer);
+    this.props.updateNote(this.state);
+  }
 
   // selectNotebook(notebook) {
   //   this.setState({

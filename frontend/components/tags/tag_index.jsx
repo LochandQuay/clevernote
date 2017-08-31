@@ -7,31 +7,7 @@ import Modal from 'react-modal';
 class TagIndex extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      // tags: this.props.tags
-      // newTagModalOpen: false
-    };
-
-    // this.openNewTagModal = this.openNewTagModal.bind(this);
-    // this.closeNewTagModal = this.closeNewTagModal.bind(this);
   }
-
-  // componentDidMount() {
-  //   this.props.fetchTags();
-  // }
-  //
-  // componentWillReceiveProps(newProps) {
-  //   this.setState({tags: newProps.tags});
-  // }
-
-  // openNewTagModal() {
-  //   this.setState({newTagModalOpen: true});
-  // }
-  //
-  // closeNewTagModal() {
-  //   this.setState({newTagModalOpen: false});
-  // }
 
   render() {
       const tagListItems = this.props.tags.map((tag, idx) => (
@@ -44,6 +20,11 @@ class TagIndex extends React.Component {
       return (
         <div className="tag-index">
           <div className="tags-header">
+            <div className="refresh-button">
+              <i className="fa fa-refresh"
+                onClick={this.props.fetchTags}></i>
+              <div className="refresh-tooltip">Refresh Tags</div>
+            </div>
             <h2>Tags</h2>
             <h4>{this.props.tags.length} tags</h4>
           </div>
@@ -53,7 +34,6 @@ class TagIndex extends React.Component {
               { tagListItems }
             </ul>
           </div>
-
         </div>
     );
   }

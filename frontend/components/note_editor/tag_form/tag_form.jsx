@@ -6,13 +6,11 @@ import { WithContext as ReactTags } from 'react-tag-input';
 class TagForm extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = { tags: this.props.tags };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
 
-    this.refreshTags = this.refreshTags.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
   }
@@ -21,11 +19,6 @@ class TagForm extends React.Component {
     if (newProps.note) {
       this.setState({ tags: newProps.tags });
     }
-  }
-
-  refreshTags() {
-    this.props.fetchNoteTags(this.props.note.id);
-    this.props.fetchTags();
   }
 
   handleChange(tags) {
@@ -40,33 +33,13 @@ class TagForm extends React.Component {
     this.props.deleteTagging({
       id: this.props.tags[i].id,
       note_id: this.props.note.id
-    }).then(() => this.refreshTags());
-
-    if (this.props.selectedTag) {
-      if (this.props.selectedTag.name === this.props.tags[i].name) {
-        this.props.fetchTaggedNotes(this.props.selectedTag);
-      }
-    }
+    });
   }
 
   handleAddition(tag) {
     this.props.createTag({
       name: tag, note_id: this.props.note.id
-    }).then(() => this.refreshTags());
-
-    if (this.props.selectedTag) {
-      if (this.props.selectedTag.name === tag) {
-        debugger;
-        this.props.fetchTaggedNotes(this.props.selectedTag);
-      }
-    }
-
-    // let tags = this.state.tags;
-    // tags.push({
-    //   id: tags.length + 1,
-    //   name: tag
-    // });
-    // this.setState({tags: tags});
+    });
   }
 
   render() {
@@ -89,13 +62,3 @@ class TagForm extends React.Component {
 }
 
 export default TagForm;
-
-//
-// <TagsInput
-//   placeholder="Add a tag"
-//   value={this.state.tags}
-//   onChange={this.handleChange}
-//   inputValue={this.state.tag}
-//   onChangeInput={this.handleChangeInput}
-//   onlyUnique={true}
-//   className="react-tag-input" />

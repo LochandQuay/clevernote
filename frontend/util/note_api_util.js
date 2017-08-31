@@ -1,7 +1,10 @@
 export const fetchNotes = () => (
   $.ajax({
     method: "GET",
-    url: "api/notes"
+    url: "api/notes",
+    headers: {
+      test_header: 'eevee'
+    }
   })
 );
 
@@ -32,12 +35,5 @@ export const deleteNote = id => (
   $.ajax({
     method: "DELETE",
     url: `api/notes/${id}`
-  })
-);
-
-export const fetchTaggedNotes = tag => (
-  $.ajax({
-    method: "GET",
-    url: `api/tags/${tag.id}`
   })
 );

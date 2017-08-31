@@ -7,7 +7,10 @@ const DeleteNoteModal = ({ deleteNote, closeModal, noteTitle }) => {
     <div className="delete-modal">
       <div className="delete-modal-message">
         <p>
-          Are you sure you want to delete <strong>{title}</strong>?
+          Are you sure you want to delete
+        </p>
+        <p>
+          <span>{title}</span>?
         </p>
       </div>
       <button

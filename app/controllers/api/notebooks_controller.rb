@@ -31,6 +31,7 @@ class Api::NotebooksController < ApplicationController
 
   def index
     @notebooks = Notebook.find_current_user_notebooks(current_user)
+    @notebook_ids = @notebooks.pluck(:id)
     render :index
   end
 

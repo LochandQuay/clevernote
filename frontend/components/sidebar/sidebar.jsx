@@ -208,7 +208,7 @@ class Sidebar extends React.Component {
       <div className="sidebar">
         <div className="sidebar-logo">
           <img className="sidebar-logo-image"
-            src="https://res.cloudinary.com/clevernote/image/upload/v1484120473/clevernote-2_rao7v9.png"
+            src="http://res.cloudinary.com/clevernote/image/upload/e_make_transparent:10/v1489710654/fox_mrfgjm.png"
             alt="clevernote logo" />
         </div>
 

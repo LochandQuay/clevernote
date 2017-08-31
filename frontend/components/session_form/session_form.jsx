@@ -1,10 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 
-
-// PROPS PASSED:
-// loggedIn, errors, formType, processForm dispatch action
-
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);

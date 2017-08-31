@@ -5,56 +5,47 @@ class Api::TagsController < ApplicationController
 
   def create
     @tag = Tag.find_or_create_by(name: tag_params[:name])
-    @tagging = Tagging.find_or_create_by(
+    if @tag
+      @tagging = Tagging.find_or_create_by(
       note_id: tag_params[:note_id],
       tag_id: @tag.id
-    )
-    render json: @tag
+      )
+      render :show
+    else
+      render json: @tag.errors.full_messages, status: 422
+    end
   end
 
   def destroy
     @tag = Tag.find(params[:id])
     if @tag
       @tag.destroy
-      render json: @tag
+      render :show
     else
-      render json: @tag.errors.full_messages, status: 422
+      render json: ['Error deleting tag'], status: 422
     end
   end
 
   def index
-    # get all tags by user
-    @tags = []
-    notes = current_user.notes.includes(:tags)
-    notes.each do |note|
-      @tags += note.tags
-    end
-
-    render json: @tags.uniq
+    @tags = current_user.tags.uniq
+    @tag_ids = @tags.pluck(:id)
   end
 
   def show
     @tag = Tag.find(params[:id])
 
-    @tagged_notes = []
-    notes = current_user.notes.includes(:taggings)
-    if @tag
-      notes.each do |note|
-        @tagged_notes << note if note.taggings.any? { |tagging| tagging.tag_id == @tag.id }
-      end
-      render json: @tagged_notes
-    else
-      render json: @tag.errors.full_messages, status: 422
+    if !@tag
+      render json: ["tag does not exist"], status: 404
     end
   end
 
-#  #TODO: Confirm whether this is the best way of going about this
   def destroyTagging
     @tag = Tag.find(params[:id])
-    @tagging = @tag.taggings.select { |tagging| tagging.note_id == tag_params[:note_id].to_i }.first
+    @tagging = Tagging.find_by(note_id: tag_params[:note_id], tag_id: params[:id])
     if @tagging
       @tagging.destroy
-      render json: @tagging
+      @note = Note.find(tag_params[:note_id])
+      render "api/notes/new_show"
     else
       render json: @tagging.errors.full_messages, status: 422
     end

@@ -4,74 +4,81 @@ import {
   REMOVE_NOTE,
   ADD_NOTE,
   EDIT_NOTE,
-  SET_CURRENT_NOTE,
-  RECEIVE_TAGGED_NOTES
+  SET_CURRENT_NOTE
 } from '../actions/note_actions';
+
+import { RECEIVE_TAGGING } from '../actions/tag_actions';
+
+import { REMOVE_NOTEBOOK } from '../actions/notebook_actions';
 
 import merge from 'lodash/merge';
 
-import { sorted } from './selectors';
-
-const _defaultState = {
-  currentNote: null,
-  notes: [],
-  taggedNotes: []
+const blankState = {
+  byId: {},
+  allIds: [],
+  currentNote: null
 };
 
-const NoteReducer = (state = _defaultState, action) => {
+const NoteReducer = (state = blankState, action) => {
   Object.freeze(state);
   let nextState = merge({}, state);
-  let note;
-  if (action.note) {
-    note = (action.note.id) ?
-      (action.note) : (action.note[Object.keys(action.note)[0]]);
-  }
 
   switch(action.type) {
 
     case RECEIVE_NOTES:
-      nextState = merge({}, state, action.notes);
-      nextState.notes = sorted(action.notes);
+      nextState.byId = action.payload.byId;
+      nextState.allIds = action.payload.allIds;
       return nextState;
 
     case RECEIVE_NOTE:
-      // nextState = merge({}, state, action.note);
-      nextState.currentNote = note;
-      // nextState.currentNote = action.note;
+      nextState.byId[action.note.id] = action.note;
+      nextState.allIds = [action.note.id].concat(
+        nextState.allIds.filter(idx => idx !== action.note.id));
+      nextState.currentNote = action.note.id;
       return nextState;
-
-
-    // #NB: was >> delete nextState.notes[action.note.id];
 
     case REMOVE_NOTE:
-      // let deletedNote = note;
-      // delete nextState[deletedNote.id];
-      // if (nextState.currentNote.id === deletedNote.id) {
-        // nextState.currentNote = null;
-      // }
-      delete nextState[note.id];
+      delete nextState.byId[action.note.id];
+      nextState.allIds = nextState.allIds.filter(idx => idx !== action.note.id);
+      if (nextState.currentNote === action.note.id) {
+        nextState.currentNote = nextState.allIds[0];
+      }
       return nextState;
 
-    // NEW ACTION TYPES (potentially unnecessary):
     case ADD_NOTE:
-      nextState[note.id] = note;
-      nextState.currentNote = note;
-      nextState.notes.unshift(note);
-      // nextState[action.note.id] = action.note;
-      // nextState.notes.unshift(action.note);
-      return nextState;
-
-    case EDIT_NOTE:
-      nextState[note.id] = note;
-      nextState.currentNote = note;
+      nextState.byId[action.note.id] = action.note;
+      nextState.allIds = [action.note.id].concat(
+        nextState.allIds.filter(idx => idx !== action.note.id));
+      nextState.currentNote = action.note.id;
       return nextState;
 
     case SET_CURRENT_NOTE:
-      nextState.currentNote = note;
+      if (action.note) {
+        nextState.currentNote = action.note.id;
+      } else {
+        nextState.currentNote = null;
+      }
       return nextState;
 
-    case RECEIVE_TAGGED_NOTES:
-      nextState.taggedNotes = action.notes;
+    case REMOVE_NOTEBOOK:
+      Object.keys(nextState.byId).forEach( noteId => {
+        if (nextState.byId[noteId].notebook_id === action.notebook.id) {
+          delete nextState.byId[noteId];
+          nextState.allIds = nextState.allIds.filter(idx => idx !== noteId);
+        }
+      });
+      if (!nextState.byId[nextState.currentNote]) {
+        nextState.currentNote = nextState.allIds[0];
+      }
+      return nextState;
+
+    case RECEIVE_TAGGING:
+      nextState.byId[action.payload.tagging.note_id].tags.forEach((tag) => {
+        if (tag.id === action.payload.tag.id) {
+          return nextState;
+        }
+      });
+      nextState.byId[action.payload.tagging.note_id].tags.push(action.payload.tag);
       return nextState;
 
     default:

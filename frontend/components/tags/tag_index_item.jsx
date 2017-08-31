@@ -10,7 +10,8 @@ class TagIndexItem extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (!this.props.currentTag && newProps.currentTag) {
-      this.props.fetchTaggedNotes(newProps.currentTag);
+      // #TODO: Fix to be filteredNotes
+      // this.props.fetchTaggedNotes(newProps.currentTag);
     }
   }
 
@@ -33,9 +34,11 @@ class TagIndexItem extends React.Component {
 
   render() {
     return (
-      <div className="tag-index-item" onClick={this.selectTagHandler}>
-        <h3>{this.props.tag.name}</h3>
-      </div>
+      <span className="bottom-border">
+        <div className="tag-index-item" onClick={this.selectTagHandler}>
+          <h3>{this.props.tag.name}</h3>
+        </div>
+      </span>
     );
   }
 }

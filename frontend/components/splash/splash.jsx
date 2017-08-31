@@ -5,15 +5,7 @@ class Splash extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      name: "",
-      email: "",
-      username: "",
-      password: ""
-    };
-
-    this.update = this.update.bind(this);
-    this.signup = this.signup.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   componentWillReceiveProps(props) {
@@ -22,69 +14,27 @@ class Splash extends React.Component {
     }
   }
 
-  update(field) {
-    return e => this.setState({[field]: e.target.value});
-  }
-
-  signup(e) {
+  demoLogin(e) {
     e.preventDefault();
-    this.props.signup(this.state);
+    const user = { username: "eevee", password: "password" };
+    this.props.login(user);
   }
 
   render() {
     return (
       <div className="splash group">
         <img
-          src="https://res.cloudinary.com/clevernote/image/upload/q_auto:good/v1485473434/splash.jpg"
+          src="http://res.cloudinary.com/clevernote/image/upload/q_70/v1489622273/aleks-dorohovich-26_uerxji.jpg"
           className="splash-image" />
 
         <div className="splash-signup-form">
-          <form onSubmit={this.signup}>
-            <label>
-              <input
-                className="half-field left"
-                type="text"
-                placeholder="Name"
-                value={this.state.name}
-                onChange={this.update('name')} />
-            </label>
+          <h1>Stay organized.</h1><br />
 
-            <label>
-              <input
-                className="half-field right"
-                type="text"
-                placeholder="Email Address"
-                value={this.state.email}
-                onChange={this.update('email')} />
-            </label>
+          <br /><br />
 
-            <br /><br />
-
-            <label>
-              <input
-                type="text"
-                placeholder="Username"
-                value={this.state.username}
-                onChange={this.update('username')} />
-            </label>
-
-            <br /><br />
-
-            <label>
-              <input
-                type="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.update('password')} />
-            </label>
-
-            <br /><br />
-
-            <input
-              type="submit"
-              value="Sign up for free"
-              className="splash-submit-button" />
-          </form>
+          <button
+            className="splash-submit-button"
+            onClick={ this.demoLogin }>Try the demo</button>
         </div>
       </div>
     );

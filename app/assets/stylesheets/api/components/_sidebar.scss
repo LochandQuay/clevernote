@@ -2,18 +2,20 @@
 
 .sidebar {
   box-sizing: border-box;
-  border-right: 1px solid black;
+  border-right: 1px solid $charcoal;
   height: 100%;
   width: $sidebar-width;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   align-content: center;
-  background-color: $light-gray;
+  background-color: $lightest-gray;
 
   .sidebar-logo {
     width: calc($sidebar-width - 10px);
     height: auto;
+    // #TODO: Can remove when logo updated (probably)
+    padding: 15px 0px;
   }
 
   .note-action-buttons, .index-buttons, .user-button {
@@ -28,7 +30,7 @@
     vertical-align: middle;
     position: relative;
     padding: 1.2rem;
-    border: 1px solid $bad-blood;
+    border: 1px solid $gray;
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -38,16 +40,21 @@
     background-color: $white-ish;
   }
 
-  .icon-circle:hover {
-    background-color: $sage;
-  }
-
   i {
-    color: $bad-blood;
+    color: $fox-rose;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    transition: color 0.3s;
+  }
+
+  .icon-circle:hover {
+    background-color: $fox-rose;
+
+    i {
+      color: $white-ish;
+    }
   }
 
   .user-icon {
@@ -57,8 +64,9 @@
     vertical-align: middle;
     position: relative;
     padding: 1.2rem;
-    border: 1px solid $bad-blood;
-    background-color: white;
+    border: 1px solid $gray;
+    border-radius: 4px;
+    background-color: $white-ish;
     width: 50px;
     height: 50px;
     font-size: 40px;
@@ -70,17 +78,17 @@
     i {
       text-align: center;
       font-size: 40px;
-      color: $fox-red;
+      color: $fox-rose;
       background-color: white;
     }
   }
 
   .user-icon:hover {
-    background-color: $fox-red;
+    background-color: $fox-rose;
 
     i {
       color: white;
-      background-color: $fox-red;
+      background-color: $fox-rose;
     }
   }
 

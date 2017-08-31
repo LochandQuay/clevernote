@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router';
 import Modal from 'react-modal';
 import DeleteNoteModal from './delete_note_modal';
 import DeleteNoteModalStyle from '../modal_styles/delete_note_modal_style';
@@ -61,8 +60,8 @@ class NoteIndexItem extends React.Component {
 
   getTitlePreview (title) {
     let preview;
-    if (title.length > 25) {
-      preview = title.slice(0, 25) + "...";
+    if (title.length > 22) {
+      preview = title.slice(0, 22) + "...";
     }
     else {
       preview = title;
@@ -73,9 +72,9 @@ class NoteIndexItem extends React.Component {
 
   getBodyPreview (body) {
     let preview = body.replace(/<(?:.|\n)*?>/gm, '');
-    if (preview.length > 50) {
-      preview = preview.slice(0, 50) + "...";
-    }
+    // if (preview.length > 50) {
+      // preview = preview.slice(0, 50) + "...";
+    // }
     return preview;
   }
 
@@ -89,8 +88,7 @@ class NoteIndexItem extends React.Component {
   }
 
   selectNote() {
-    if ((this.props.currentNote &&
-      this.props.note.id !== this.props.currentNote.id) ||
+    if ((this.props.note.id !== this.props.currentNote) ||
       (!this.props.currentNote)) {
         this.props.setCurrentNote(this.props.note);
     }
@@ -98,48 +96,45 @@ class NoteIndexItem extends React.Component {
 
   deleteHandler(e){
     e.preventDefault();
-    let nextNote = null;
-
-    const noteId = this.props.note.id;
-    if (this.props.notes.length > 1) {
-      nextNote = 0;
-    }
-
-    this.props.deleteNote(this.props.note.id)
-      .then(() => this.props.fetchNotes())
-      .then(() => this.props.setCurrentNote(this.props.notes[nextNote]));
-
-    this.props.fetchTags();
+    this.props.deleteNote(this.props.note.id);
     this.closeDeleteModal();
   }
 
   render() {
+    let noteClass = "note-index-item";
+    if (this.props.currentNote === this.props.note.id) {
+      noteClass = "note-index-item selected-note";
+    }
 
     return (
-      <div className="note-index-item" onClick={this.selectNote}>
-        <div
-          className="delete-note-button"
-          onClick={this.openDeleteModal}>
-          <i className="fa fa-trash"></i>
+      <span className="bottom-border">
+        <div className={noteClass} onClick={this.selectNote}>
+
+          <div
+            className="delete-note-button"
+            onClick={this.openDeleteModal}>
+            <i className="fa fa-trash"></i>
+          </div>
+          <h3 className="clamped-title note-index-title">{this.props.note.title}</h3>
+          <h5>{getTimeStamp(this.props.note.updated_at)}</h5>
+          <p className="clamped-body note-index-body">{this.getBodyPreview(this.props.note.body)}</p>
+
+          <Modal
+            isOpen={this.state.deleteModalOpen}
+            onRequestClose={this.closeDeleteModal}
+            className="delete-note-modal"
+            shouldCloseOnOverlayClick={false}
+            style={ DeleteNoteModalStyle }
+            contentLabel="Delete Note Modal">
+
+            <DeleteNoteModal
+              deleteNote={this.deleteHandler}
+              closeModal={this.closeDeleteModal}
+              noteTitle={this.props.note.title} />
+          </Modal>
+
         </div>
-        <h3>{this.getTitlePreview(this.props.note.title)}</h3>
-        <h5>{getTimeStamp(this.props.note.updated_at)}</h5>
-        <p>{this.getBodyPreview(this.props.note.body)}</p>
-
-        <Modal
-          isOpen={this.state.deleteModalOpen}
-          onRequestClose={this.closeDeleteModal}
-          className="delete-note-modal"
-          shouldCloseOnOverlayClick={false}
-          style={ DeleteNoteModalStyle }
-          contentLabel="Delete Note Modal">
-
-          <DeleteNoteModal
-            deleteNote={this.deleteHandler}
-            closeModal={this.closeDeleteModal}
-            noteTitle={this.props.note.title} />
-        </Modal>
-      </div>
+      </span>
     );
   }
 }

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   # CUSTOM ROUTES
-  get 'api/notes/:id/tags', to: 'api/notes#tags'
+  # get 'api/notes/:id/tags', to: 'api/notes#tags'
   delete 'api/tagging/:id', to: 'api/tags#destroyTagging'
 
   root "static_pages#root"

@@ -68,24 +68,6 @@ class Home extends React.Component {
     }
   }
 
-  // #TODO: Remove when default notebook created
-  // addNote() {
-  //   const notebookId = this.state.currentNotebook ?
-  //     this.state.currentNotebook.id : this.props.notebooks[0].id;
-  //
-  //   const blankNote =
-  //   {
-  //     title: "",
-  //     body: "",
-  //     author_id: this.props.currentUser.id,
-  //     notebook_id: notebookId
-  //   };
-  //   // this.props.setCurrentNote(blankNote);
-  //   this.setState({ currentNote: blankNote });
-
-    // this.props.createNote(blankNote).then(() => this.props.fetchNotes());
-  // }
-
   render () {
     if (this.props.loggedIn) {
       return (

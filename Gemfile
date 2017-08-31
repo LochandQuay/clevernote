@@ -27,6 +27,7 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'cloudinary'
 gem 'seed_dump'
+gem 'cancancan'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -47,6 +48,9 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem "guard", ">= 2.2.2", :require => false
+  gem 'guard-livereload', '~> 2.5', require: false
+  gem "rack-livereload"
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'annotate'

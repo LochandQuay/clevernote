@@ -3,17 +3,12 @@ export const selectNote = ({ notes }, id) => {
    return note;
 };
 
-export const sorted = items => {
-  let array = Object.keys(items).map(id => items[id]);
-  return array.sort((x, y) => {
-    let xDate = new Date(x.updated_at);
-    let yDate = new Date(y.updated_at);
-    return yDate - xDate;
-  });
-};
+export const sorted = notes => notes.allIds.map(idx => notes.byId[idx]);
 
 export const sortTags = tags => {
-  return tags.sort((a, b) => {
+  let array = Object.keys(tags.byId).map(id => tags.byId[id]);
+
+  return array.sort((a, b) => {
     let aname = a.name.toLowerCase();
     let bname = b.name.toLowerCase();
     if (aname < bname) { return -1; }
@@ -23,7 +18,7 @@ export const sortTags = tags => {
 };
 
 export const alphaSort = items => {
-  let array = Object.keys(items).map(id => items[id]);
+  let array = Object.keys(items.byId).map(id => items.byId[id]);
 
   return array.sort((a, b) => {
     let atitle = a.title.toLowerCase();
@@ -34,7 +29,17 @@ export const alphaSort = items => {
   });
 };
 
-// new
+export const filteredNotes = (notes, filterType, filter) => {
+  switch(filterType) {
+    case 'notebook':
+      return notes.filter( note => note.notebook_id === filter );
+    case 'tag':
+      return notes.filter( note => note.tags.some( tag => tag.id === filter) );
+    default:
+      return notes;
+  }
+};
+
 export const allNoteTags = tags => Object.keys(tags).map(id => tags[id]);
 
 export const allTags = tags => Object.keys(tags).map(id => tags[id]);
