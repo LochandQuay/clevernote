@@ -1,8 +1,9 @@
 import React from 'react';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 import SessionModalStyle from '../modal_styles/session_modal_style';
 import SessionFormContainer from '../session_form/session_form_container';
-import { Link } from 'react-router';
 
 const sessionLinks = () => (
   <nav className="login-signup">
@@ -16,10 +17,10 @@ const personalGreeting = (currentUser, logout) => (
   <hgroup className="header-group">
     <h2 className="header-name">Hi, {currentUser.username}!</h2>
     <button className="button" onClick={logout}>Log Out</button>
-	</hgroup>
+  </hgroup>
 );
 
-const Greeting = ({currentUser, logout}) => (
+const Greeting = ({ currentUser, logout }) => (
   currentUser ? personalGreeting(currentUser, logout) : sessionLinks()
 );
 
@@ -29,7 +30,7 @@ class Header extends React.Component {
 
     this.state = {
       sessionModalOpen: false,
-      formType: 'login'
+      formType: 'login',
     };
 
     this.openSessionModal = this.openSessionModal.bind(this);
@@ -59,17 +60,17 @@ class Header extends React.Component {
 
   demoLogin(e) {
     e.preventDefault();
-    const user = { username: "eevee", password: "password" };
+    const user = { username: 'eevee', password: 'password' };
     this.props.login(user);
   }
 
   toggleMenu(e) {
     e.preventDefault();
-    e.currentTarget.children[1].classList.toggle("open");
-    e.currentTarget.children[1].classList.toggle("closed");
+    e.currentTarget.children[1].classList.toggle('open');
+    e.currentTarget.children[1].classList.toggle('closed');
   }
 
-  render () {
+  render() {
     const headerContent = this.props.currentUser ?
       personalGreeting(this.props.currentUser, this.props.logout) :
       sessionLinks();
@@ -80,41 +81,38 @@ class Header extends React.Component {
           <button
             className="button"
             value="login"
-            onClick={this.handleClick}>
-            Log In
-          </button>
+            onClick={this.handleClick}
+          >Log In</button>
           <button
             className="button"
             value="signup"
-            onClick={this.handleClick}>
-            Sign Up
-          </button>
+            onClick={this.handleClick}
+          >Sign Up</button>
           <button
             className="button demo-button"
-            onClick={this.demoLogin}>
-            Demo
-          </button>
+            onClick={this.demoLogin}
+          >Demo</button>
         </nav>
 
         <div className="hamburger-menu" onClick={this.toggleMenu}>
-          <i className="fa fa-bars"></i>
+          <i className="fa fa-bars" />
 
           <nav className="hamburger-menu-dropdown closed">
             <ul>
-              <li className="hamburger-menu-dropdown-item"
+              <li
+                className="hamburger-menu-dropdown-item"
                 name="signup"
-                onClick={this.handleClick}>
-                Sign Up
-              </li>
-              <li className="hamburger-menu-dropdown-item"
+                onClick={this.handleClick}
+              >Sign Up</li>
+              <li
+                className="hamburger-menu-dropdown-item"
                 name="login"
-                onClick={this.handleClick}>
-                Log In
-              </li>
-              <li className="hamburger-menu-dropdown-item"
-                onClick={this.demoLogin}>
-                Demo
-              </li>
+                onClick={this.handleClick}
+              >Log In</li>
+              <li
+                className="hamburger-menu-dropdown-item"
+                onClick={this.demoLogin}
+              >Demo</li>
             </ul>
           </nav>
         </div>
@@ -122,15 +120,30 @@ class Header extends React.Component {
         <Modal
           isOpen={this.state.sessionModalOpen}
           onRequestClose={this.closeSessionModal}
-          style={ SessionModalStyle }
+          style={SessionModalStyle}
           className="react-modal"
-          contentLabel="Session Modal">
+          contentLabel="Session Modal"
+        >
           <SessionFormContainer formType={this.state.formType} />
         </Modal>
       </div>
     );
   }
-
 }
+
+Header.defaultProps = {
+  currentUser: null,
+};
+
+Header.propTypes = {
+  currentUser: PropTypes.shape({
+    id: PropTypes.number,
+    username: PropTypes.string,
+    name: PropTypes.string,
+  }),
+  clearErrors: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+};
 
 export default Header;
