@@ -74,20 +74,26 @@ class Header extends React.Component {
 
           <nav className="hamburger-menu-dropdown closed">
             <ul>
-              <button
+              <div
                 className="hamburger-menu-dropdown-item"
                 name="signup"
+                role="button"
+                tabIndex={0}
                 onClick={this.handleClick}
-              >Sign Up</button>
-              <button
+              >Sign Up</div>
+              <div
                 className="hamburger-menu-dropdown-item"
                 name="login"
+                role="button"
+                tabIndex={0}
                 onClick={this.handleClick}
-              >Log In</button>
-              <button
+              >Log In</div>
+              <div
                 className="hamburger-menu-dropdown-item"
+                role="button"
+                tabIndex={0}
                 onClick={this.demoLogin}
-              >Demo</button>
+              >Demo</div>
             </ul>
           </nav>
         </div>

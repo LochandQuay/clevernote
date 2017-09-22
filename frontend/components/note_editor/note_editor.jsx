@@ -86,8 +86,8 @@ class NoteEditor extends React.Component {
       //       this.saveHandler();
       //   }
       // }
+      this.autosaveTimer = setTimeout(this.autoSave, 1000);
     }
-    this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
   componentWillUnmount() {

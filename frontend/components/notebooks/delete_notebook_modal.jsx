@@ -34,7 +34,11 @@ DeleteNotebookModal.propTypes = {
     id: PropTypes.number,
     title: PropTypes.string,
     updated_at: PropTypes.string,
-  }).isRequired,
+  }),
+};
+
+DeleteNotebookModal.defaultProps = {
+  notebook: null,
 };
 
 export default DeleteNotebookModal;
