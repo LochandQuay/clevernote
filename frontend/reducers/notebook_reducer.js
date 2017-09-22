@@ -14,7 +14,7 @@ const blankState = {
   currentNotebook: null,
 };
 
-const NotebookReducer = (state = blankState, action) => {
+const notebookReducer = (state = blankState, action) => {
   Object.freeze(state);
   const nextState = merge({}, state);
 
@@ -60,4 +60,4 @@ const NotebookReducer = (state = blankState, action) => {
   }
 };
 
-export default NotebookReducer;
+export default notebookReducer;

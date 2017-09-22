@@ -11,7 +11,7 @@ const nullUser = Object.freeze({
   errors: [],
 });
 
-const SessionReducer = (state = nullUser, action) => {
+const sessionReducer = (state = nullUser, action) => {
   Object.freeze(state);
   const nextState = merge({}, state);
 
@@ -43,4 +43,4 @@ const SessionReducer = (state = nullUser, action) => {
   }
 };
 
-export default SessionReducer;
+export default sessionReducer;

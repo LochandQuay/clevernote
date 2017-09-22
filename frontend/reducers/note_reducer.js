@@ -21,7 +21,7 @@ const pluckedIds = (tags) => {
   return ids;
 };
 
-const NoteReducer = (state = blankState, action) => {
+const noteReducer = (state = blankState, action) => {
   Object.freeze(state);
   const nextState = merge({}, state);
 
@@ -87,4 +87,4 @@ const NoteReducer = (state = blankState, action) => {
   }
 };
 
-export default NoteReducer;
+export default noteReducer;

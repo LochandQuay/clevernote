@@ -11,7 +11,7 @@ const blankState = {
   currentTag: null,
 };
 
-const TagReducer = (state = blankState, action) => {
+const tagReducer = (state = blankState, action) => {
   Object.freeze(state);
   const nextState = merge({}, state);
 
@@ -40,4 +40,4 @@ const TagReducer = (state = blankState, action) => {
   }
 };
 
-export default TagReducer;
+export default tagReducer;
