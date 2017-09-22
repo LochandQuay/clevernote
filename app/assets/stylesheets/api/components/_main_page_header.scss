@@ -167,21 +167,24 @@ $main-page-header-height: 60px;
   .hamburger-menu-dropdown {
     background-color: $white-ish;
     border: 1px solid $gray;
+    width: 200px;
   }
 
   .hamburger-menu-dropdown-item {
-    font-size: 25px;
+    width: 100%;
+    background: none;
+    font-size: 20px;
     padding: 10px 20px;
     color: $maru;
     border-bottom: 1px solid $light-gray;
-    box-sizing: border-box;
+    border-radius: 0px;
     transition: background-color 0.3s;
   }
 
   .hamburger-menu-dropdown-item:hover {
-    box-sizing: border-box;
     // background-color: $sage;
     background-color: $bright-navy;
+    color: white;
   }
 
   .splash-signup-form {
@@ -198,9 +201,9 @@ $main-page-header-height: 60px;
   }
 }
 
-@media all and (max-width: 550px) {
-  .splash-signup-form {
-    .half-field {
-    }
-  }
-}
+// @media all and (max-width: 550px) {
+//   .splash-signup-form {
+//     .half-field {
+//     }
+//   }
+// }
