@@ -1,29 +1,31 @@
+import merge from 'lodash/merge';
 import {
   RECEIVE_NOTES,
   RECEIVE_NOTE,
   REMOVE_NOTE,
   ADD_NOTE,
-  EDIT_NOTE,
-  SET_CURRENT_NOTE
+  SET_CURRENT_NOTE,
 } from '../actions/note_actions';
-
 import { RECEIVE_TAGGING } from '../actions/tag_actions';
-
 import { REMOVE_NOTEBOOK } from '../actions/notebook_actions';
-
-import merge from 'lodash/merge';
 
 const blankState = {
   byId: {},
   allIds: [],
-  currentNote: null
+  currentNote: null,
+};
+
+const pluckedIds = (tags) => {
+  const ids = [];
+  tags.forEach(tag => ids.push(tag.id));
+  return ids;
 };
 
 const NoteReducer = (state = blankState, action) => {
   Object.freeze(state);
-  let nextState = merge({}, state);
+  const nextState = merge({}, state);
 
-  switch(action.type) {
+  switch (action.type) {
 
     case RECEIVE_NOTES:
       nextState.byId = action.payload.byId;
@@ -61,7 +63,7 @@ const NoteReducer = (state = blankState, action) => {
       return nextState;
 
     case REMOVE_NOTEBOOK:
-      Object.keys(nextState.byId).forEach( noteId => {
+      Object.keys(nextState.byId).forEach((noteId) => {
         if (nextState.byId[noteId].notebook_id === action.notebook.id) {
           delete nextState.byId[noteId];
           nextState.allIds = nextState.allIds.filter(idx => idx !== noteId);
@@ -73,11 +75,10 @@ const NoteReducer = (state = blankState, action) => {
       return nextState;
 
     case RECEIVE_TAGGING:
-      nextState.byId[action.payload.tagging.note_id].tags.forEach((tag) => {
-        if (tag.id === action.payload.tag.id) {
-          return nextState;
-        }
-      });
+      if (pluckedIds(nextState.byId[action.payload.tagging.note_id].tags)
+        .includes(action.payload.tag.id)) {
+        return nextState;
+      }
       nextState.byId[action.payload.tagging.note_id].tags.push(action.payload.tag);
       return nextState;
 

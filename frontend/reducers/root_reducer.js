@@ -5,20 +5,21 @@ import NotebookReducer from './notebook_reducer';
 import TagReducer from './tag_reducer';
 import ErrorReducer from './error_reducer';
 
-const AppReducer = combineReducers ({
+const AppReducer = combineReducers({
   session: SessionReducer,
   errors: ErrorReducer,
   notes: NoteReducer,
   notebooks: NotebookReducer,
-  tags: TagReducer
+  tags: TagReducer,
 });
 
 const RootReducer = (state, action) => {
-  if (action.type === "LOGOUT") {
-    state = undefined;
+  let resetState = state;
+  if (action.type === 'LOGOUT') {
+    resetState = undefined;
   }
 
-  return AppReducer(state, action);
+  return AppReducer(resetState, action);
 };
 
 export default RootReducer;

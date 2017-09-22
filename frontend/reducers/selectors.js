@@ -1,28 +1,28 @@
 export const selectNote = ({ notes }, id) => {
-   const note = notes[id] || {};
-   return note;
+  const note = notes[id] || {};
+  return note;
 };
 
 export const sorted = notes => notes.allIds.map(idx => notes.byId[idx]);
 
-export const sortTags = tags => {
-  let array = Object.keys(tags.byId).map(id => tags.byId[id]);
+export const sortTags = (tags) => {
+  const array = Object.keys(tags.byId).map(id => tags.byId[id]);
 
   return array.sort((a, b) => {
-    let aname = a.name.toLowerCase();
-    let bname = b.name.toLowerCase();
+    const aname = a.name.toLowerCase();
+    const bname = b.name.toLowerCase();
     if (aname < bname) { return -1; }
     if (aname > bname) { return 1; }
     return 0;
   });
 };
 
-export const alphaSort = items => {
-  let array = Object.keys(items.byId).map(id => items.byId[id]);
+export const alphaSort = (items) => {
+  const array = Object.keys(items.byId).map(id => items.byId[id]);
 
   return array.sort((a, b) => {
-    let atitle = a.title.toLowerCase();
-    let btitle = b.title.toLowerCase();
+    const atitle = a.title.toLowerCase();
+    const btitle = b.title.toLowerCase();
     if (atitle < btitle) { return -1; }
     if (atitle > btitle) { return 1; }
     return 0;
@@ -30,11 +30,11 @@ export const alphaSort = items => {
 };
 
 export const filteredNotes = (notes, filterType, filter) => {
-  switch(filterType) {
+  switch (filterType) {
     case 'notebook':
-      return notes.filter( note => note.notebook.id === filter );
+      return notes.filter(note => note.notebook.id === filter);
     case 'tag':
-      return notes.filter( note => note.tags.some( tag => tag.id === filter) );
+      return notes.filter(note => note.tags.some(tag => tag.id === filter));
     default:
       return notes;
   }
