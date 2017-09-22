@@ -1,28 +1,14 @@
 import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
 import SessionModalStyle from '../modal_styles/session_modal_style';
 import SessionFormContainer from '../session_form/session_form_container';
 
-const sessionLinks = () => (
-  <nav className="login-signup">
-    <Link to="/demo" className="button" activeClassName="current">Demo</Link>
-    <Link to="/login" className="button" activeClassName="current">Log In</Link>
-    <Link to="/signup" className="button" activeClassName="current">Sign Up</Link>
-  </nav>
-);
-
-const personalGreeting = (currentUser, logout) => (
-  <hgroup className="header-group">
-    <h2 className="header-name">Hi, {currentUser.username}!</h2>
-    <button className="button" onClick={logout}>Log Out</button>
-  </hgroup>
-);
-
-const Greeting = ({ currentUser, logout }) => (
-  currentUser ? personalGreeting(currentUser, logout) : sessionLinks()
-);
+const toggleMenu = function toggleMenu(e) {
+  e.preventDefault();
+  e.currentTarget.children[1].classList.toggle('open');
+  e.currentTarget.children[1].classList.toggle('closed');
+};
 
 class Header extends React.Component {
   constructor(props) {
@@ -37,7 +23,6 @@ class Header extends React.Component {
     this.closeSessionModal = this.closeSessionModal.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.toggleMenu = this.toggleMenu.bind(this);
   }
 
   openSessionModal() {
@@ -64,17 +49,7 @@ class Header extends React.Component {
     this.props.login(user);
   }
 
-  toggleMenu(e) {
-    e.preventDefault();
-    e.currentTarget.children[1].classList.toggle('open');
-    e.currentTarget.children[1].classList.toggle('closed');
-  }
-
   render() {
-    const headerContent = this.props.currentUser ?
-      personalGreeting(this.props.currentUser, this.props.logout) :
-      sessionLinks();
-
     return (
       <div>
         <nav className="login-signup">
@@ -94,25 +69,25 @@ class Header extends React.Component {
           >Demo</button>
         </nav>
 
-        <div className="hamburger-menu" onClick={this.toggleMenu}>
+        <div className="hamburger-menu" onClick={toggleMenu} role="toolbar">
           <i className="fa fa-bars" />
 
           <nav className="hamburger-menu-dropdown closed">
             <ul>
-              <li
+              <button
                 className="hamburger-menu-dropdown-item"
                 name="signup"
                 onClick={this.handleClick}
-              >Sign Up</li>
-              <li
+              >Sign Up</button>
+              <button
                 className="hamburger-menu-dropdown-item"
                 name="login"
                 onClick={this.handleClick}
-              >Log In</li>
-              <li
+              >Log In</button>
+              <button
                 className="hamburger-menu-dropdown-item"
                 onClick={this.demoLogin}
-              >Demo</li>
+              >Demo</button>
             </ul>
           </nav>
         </div>
@@ -131,19 +106,9 @@ class Header extends React.Component {
   }
 }
 
-Header.defaultProps = {
-  currentUser: null,
-};
-
 Header.propTypes = {
-  currentUser: PropTypes.shape({
-    id: PropTypes.number,
-    username: PropTypes.string,
-    name: PropTypes.string,
-  }),
   clearErrors: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired,
 };
 
 export default Header;
