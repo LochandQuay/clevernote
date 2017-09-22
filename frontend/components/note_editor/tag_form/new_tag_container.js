@@ -3,17 +3,13 @@ import TagForm from './new_tag';
 import { fetchTags, createTag, deleteTagging }
   from '../../../actions/tag_actions';
 
-const mapStateToProps = (state) => ({
+// const mapStateToProps = (state) => ({
+// });
 
-});
-
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetchTags: () => dispatch(fetchTags()),
-  createTag: (tag) => dispatch(createTag(tag)),
-  deleteTagging: (data) => dispatch(deleteTagging(data))
+  createTag: tag => dispatch(createTag(tag)),
+  deleteTagging: data => dispatch(deleteTagging(data)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TagForm);
+export default connect(null, mapDispatchToProps)(TagForm);
