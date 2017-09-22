@@ -32,7 +32,7 @@ export const alphaSort = items => {
 export const filteredNotes = (notes, filterType, filter) => {
   switch(filterType) {
     case 'notebook':
-      return notes.filter( note => note.notebook_id === filter );
+      return notes.filter( note => note.notebook.id === filter );
     case 'tag':
       return notes.filter( note => note.tags.some( tag => tag.id === filter) );
     default:
