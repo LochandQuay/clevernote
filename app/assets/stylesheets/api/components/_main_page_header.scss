@@ -167,24 +167,23 @@ $main-page-header-height: 60px;
   .hamburger-menu-dropdown {
     background-color: $white-ish;
     border: 1px solid $gray;
-    width: 200px;
+    width: 150px;
   }
 
   .hamburger-menu-dropdown-item {
-    width: 100%;
-    background: none;
+    width: 150px;
     font-size: 20px;
     padding: 10px 20px;
     color: $maru;
     border-bottom: 1px solid $light-gray;
-    border-radius: 0px;
+    box-sizing: border-box;
     transition: background-color 0.3s;
   }
 
   .hamburger-menu-dropdown-item:hover {
     // background-color: $sage;
     background-color: $bright-navy;
-    color: white;
+    // color: white;
   }
 
   .splash-signup-form {
