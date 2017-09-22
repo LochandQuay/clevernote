@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class TagIndexItem extends React.Component {
   constructor(props) {
@@ -25,9 +26,8 @@ class TagIndexItem extends React.Component {
   selectTagHandler() {
     if (!this.props.currentTag ||
       this.props.tag.id !== this.props.currentTag.id) {
-        this.selectTag();
-      }
-    else {
+      this.selectTag();
+    } else {
       this.props.closeModal();
     }
   }
@@ -35,12 +35,33 @@ class TagIndexItem extends React.Component {
   render() {
     return (
       <span className="bottom-border">
-        <div className="tag-index-item" onClick={this.selectTagHandler}>
+        <div
+          className="tag-index-item"
+          role="button"
+          tabIndex={0}
+          onClick={this.selectTagHandler}
+        >
           <h3>{this.props.tag.name}</h3>
         </div>
       </span>
     );
   }
 }
+
+TagIndexItem.propTypes = {
+  currentTag: PropTypes.number,
+  tag: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }).isRequired,
+  setCurrentNote: PropTypes.func.isRequired,
+  setCurrentNotebook: PropTypes.func.isRequired,
+  setCurrentTag: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+};
+
+TagIndexItem.defaultProps = {
+  currentTag: null,
+};
 
 export default TagIndexItem;
