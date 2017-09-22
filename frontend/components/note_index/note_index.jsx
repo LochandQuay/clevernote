@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NoteIndexItemContainer from './note_index_item_container';
 
 class NoteIndex extends React.Component {
@@ -11,14 +12,25 @@ class NoteIndex extends React.Component {
   render() {
     return (
       <ul>
-        { this.props.notes.map((note, idx) => (
+        {this.props.notes.map(note => (
           <NoteIndexItemContainer
-            key={`note-index-item-${idx}`}
-            note={note} />
+            key={`note-index-item-${note.id}`}
+            note={note}
+          />
         ))}
       </ul>
     );
   }
 }
+
+NoteIndex.propTypes = {
+  currentNote: PropTypes.number,
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setCurrentNote: PropTypes.func.isRequired,
+};
+
+NoteIndex.defaultProps = {
+  currentNote: null,
+};
 
 export default NoteIndex;

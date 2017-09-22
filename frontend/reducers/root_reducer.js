@@ -1,24 +1,25 @@
 import { combineReducers } from 'redux';
-import SessionReducer from './session_reducer';
-import NoteReducer from './note_reducer';
-import NotebookReducer from './notebook_reducer';
-import TagReducer from './tag_reducer';
-import ErrorReducer from './error_reducer';
+import sessionReducer from './session_reducer';
+import noteReducer from './note_reducer';
+import notebookReducer from './notebook_reducer';
+import tagReducer from './tag_reducer';
+import errorReducer from './error_reducer';
 
-const AppReducer = combineReducers ({
-  session: SessionReducer,
-  errors: ErrorReducer,
-  notes: NoteReducer,
-  notebooks: NotebookReducer,
-  tags: TagReducer
+const appReducer = combineReducers({
+  session: sessionReducer,
+  errors: errorReducer,
+  notes: noteReducer,
+  notebooks: notebookReducer,
+  tags: tagReducer,
 });
 
-const RootReducer = (state, action) => {
-  if (action.type === "LOGOUT") {
-    state = undefined;
+const rootReducer = (state, action) => {
+  let resetState = state;
+  if (action.type === 'LOGOUT') {
+    resetState = undefined;
   }
 
-  return AppReducer(state, action);
+  return appReducer(resetState, action);
 };
 
-export default RootReducer;
+export default rootReducer;

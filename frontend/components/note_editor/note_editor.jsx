@@ -1,48 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
-import Toolbar from 'react-quill';
 import TagFormContainer from './tag_form/tag_form_container';
 
-const _quillModules = {
+const quillModules = {
   toolbar: [
     // toggled buttons
     ['bold', 'italic', 'underline', 'strike'],
     ['blockquote', 'code-block'],
 
     // custom button values
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ list: 'ordered' }, { list: 'bullet' }],
 
     // superscript/subscript
-    [{ 'script': 'sub'}, { 'script': 'super' }],
+    [{ script: 'sub' }, { script: 'super' }],
 
     // outdent/indent
-    [{ 'indent': '-1'}, { 'indent': '+1' }],
-    [{ 'align': [] }],
+    [{ indent: '-1' }, { indent: '+1' }],
+    [{ align: [] }],
 
     // text direction
     // [{ 'direction': 'rtl' }],
 
     // custom dropdown
-    [{ 'font': [] }],
-    [{ 'size': ['small', false, 'large', 'huge'] }],
+    [{ font: [] }],
+    [{ size: ['small', false, 'large', 'huge'] }],
 
     // dropdown with defaults from theme
-    [{ 'header': 1 }, { 'header': 2 }],
-    [{ 'color': [] }, { 'background': [] }],
+    [{ header: 1 }, { header: 2 }],
+    [{ color: [] }, { background: [] }],
 
     // remove formatting button
     // ['clean']
-  ]
+  ],
 };
 
-const _quillFormats = [
-  "background", "color", "font", "size",
-  "list", "bullet", "script",
-  "bold", "italic", "underline", "strike",
-  "blockquote", "indent", "link", "header", "align",
-  // "direction", "formula", "image", "video",
-  "code", "code-block"
+const quillFormats = [
+  'background', 'color', 'font', 'size',
+  'list', 'bullet', 'script',
+  'bold', 'italic', 'underline', 'strike',
+  'blockquote', 'indent', 'link', 'header', 'align',
+  // 'direction', 'formula', 'image', 'video',
+  'code', 'code-block',
 ];
 
 
@@ -52,21 +51,15 @@ class NoteEditor extends React.Component {
 
     this.state = this.props.currentNote || {
       id: 0,
-      title: "",
-      body: ""
-      // showDropdown: false
+      title: '',
+      body: '',
     };
-    // this.handleKeyCommand = this.handleKeyCommand.bind(this);
 
-    // this.selectNotebook = this.selectNotebook.bind(this);
-    // this.showDropdown = this.showDropdown.bind(this);
-    // this.closeDropdown = this.closeDropdown.bind(this);
-    this.autosaveTimer;
+    // this.autosaveTimer;
     this.saveHandler = this.saveHandler.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.updateBody = this.updateBody.bind(this);
     this.autoSave = this.autoSave.bind(this);
-
   }
 
   componentWillReceiveProps(newProps) {
@@ -93,8 +86,13 @@ class NoteEditor extends React.Component {
       //       this.saveHandler();
       //   }
       // }
+      this.autosaveTimer = setTimeout(this.autoSave, 1000);
     }
-    this.autosaveTimer = setTimeout(this.autoSave, 1000);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.autosaveTimer);
+    this.props.updateNote(this.state);
   }
 
   autoSave() {
@@ -107,7 +105,7 @@ class NoteEditor extends React.Component {
     }
   }
 
-  saveHandler(e) {
+  saveHandler() {
     clearTimeout(this.autosaveTimer);
     this.props.updateNote(this.state).then(note => this.setState(note));
     this.autosaveTimer = setTimeout(this.autoSave, 1000);
@@ -115,62 +113,16 @@ class NoteEditor extends React.Component {
 
   updateTitle(e) {
     clearTimeout(this.autosaveTimer);
-    this.setState({title: e.currentTarget.value});
+    this.setState({ title: e.currentTarget.value });
     this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
   updateBody(text) {
     clearTimeout(this.autosaveTimer);
-    this.setState({body: text});
+    this.setState({ body: text });
     this.autosaveTimer = setTimeout(this.autoSave, 1000);
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.autosaveTimer);
-    this.props.updateNote(this.state);
-  }
-
-  // selectNotebook(notebook) {
-  //   this.setState({
-  //     notebook: notebook,
-  //     notebook_id: notebook.id});
-  //   this.closeDropdown();
-  // }
-  //
-  // showDropdown() {
-  //   this.setState({showDropdown: true});
-  // }
-  //
-  // closeDropdown() {
-  //   this.setState({showDropdown: false});
-  // }
-  //
-
-  // renderNotebookSelectorDropdown() {
-  //   const selectedNotebook = (this.state.note) ?
-  //     this.state.note.notebook : this.props.notebooks[0];
-  //   return (
-  //     <div
-  //       className={
-  //         "notebook-selector-dropdown-container" +
-  //         (this.state.showDropdown ? "show" : "")}>
-  //       <div
-  //         className={
-  //           "notebook-selector-dropdown-display" +
-  //           (this.state.showDropdown ? "clicked" : "")}
-  //         onClick={this.showDropdown}>
-  //         <span>
-  //           { selectedNotebook.title }
-  //         </span>
-  //         <i className="fa fa-angle-down"></i>
-  //       </div>
-  //       <div className="notebook-selector-dropdown-list">
-  //         {this.renderListItems()}
-  //       </div>
-  //     </div>
-  //   );
-  // }
-  //
   render() {
     if (this.props.currentNote) {
       return (
@@ -180,9 +132,8 @@ class NoteEditor extends React.Component {
               <li className="note-notebook-label">
                 <h3>
                   Notebook:
-                  <span
-                    className="notebook-selector">
-                    {this.props.currentNote.notebook.notebook_title}
+                  <span className="notebook-selector">
+                    {this.props.currentNote.notebook.title}
                   </span>
                 </h3>
               </li>
@@ -200,34 +151,49 @@ class NoteEditor extends React.Component {
             className="text-editor-title-input"
             placeholder="Title your note"
             onChange={this.updateTitle}
-            value={this.state.title} />
+            value={this.state.title}
+          />
 
           <div className="text-editor-input">
             <ReactQuill
-              theme='snow'
-              modules={_quillModules}
-              formats={_quillFormats}
+              theme="snow"
+              modules={quillModules}
+              formats={quillFormats}
               toolbar={false}
               value={this.state.body}
               key="editor"
-              ref='editor'
+              ref={(ref) => { this.editor = ref; }}
               className="quill-contents"
-              bounds={`.text-editor-input`}
+              bounds={'.text-editor-input'}
               onChange={this.updateBody}
-              getText={this.getText}>
-
-            </ReactQuill>
+              getText={this.getText}
+            />
           </div>
-
         </div>
       );
     }
-    else {
-      return (
-        <div className="note-editor"></div>
-      );
-    }
+    return (
+      <div className="note-editor" />
+    );
   }
 }
+
+NoteEditor.propTypes = {
+  updateNote: PropTypes.func.isRequired,
+  notebooks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  currentNote: PropTypes.shape({
+    author_id: PropTypes.number,
+    body: PropTypes.string,
+    id: PropTypes.number,
+    notebook: PropTypes.object,
+    tags: PropTypes.arrayOf(PropTypes.object),
+    title: PropTypes.string,
+    updated_at: PropTypes.string,
+  }),
+};
+
+NoteEditor.defaultProps = {
+  currentNote: null,
+};
 
 export default NoteEditor;

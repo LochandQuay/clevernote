@@ -1,22 +1,21 @@
+import merge from 'lodash/merge';
 import {
   RECEIVE_TAGS,
   SET_CURRENT_TAG,
-  RECEIVE_TAGGING
+  RECEIVE_TAGGING,
 } from '../actions/tag_actions';
-
-import merge from 'lodash/merge';
 
 const blankState = {
   byId: {},
   allIds: [],
-  currentTag: null
+  currentTag: null,
 };
 
-const TagReducer = (state = blankState, action) => {
+const tagReducer = (state = blankState, action) => {
   Object.freeze(state);
-  let nextState = merge({}, state);
+  const nextState = merge({}, state);
 
-  switch(action.type) {
+  switch (action.type) {
     case RECEIVE_TAGS:
       nextState.byId = action.payload.byId;
       nextState.allIds = action.payload.allIds;
@@ -41,4 +40,4 @@ const TagReducer = (state = blankState, action) => {
   }
 };
 
-export default TagReducer;
+export default tagReducer;

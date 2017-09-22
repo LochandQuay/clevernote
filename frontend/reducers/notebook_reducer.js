@@ -1,24 +1,24 @@
+import merge from 'lodash/merge';
 import {
   RECEIVE_NOTEBOOKS,
   RECEIVE_NOTEBOOK,
   REMOVE_NOTEBOOK,
   MAKE_NOTEBOOK,
   EDIT_NOTEBOOK,
-  SET_CURRENT_NOTEBOOK
+  SET_CURRENT_NOTEBOOK,
 } from '../actions/notebook_actions';
-import merge from 'lodash/merge';
 
 const blankState = {
   byId: {},
   allIds: [],
-  currentNotebook: null
+  currentNotebook: null,
 };
 
-const NotebookReducer = (state = blankState, action) => {
+const notebookReducer = (state = blankState, action) => {
   Object.freeze(state);
-  let nextState = merge({}, state);
+  const nextState = merge({}, state);
 
-  switch(action.type) {
+  switch (action.type) {
 
     case RECEIVE_NOTEBOOKS:
       nextState.byId = action.payload.byId;
@@ -60,4 +60,4 @@ const NotebookReducer = (state = blankState, action) => {
   }
 };
 
-export default NotebookReducer;
+export default notebookReducer;

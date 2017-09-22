@@ -1,8 +1,10 @@
 json.byId do
   @notes.each do |note|
     json.set! note.id do
-      json.partial! 'note', note: note
-      json.partial! 'notebook', notebook: note.notebook
+      json.extract! note, :id, :title, :body, :author_id, :updated_at
+      json.notebook do
+        json.extract! note.notebook, :id, :title
+      end
       json.tags note.tags, :id, :name
     end
   end

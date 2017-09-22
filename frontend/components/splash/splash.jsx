@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { hashHistory } from 'react-router';
 
 class Splash extends React.Component {
@@ -10,13 +11,13 @@ class Splash extends React.Component {
 
   componentWillReceiveProps(props) {
     if (props.loggedIn) {
-      hashHistory.push("/home");
+      hashHistory.push('/home');
     }
   }
 
   demoLogin(e) {
     e.preventDefault();
-    const user = { username: "eevee", password: "password" };
+    const user = { username: 'eevee', password: 'password' };
     this.props.login(user);
   }
 
@@ -25,7 +26,9 @@ class Splash extends React.Component {
       <div className="splash group">
         <img
           src="http://res.cloudinary.com/clevernote/image/upload/q_70/v1489622273/aleks-dorohovich-26_uerxji.jpg"
-          className="splash-image" />
+          className="splash-image"
+          alt="splash"
+        />
 
         <div className="splash-signup-form">
           <h1>Stay organized.</h1><br />
@@ -34,11 +37,17 @@ class Splash extends React.Component {
 
           <button
             className="splash-submit-button"
-            onClick={ this.demoLogin }>Try the demo</button>
+            onClick={this.demoLogin}
+          >Try the demo</button>
         </div>
       </div>
     );
   }
 }
+
+Splash.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
+};
 
 export default Splash;

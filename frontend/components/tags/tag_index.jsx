@@ -1,43 +1,47 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TagIndexItemContainer from './tag_index_item_container';
-import Modal from 'react-modal';
-// import NewTagModalStyle from '../modal_styles/new_tag_modal_style';
-// import NewTagModal from './new_tag_modal';
 
-class TagIndex extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const TagIndex = (props) => {
+  const tagListItems = props.tags.map(tag => (
+    <li key={`tag-list-item-${tag.id}`}>
+      <TagIndexItemContainer
+        tag={tag}
+        closeModal={props.closeTagsModal}
+      />
+    </li>
+  ));
 
-  render() {
-      const tagListItems = this.props.tags.map((tag, idx) => (
-        <li key={`tag-list-item-${idx}`}>
-          <TagIndexItemContainer tag={tag}
-            closeModal={this.props.closeTagsModal} />
-        </li>
-      ));
-
-      return (
-        <div className="tag-index">
-          <div className="tags-header">
-            <div className="refresh-button">
-              <i className="fa fa-refresh"
-                onClick={this.props.fetchTags}></i>
-              <div className="refresh-tooltip">Refresh Tags</div>
-            </div>
-            <h2>Tags</h2>
-            <h4>{this.props.tags.length} tags</h4>
-          </div>
-
-          <div className="tag-index-items">
-            <ul>
-              { tagListItems }
-            </ul>
-          </div>
+  return (
+    <div className="tag-index">
+      <div className="tags-header">
+        <div className="refresh-button">
+          <i
+            className="fa fa-refresh"
+            role="button"
+            tabIndex={0}
+            onClick={props.fetchTags}
+          />
+          <div className="refresh-tooltip">Refresh Tags</div>
         </div>
-    );
-  }
-}
+        <h2>Tags</h2>
+        <h4>{props.tags.length} tags</h4>
+      </div>
+
+      <div className="tag-index-items">
+        <ul>
+          {tagListItems}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+TagIndex.propTypes = {
+  tags: PropTypes.arrayOf(PropTypes.object).isRequired,
+  closeTagsModal: PropTypes.func.isRequired,
+  fetchTags: PropTypes.func.isRequired,
+};
 
 export default TagIndex;
 

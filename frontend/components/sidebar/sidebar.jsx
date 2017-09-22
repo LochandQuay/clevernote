@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import NotebookIndexContainer from '../notebooks/notebook_index_container';
 import TagIndexContainer from '../tags/tag_index_container';
@@ -22,7 +23,7 @@ class Sidebar extends React.Component {
     this.state = {
       userSettingsModalOpen: false,
       notebooksModalOpen: false,
-      tagsModalOpen: false
+      tagsModalOpen: false,
     };
 
     // this.addNote = this.addNote.bind(this);
@@ -118,15 +119,15 @@ class Sidebar extends React.Component {
   //   this.props.setCurrentTag(null);
   // }
 
-  addNoteHandler(e) {
+  addNoteHandler() {
     const notebookId = this.props.currentNotebook ?
       this.props.currentNotebook.id : this.props.notebooks[0].id;
 
     const blankNote = {
-      title: "",
-      body: "",
+      title: '',
+      body: '',
       notebook_id: notebookId,
-      author_id: this.props.currentUser.id
+      author_id: this.props.currentUser.id,
     };
 
     this.props.createNote(blankNote);
@@ -148,7 +149,7 @@ class Sidebar extends React.Component {
 
     this.setState({
       notebooksModalOpen: toggled,
-      tagsModalOpen: false
+      tagsModalOpen: false,
     });
   }
 
@@ -157,7 +158,7 @@ class Sidebar extends React.Component {
 
     this.setState({
       tagsModalOpen: toggled,
-      notebooksModalOpen: false
+      notebooksModalOpen: false,
     });
   }
 
@@ -176,7 +177,7 @@ class Sidebar extends React.Component {
     this.setState({
       notebooksModalOpen: true,
       userSettingsModalOpen: false,
-      tagsModalOpen: false
+      tagsModalOpen: false,
     }, () => this.resetCurrentFilters());
   }
 
@@ -188,7 +189,7 @@ class Sidebar extends React.Component {
     this.setState({
       tagsModalOpen: true,
       userSettingsModalOpen: false,
-      notebooksModalOpen: false
+      notebooksModalOpen: false,
     }, () => this.resetCurrentFilters());
   }
 
@@ -196,103 +197,116 @@ class Sidebar extends React.Component {
     this.setState({ tagsModalOpen: false });
   }
 
-  render () {
-    const userImageSetting = this.props.currentUser.image_url ?
-    "user-image" : "default-user-icon";
-
-    const userImageContent = this.props.currentUser.image_url ?
-      (<img src={this.props.currentUser.image_url} />) :
-      (<i className="fa fa-user-o"></i>);
+  render() {
+    // const userImageSetting = this.props.currentUser.image_url ?
+    // 'user-image' : 'default-user-icon';
+    // const userImageContent = this.props.currentUser.image_url ?
+    //   (<img src={this.props.currentUser.image_url} alt="user" />) :
+    //   (<i className="fa fa-user-o" />);
+    const userImageSetting = 'default-user-icon';
+    const userImageContent = (<i className="fa fa-user-o" />);
 
     return (
       <div className="sidebar">
         <div className="sidebar-logo">
-          <img className="sidebar-logo-image"
+          <img
+            className="sidebar-logo-image"
             src="http://res.cloudinary.com/clevernote/image/upload/e_make_transparent:10/v1489710654/fox_mrfgjm.png"
-            alt="clevernote logo" />
+            alt="clevernote logo"
+          />
         </div>
 
         <div className="note-action-buttons">
           <div
             className="add-note icon-circle sidebar-icon"
-            onClick={this.addNoteHandler} >
-            <i className="fa fa-plus"></i>
-          </div>
+            role="button"
+            tabIndex={0}
+            onClick={this.addNoteHandler}
+          ><i className="fa fa-plus" /></div>
 
           <div
-            className="search-notes icon-circle sidebar-icon" >
-            <i className="fa fa-search"></i>
-          </div>
+            className="search-notes icon-circle sidebar-icon"
+          ><i className="fa fa-search" /></div>
         </div>
 
         <div className="index-buttons">
           <div
             className="notes-button icon-circle sidebar-icon"
-            onClick={this.allNotesHandler} >
-            <i className="fa fa-file-text"></i>
-          </div>
+            role="button"
+            tabIndex={0}
+            onClick={this.allNotesHandler}
+          ><i className="fa fa-file-text" /></div>
 
           <div
             className="notebooks-button icon-circle sidebar-icon"
-            onClick={this.allNotebooksHandler} >
-            <i className="fa fa-book"></i>
-          </div>
+            role="button"
+            tabIndex={0}
+            onClick={this.allNotebooksHandler}
+          ><i className="fa fa-book" /></div>
 
           <div
             className="tags-button icon-circle sidebar-icon"
-            onClick={this.allTagsHandler} >
-            <i className="fa fa-tags"></i>
-          </div>
+            role="button"
+            tabIndex={0}
+            onClick={this.allTagsHandler}
+          ><i className="fa fa-tags" /></div>
         </div>
 
 
         <div className="user-button">
           <div
             className={`sidebar-icon user-icon ${userImageSetting}`}
-            onClick={this.openUserSettingsModal} >
-            {userImageContent}
-          </div>
+            role="button"
+            tabIndex={0}
+            onClick={this.openUserSettingsModal}
+          >{userImageContent}</div>
         </div>
 
         <Modal
-          onChange={isOpen => this.setState({notebooksModalOpen: isOpen})}
+          onChange={isOpen => this.setState({ notebooksModalOpen: isOpen })}
           isOpen={this.state.notebooksModalOpen}
           onRequestClose={this.closeNotebooksModal}
-          style={ NotebookIndexModalStyle }
+          style={NotebookIndexModalStyle}
           className="react-modal"
-          contentLabel="Notebook Index Modal">
+          contentLabel="Notebook Index Modal"
+        >
           <div className="notebook-index-modal">
             <NotebookIndexContainer
               createNotebook={this.props.createNotebook}
-              closeNotebooksModal={this.closeNotebooksModal} />
+              closeNotebooksModal={this.closeNotebooksModal}
+            />
           </div>
         </Modal>
 
         <Modal
-          onChange={isOpen => this.setState({tagsModalOpen: isOpen})}
+          onChange={isOpen => this.setState({ tagsModalOpen: isOpen })}
           isOpen={this.state.tagsModalOpen}
           onRequestClose={this.closeTagsModal}
-          style={ TagIndexModalStyle }
+          style={TagIndexModalStyle}
           className="react-modal"
-          contentLabel="Tag Index Modal">
+          contentLabel="Tag Index Modal"
+        >
           <div className="tag-index-modal">
             <TagIndexContainer
-              closeTagsModal={this.closeTagsModal} />
+              closeTagsModal={this.closeTagsModal}
+            />
           </div>
         </Modal>
 
         <Modal
-          onChange={isOpen => this.setState({userSettingsModalOpen: isOpen})}
+          onChange={isOpen => this.setState({ userSettingsModalOpen: isOpen })}
           isOpen={this.state.userSettingsModalOpen}
           onRequestClose={this.closeUserSettingsModal}
-          style={ UserSettingsModalStyle }
+          style={UserSettingsModalStyle}
           className="react-modal"
-          contentLabel="User Settings Modal" >
+          contentLabel="User Settings Modal"
+        >
           <div className="user-settings-modal">
             <h1>{this.props.currentUser.name}</h1>
             <button
               className="user-settings-logout-button"
-              onClick={() => this.props.logout()} >Log Out</button>
+              onClick={() => this.props.logout()}
+            >Log Out</button>
           </div>
         </Modal>
 
@@ -300,6 +314,29 @@ class Sidebar extends React.Component {
     );
   }
 }
+
+Sidebar.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  notebooks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  currentUser: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    username: PropTypes.string,
+  }).isRequired,
+  currentNotebook: PropTypes.number,
+  currentTag: PropTypes.number,
+  createNote: PropTypes.func.isRequired,
+  createNotebook: PropTypes.func.isRequired,
+  setCurrentNote: PropTypes.func.isRequired,
+  setCurrentNotebook: PropTypes.func.isRequired,
+  setCurrentTag: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+};
+
+Sidebar.defaultProps = {
+  currentNotebook: null,
+  currentTag: null,
+};
 
 export default Sidebar;
 
@@ -311,8 +348,6 @@ export default Sidebar;
 // <TagIndexContainer
 //   closeTagsModal={this.closeTagsModal}
 //   onClick={this.closeTagsModal} />
-
-
 
 // return (
 //   <div className="sidebar">

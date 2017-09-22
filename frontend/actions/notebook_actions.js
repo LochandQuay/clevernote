@@ -1,12 +1,43 @@
 import * as NotebookApiUtil from '../util/notebook_api_util';
 
-export const RECEIVE_NOTEBOOKS = "RECEIVE_NOTEBOOKS";
-export const RECEIVE_NOTEBOOK = "RECEIVE_NOTEBOOK";
-export const REMOVE_NOTEBOOK = "REMOVE_NOTEBOOK";
-export const SET_CURRENT_NOTEBOOK = "SET_CURRENT_NOTEBOOK";
+export const RECEIVE_NOTEBOOKS = 'RECEIVE_NOTEBOOKS';
+export const RECEIVE_NOTEBOOK = 'RECEIVE_NOTEBOOK';
+export const REMOVE_NOTEBOOK = 'REMOVE_NOTEBOOK';
+export const SET_CURRENT_NOTEBOOK = 'SET_CURRENT_NOTEBOOK';
 
-export const MAKE_NOTEBOOK = "MAKE_NOTEBOOK";
-export const EDIT_NOTEBOOK = "EDIT_NOTEBOOK";
+export const MAKE_NOTEBOOK = 'MAKE_NOTEBOOK';
+export const EDIT_NOTEBOOK = 'EDIT_NOTEBOOK';
+
+export const receiveNotebooks = payload => ({
+  type: RECEIVE_NOTEBOOKS,
+  payload,
+});
+
+export const receiveNotebook = notebook => ({
+  type: RECEIVE_NOTEBOOK,
+  notebook,
+});
+
+export const removeNotebook = notebook => ({
+  type: REMOVE_NOTEBOOK,
+  notebook,
+});
+
+export const setCurrentNotebook = notebook => ({
+  type: SET_CURRENT_NOTEBOOK,
+  notebook,
+});
+
+// new
+export const makeNotebook = notebook => ({
+  type: MAKE_NOTEBOOK,
+  notebook,
+});
+
+export const editNotebook = notebook => ({
+  type: EDIT_NOTEBOOK,
+  notebook,
+});
 
 export const fetchNotebooks = () => dispatch => (
   NotebookApiUtil.fetchNotebooks()
@@ -32,34 +63,3 @@ export const deleteNotebook = id => dispatch => (
   NotebookApiUtil.deleteNotebook(id)
     .then(notebook => dispatch(removeNotebook(notebook)))
 );
-
-export const receiveNotebooks = payload => ({
-  type: RECEIVE_NOTEBOOKS,
-  payload
-});
-
-export const receiveNotebook = notebook => ({
-  type: RECEIVE_NOTEBOOK,
-  notebook
-});
-
-export const removeNotebook = notebook => ({
-  type: REMOVE_NOTEBOOK,
-  notebook
-});
-
-export const setCurrentNotebook = notebook => ({
-  type: SET_CURRENT_NOTEBOOK,
-  notebook
-});
-
-// new
-export const makeNotebook = notebook => ({
-  type: MAKE_NOTEBOOK,
-  notebook
-});
-
-export const editNotebook = notebook => ({
-  type: EDIT_NOTEBOOK,
-  notebook
-});
