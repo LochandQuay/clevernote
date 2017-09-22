@@ -1,8 +1,8 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
 import Sidebar from './sidebar';
 import NoteIndexContainer from '../note_index/note_index_container';
 import NoteEditorContainer from '../note_editor/note_editor_container';
-import { hashHistory } from 'react-router';
 
 class Dashboard extends React.Component {
   constructor(props) {
