@@ -1,12 +1,12 @@
 import React from 'react';
-import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 
 class NewTagModal extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: ""
+      name: '',
     };
 
     this.update = this.update.bind(this);
@@ -14,7 +14,7 @@ class NewTagModal extends React.Component {
   }
 
   update() {
-    return e => this.setState({name: e.target.value});
+    return e => this.setState({ name: e.target.value });
   }
 
   createTagHandler(e) {
@@ -25,7 +25,6 @@ class NewTagModal extends React.Component {
   }
 
   render() {
-
     return (
       <div>
         <input
@@ -33,21 +32,27 @@ class NewTagModal extends React.Component {
           className="new-tag-name-input"
           placeholder="Tag Name"
           onChange={this.update()}
-          value={this.state.name} />
+          value={this.state.name}
+        />
 
         <button
           className="cancel-new-tag-button"
-          onClick={ this.props.closeModal }>
-          Cancel
-        </button>
+          onClick={this.props.closeModal}
+        >Cancel</button>
+
         <button
           className="create-new-tag-button"
-          onClick={ this.createTagHandler }>
-          Create Tag
-        </button>
+          onClick={this.createTagHandler}
+        >Create Tag</button>
       </div>
     );
   }
 }
+
+NewTagModal.propTypes = {
+  createTag: PropTypes.func.isRequired,
+  fetchTags: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+};
 
 export default NewTagModal;
