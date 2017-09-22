@@ -1,24 +1,20 @@
 import { connect } from 'react-redux';
 import TagForm from './tag_form';
-import { createTag, fetchTags, deleteTagging }
+import { createTag, deleteTagging }
   from '../../../actions/tag_actions';
-
 import { sortTags } from '../../../reducers/selectors';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   tags: state.notes.byId[state.notes.currentNote].tags,
-  selectedTag: state.tags.byId[state.tags.currentTag],
   allTags: sortTags(state.tags),
-  note: state.notes.byId[state.notes.currentNote]
+  note: state.notes.byId[state.notes.currentNote],
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  createTag: (data) => dispatch(createTag(data)),
-  fetchTags: () => dispatch(fetchTags()),
-  deleteTagging: (tagging) => dispatch(deleteTagging(tagging)),
+const mapDispatchToProps = dispatch => ({
+  createTag: data => dispatch(createTag(data)),
+  deleteTagging: tagging => dispatch(deleteTagging(tagging)),
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(TagForm);
+  mapDispatchToProps)(TagForm);
