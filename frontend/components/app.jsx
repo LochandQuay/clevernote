@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 import HeaderContainer from './greeting/greeting_container';
-import SessionFormContainer from './session_form/session_form_container';
-import HomeContainer from './home/home_container';
 import SplashContainer from './splash/splash_container';
+// import HomeContainer from './home/home_container';
+// import SessionFormContainer from './session_form/session_form_container';
 // import SessionModalContainer from './header/session_modal_container';
 
-const App = ({ children }) => {
-  return (
+const App = () => (
   <div>
     <header className="main-page-header">
       <Link to="/" className="home-link">
@@ -15,7 +14,8 @@ const App = ({ children }) => {
         <img
           className="main-page-logo"
           src="http://res.cloudinary.com/clevernote/image/upload/e_make_transparent:10/v1489710654/fox_mrfgjm.png"
-          alt="clevernote logo" />
+          alt="clevernote logo"
+        />
       </Link>
       <HeaderContainer />
     </header>
@@ -28,16 +28,15 @@ const App = ({ children }) => {
       </p>
       <div className="footer-links">
         <a href="https://www.github.com/LochandQuay">
-          <i className="fa fa-github"></i>
+          <i className="fa fa-github" />
         </a>
         <a href="https://www.linkedin.com/in/hopewanroy/">
-          <i className="fa fa-linkedin"></i>
+          <i className="fa fa-linkedin" />
         </a>
       </div>
     </footer>
-    {children}
   </div>
-);};
+);
 
 export default App;
 // <HomeContainer />
